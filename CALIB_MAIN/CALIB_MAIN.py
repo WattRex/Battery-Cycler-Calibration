@@ -19,7 +19,7 @@ import signal
 
 
 #######################          MODULE IMPORTS          #######################
-from PWR_CALIB import PWR_CALIB_c
+from PWR_CALIB import *
 
 #######################          PROJECT IMPORTS         #######################
 
@@ -27,7 +27,7 @@ from PWR_CALIB import PWR_CALIB_c
 #######################              ENUMS               #######################
 
 class _DEFAULTS():
-    FILE_PATH_CONFIG = 'config.yaml'
+    FILE_PATH_CONFIG = './CALIB_MAIN/config.yaml'
 
 
 #######################              CLASSES             #######################
