@@ -87,9 +87,10 @@ def main():
     option = None
 
     while option != 5:
+
         option = _option()
         if option == 1 or no_epc_number == True:
-            epc = str(input(f"serial number of EPC:")) #TODO: validar numero de serie
+            epc = str(input(f"serial number of EPC: ")) #TODO: validar numero de serie
             no_epc_number = False
         try:
             calib: PWR_CALIB_c = PWR_CALIB_c(source_port = ports['source_port'], multimeter_port = ports['multimeter_port'], epc_number = epc)
@@ -115,10 +116,12 @@ def main():
                 pass
 
         except Exception as e:
-            print(f"Error in program.")
-            print(e)
+            print(f"Error in program: {e}.")
 
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, _signal_handler)
+    init = time.time()
     main()
+    end = time.time()
+    print(f"Execution time: {end - init} seconds.")
     print("End of program.")
