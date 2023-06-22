@@ -1,0 +1,18 @@
+calib_data:
+  curr:
+    date: null
+    factor: null
+    offset: null
+  volt_hs:
+    date: 22/06/2023 13:10:34
+    factor: 0.996
+    offset: -29750.778
+  volt_ls:
+    date: 22/06/2023 13:11:26
+    factor: 0.996
+    offset: -29750.778
+version:
+  dev: null
+  hw: null
+  s_n: as
+  sw: null
