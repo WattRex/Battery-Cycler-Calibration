@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,linux,c
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,linux,c
 
+### Project specific ###
+*.yaml
+*.yml
+*.csv
+
 ### STM32 CUBE IDE project ###
 *Release/
 *Debug/
