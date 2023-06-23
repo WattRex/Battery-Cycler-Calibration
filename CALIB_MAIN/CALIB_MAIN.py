@@ -18,6 +18,7 @@ import time
 import signal
 import yaml
 from pathlib import Path
+from enum import Enum
 #######################       THIRD PARTY IMPORTS        #######################
 
 
@@ -29,6 +30,21 @@ from STM_FLASH import EPC_CONF_c, STM_FLASH_c
 
 
 #######################              ENUMS               #######################
+class _OPTIONS_e(Enum):
+    FLASH_ORIG_PROGR        = '1'
+    CONF_DEV                = '2'
+    CALIB_DEV               = '3'
+    FLASH_WITH_CALIB_DATA   = '4'
+    EXIT                    = '5'
+
+class _OPTIONS_CALIB_e(Enum):
+    VOLT_HS                 = '31'
+    VOLT_LS                 = '32'
+    CURR                    = '33'
+    AN_TEMP                 = '34'
+    AMB_TEMP                = '35'
+    BODY_TEMP               = '36'
+
 
 class _DEFAULTS():
     FILE_PATH_CONFIG = './CALIB_MAIN/config.yaml'
@@ -40,7 +56,7 @@ default_settings = {'device_version':  {'hw': None, 'sw': None, 'can_ID': None, 
 
 #######################              CLASSES             #######################
 def _signal_handler(sig, frame):
-    log.critical('You pressed Ctrl+C! If you want to exit the program, use the 5th option...')
+    log.critical(f'You pressed Ctrl+C! If you want to exit the program, use the 5th option...')
 
 def _readConfigPorts() -> dict:
     # Verificar si el archivo ya existe
@@ -57,37 +73,32 @@ def _readConfigPorts() -> dict:
     return result
 
 
-def _option() -> int:
+def _option() -> Enum:
     print(f"Select an option:\n\
     1. Flash original program.\n\
     2. Configure device.\n\
     3. Calibrate device.\n\
     4. Flash with calibration data.\n\
     5. Exit.")
-    option = None
     try:
-        option = int(input("Chosen option: "))
-        if option < 1 or option > 5:
-            print(f"Invalid option.")
+        result = _OPTIONS_e(input(f"Chosen option: "))
+        if result is _OPTIONS_e.CALIB_DEV:
+            print(f"Select an option of calibration:\n\
+            1. Voltage high side.\n\
+            2. Voltage low side.\n\
+            3. Current low side.\n\
+            4. Anodo temperature.\n\
+            5. Ambient temperature.\n\
+            6. Body temperature.")
+            try:
+                op_cal = input(f"Chosen option: ")
+                result = _OPTIONS_CALIB_e(_OPTIONS_e.CALIB_DEV.value + op_cal)
+            except:
+                print(f"Invalid option of calibration.")
     except:
         print(f"Invalid option.")
-    if option == 3:
-        print(f"Select an option:\n\
-        1. Voltage high side.\n\
-        2. Voltage low side.\n\
-        3. Current low side.\n\
-        4. Anodo temperature.\n\
-        5. Ambient temperature.\n\
-        6. Body temperature.")
-        try:
-            option_calib = int(input("Chosen option: "))
-            if option_calib < 1 or option_calib > 6:
-                print(f"Invalid option.")
-            else:
-                option = int(str(option) + str(option_calib))
-        except:
-            print(f"Invalid option.")
-    return option
+        result = None
+    return result
 
 
 def _configDevice() -> int:
@@ -129,27 +140,27 @@ def _configDevice() -> int:
 def main():
     ports: dict = _readConfigPorts()
     
-    option = 2
-    while option != 5:
+    option = _OPTIONS_e.CONF_DEV
+    while option is not _OPTIONS_e.EXIT:
         try:
-            if option == 1:
-                calib.SetupCalibStation()
-            elif option == 2:
+            if option == _OPTIONS_e.FLASH_ORIG_PROGR:
+                calib.SetupCalibStation(serial_number = epc_sn)
+            elif option == _OPTIONS_e.CONF_DEV:
                 epc_sn = _configDevice()
                 calib: PWR_CALIB_c = PWR_CALIB_c(source_port = ports['source_port'], multimeter_port = ports['multimeter_port'], epc_sn = epc_sn)
-            elif option == 4:
+            elif option == _OPTIONS_e.FLASH_WITH_CALIB_DATA:
                 pass
-            elif option == 31:
+            elif option == _OPTIONS_CALIB_e.VOLT_HS:
                 calib.CalibVoltHS()
-            elif option == 32:
+            elif option == _OPTIONS_CALIB_e.VOLT_LS:
                 calib.CalibVoltLS()
-            elif option == 33:
+            elif option == _OPTIONS_CALIB_e.CURR:
                 calib.CalibCurr()
-            elif option == 34:
+            elif option == _OPTIONS_CALIB_e.AN_TEMP:
                 pass
-            elif option == 35:
+            elif option == _OPTIONS_CALIB_e.AMB_TEMP:
                 pass
-            elif option == 36:
+            elif option == _OPTIONS_CALIB_e.BODY_TEMP:
                 pass
 
         except Exception as e:
