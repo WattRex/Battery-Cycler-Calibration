@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 #######################        MANDATORY IMPORTS         #######################
+from pathlib import Path
 import sys, os
 import yaml
 sys.path.append(os.getcwd())  #get absolute path
@@ -20,7 +21,7 @@ import signal
 
 #######################          MODULE IMPORTS          #######################
 from PWR_CALIB import *
-
+from STM_FLASH import *
 #######################          PROJECT IMPORTS         #######################
 
 
@@ -29,12 +30,16 @@ from PWR_CALIB import *
 class _DEFAULTS():
     FILE_PATH_CONFIG = './CALIB_MAIN/config.yaml'
 
+default_settings = {'device_version':  {'hw': None, 'sw': None, 'can_ID': None, 's_n': None},
+                    'calib_data':      {'volt_hs': {'factor': None, 'offset': None, 'date': None},
+                                        'volt_ls': {'factor': None, 'offset': None, 'date': None},
+                                        'curr':    {'factor': None, 'offset': None, 'date': None}}}
 
 #######################              CLASSES             #######################
 def _signal_handler(sig, frame):
     log.critical('You pressed Ctrl+C! If you want to exit the program, use the 5th option...')
 
-def _readConfig() -> dict:
+def _readConfigPorts() -> dict:
     # Verificar si el archivo ya existe
     result = None
     if not os.path.exists(_DEFAULTS.FILE_PATH_CONFIG):
@@ -81,27 +86,64 @@ def _option() -> int:
             print(f"Invalid option.")
     return option
 
-def main():
-    ports: dict = _readConfig()
-    no_epc_number = True
-    option = None
 
-    while option != 5:
-
-        option = _option()
-        if option == 1 or no_epc_number == True:
-            epc = str(input(f"serial number of EPC: ")) #TODO: validar numero de serie
-            no_epc_number = False
+def _configDevice() -> int:
+    #TODO: Can pedir y mostrar la info de la placa que tienes conectada
+    while True:
         try:
-            calib: PWR_CALIB_c = PWR_CALIB_c(source_port = ports['source_port'], multimeter_port = ports['multimeter_port'], epc_number = epc)
+            epc_sn = int(input(f"serial number of EPC: ")) #TODO: validar numero de serie
+            break
+        except:
+            print(f"Invalid data.")
+    
+    name_path = f"CALIB_MAIN/DATAS/data_{epc_sn}"
+    if not os.path.exists(name_path):
+        Path(name_path).mkdir(parents=True, exist_ok=True)
         
+    name_path_info = f"{name_path}/epc_calib_info_{epc_sn}.yaml"
+    if os.path.exists(name_path_info):
+        with open(name_path_info, 'r') as file:
+            conf_dev = yaml.load(file, Loader=yaml.FullLoader)
+    else:
+        conf_dev: dict = default_settings
+
+    while True:
+        try:
+            conf_dev['device_version']['hw']        = int(input(f"Hardware version: "))
+            conf_dev['device_version']['sw']        = int(input(f"Software version: "))
+            conf_dev['device_version']['can_ID']    = int(input(f"CAN ID: "))
+            conf_dev['device_version']['s_n']       = epc_sn
+            break
+        except:
+            print(f"Invalid data.")
+    with open(name_path_info, 'w') as file:
+        yaml.dump(conf_dev, file)
+        print(f"Configuration done")
+
+    EPC_CONF_c(serial_number = epc_sn)
+    return epc_sn
+
+def main():
+    log.info(f"VIVA")
+    log.info(f"VIVA")
+    log.info(f"VIVA")
+    log.info(f"VIVA")
+    log.warning(f"UCRANIA")
+    log.warning(f"UCRANIA")
+    log.warning(f"UCRANIA")
+    log.warning(f"UCRANIA")
+    ports: dict = _readConfigPorts()
+    
+    option = 2
+    while option != 5:
+        try:
             if option == 1:
-                calib.SetupCalibStation(epc)
+                calib.SetupCalibStation()
             elif option == 2:
-                pass
+                epc_sn = _configDevice()
+                calib: PWR_CALIB_c = PWR_CALIB_c(source_port = ports['source_port'], multimeter_port = ports['multimeter_port'], epc_sn = epc_sn)
             elif option == 4:
                 pass
-            
             elif option == 31:
                 calib.CalibVoltHS()
             elif option == 32:
@@ -117,11 +159,9 @@ def main():
 
         except Exception as e:
             print(f"Error in program: {e}.")
+        option = _option()
 
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, _signal_handler)
-    init = time.time()
     main()
-    end = time.time()
-    print(f"Execution time: {end - init} seconds.")
     print("End of program.")
