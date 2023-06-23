@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
 #######################        MANDATORY IMPORTS         #######################
-from pathlib import Path
+
 import sys, os
-import yaml
 sys.path.append(os.getcwd())  #get absolute path
+
 
 #######################      LOGGING CONFIGURATION       #######################
 from SYS.SYS_LOG import SYS_LOG_Logger_c, SYS_LOG_LoggerGetModuleLogger
@@ -16,12 +16,15 @@ log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./log_c
 #######################         GENERIC IMPORTS          #######################
 import time
 import signal
+import yaml
+from pathlib import Path
 #######################       THIRD PARTY IMPORTS        #######################
 
 
 #######################          MODULE IMPORTS          #######################
-from PWR_CALIB import *
-from STM_FLASH import *
+
+from PWR_CALIB import PWR_CALIB_c
+from STM_FLASH import EPC_CONF_c, STM_FLASH_c
 #######################          PROJECT IMPORTS         #######################
 
 
@@ -31,9 +34,9 @@ class _DEFAULTS():
     FILE_PATH_CONFIG = './CALIB_MAIN/config.yaml'
 
 default_settings = {'device_version':  {'hw': None, 'sw': None, 'can_ID': None, 's_n': None},
-                    'calib_data':      {'volt_hs': {'factor': None, 'offset': None, 'date': None},
-                                        'volt_ls': {'factor': None, 'offset': None, 'date': None},
-                                        'curr':    {'factor': None, 'offset': None, 'date': None}}}
+                    'calib_data':      {'VOLT_HS': {'factor': None, 'offset': None, 'date': None},
+                                        'VOLT_LS': {'factor': None, 'offset': None, 'date': None},
+                                        'CURR':    {'factor': None, 'offset': None, 'date': None}}}
 
 #######################              CLASSES             #######################
 def _signal_handler(sig, frame):
@@ -124,14 +127,6 @@ def _configDevice() -> int:
     return epc_sn
 
 def main():
-    log.info(f"VIVA")
-    log.info(f"VIVA")
-    log.info(f"VIVA")
-    log.info(f"VIVA")
-    log.warning(f"UCRANIA")
-    log.warning(f"UCRANIA")
-    log.warning(f"UCRANIA")
-    log.warning(f"UCRANIA")
     ports: dict = _readConfigPorts()
     
     option = 2

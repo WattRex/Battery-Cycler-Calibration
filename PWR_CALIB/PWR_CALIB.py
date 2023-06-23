@@ -11,12 +11,14 @@ if __name__ == '__main__':
 log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./log_config.yaml")
 
 #######################         GENERIC IMPORTS          #######################
+
+import time
 from enum import Enum
 import pandas as pd
 import numpy as np
-import statistics
-import time
+from statistics import mean
 import yaml
+
 #######################       THIRD PARTY IMPORTS        #######################
 
 
@@ -24,16 +26,16 @@ import yaml
 
 #######################          PROJECT IMPORTS         #######################
 from DRV.DRV_BK_PREC import *
-from DRV.DRV_EA import *
+from DRV.DRV_EA import DRV_EA_PS_Source_c, DRV_EA_PS_c
 
 #######################              ENUMS               #######################
 class _DEFAULTS():
-    ERROR_RANGE = 100 #mV
+    ERROR_RANGE = 50 #mUnits
 
 class _CALIB_DATA_e(Enum):
-    VOLT_HS = 'volt_hs'
-    VOLT_LS = 'volt_ls'
-    CURR = 'curr'
+    VOLT_HS = 'VOLT_HS'
+    VOLT_LS = 'VOLT_LS'
+    CURR = 'CURR'
 
 class _Params_e(Enum):
     VOLT_HS_MIN = 10000 #mV
@@ -42,9 +44,9 @@ class _Params_e(Enum):
     VOLT_LS_MIN = 30000
     VOLT_LS_MAX = 40000
     VOLT_LS_STEP = 1000
-    CURR_MIN = 6
-    CURR_MAX = 7
-    CURR_STEP = 8
+    CURR_MIN = 300
+    CURR_MAX = 350
+    CURR_STEP = 10
 
 dataaaa = {
     'voltage source': [30000, 31000, 32000, 33000, 34000, 35000, 36000, 37000, 38000, 39000, 40000],
@@ -92,12 +94,12 @@ class PWR_CALIB_c():
         Raises:
             - #TODO: ¿¿¿¿????
         '''
-        #calib: pd.DataFrame = self._calibVolts(v_min = _Params_e.VOLT_HS_MIN.value, step = _Params_e.VOLT_HS_STEP.value, v_max = _Params_e.VOLT_HS_MAX.value)
-        calib = BORRAR
+        calib = self._calibration(type_cal = _CALIB_DATA_e.VOLT_HS)
+        #calib = BORRAR
         line: tuple = self._parameters_line(calib)
-        self._save_calib_data(type_cal = _CALIB_DATA_e.VOLT_HS.value, df = calib, factor = line[0], offset = line[1])
+        self._save_calib_data(type_cal = _CALIB_DATA_e.VOLT_HS, df = calib, factor = line[0], offset = line[1])
 
-        
+    
     def CalibVoltLS(self) -> None:
         ''' Calibration of the low side voltage of the model.
         Args:
@@ -107,10 +109,10 @@ class PWR_CALIB_c():
         Raises:
             - #TODO: ¿¿¿¿????
         '''
-        #calib: pd.DataFrame = self._calibVolts(v_min = _Params_e.VOLT_LS_MIN.value, step = _Params_e.VOLT_LS_STEP.value, v_max = _Params_e.VOLT_LS_MAX.value)
-        calib = BORRAR
+        calib = self._calibration(type_cal = _CALIB_DATA_e.VOLT_LS)
+        #calib = BORRAR
         line: tuple = self._parameters_line(calib)
-        self._save_calib_data(type_cal = _CALIB_DATA_e.VOLT_LS.value, df = calib, factor = line[0], offset = line[1])
+        self._save_calib_data(type_cal = _CALIB_DATA_e.VOLT_LS, df = calib, factor = line[0], offset = line[1])
 
     def CalibCurr(self):
         '''Calibration of the current of the model.
@@ -121,42 +123,57 @@ class PWR_CALIB_c():
         Raises:
             - #TODO: ¿¿¿¿????
         '''
-        self._meter.setMode(DRV_BK_MODE_e.CURR_AUTO)
+        calib = self._calibration(type_cal = _CALIB_DATA_e.CURR)
+        #calib = BORRAR
+        line: tuple = self._parameters_line(calib)
+        self._save_calib_data(type_cal = _CALIB_DATA_e.CURR, df = calib, factor = line[0], offset = line[1])
 
-
-    def _calibVolts(self, v_min: int, step: int, v_max: int) -> pd.DataFrame:
+    def _calibration(self, type_cal: _CALIB_DATA_e) -> pd.DataFrame:
         ''' Obtain voltage of multimeter and EPC.
         Args:
-            - v_min (int): Minimum voltage to be measured.
-            - step (int): Step between measurements.
-            - v_max (int): Maximum voltage to be measured.
+            - type_cal (_CALIB_DATA_e): Type of calibration to be done.
 
         Returns:
             - result (pd.DataFrame): Dataframe with the voltage of the source, voltage measured with the multimeter and the one measured with the EPC.
         Raises:
-            - #TODO: ¿¿¿¿????
+            - #TODO: ¿¿¿¿?????
         '''
-        result = pd.DataFrame(columns=['voltage source', 'voltage multimeter', 'voltage EPC'])
-        volt_source = v_min
-        self._meter.setMode(DRV_BK_MODE_e.VOLT_AUTO)
+        val_min = _Params_e.__getitem__(f"{type_cal.value}_MIN").value
+        step = _Params_e.__getitem__(f"{type_cal.value}_STEP").value
+        val_max = _Params_e.__getitem__(f"{type_cal.value}_MAX").value
+
+        if type_cal is _CALIB_DATA_e.VOLT_HS or type_cal is _CALIB_DATA_e.VOLT_LS:
+            type_columns = ['voltage source', 'voltage multimeter', 'voltage EPC']
+            self._meter.setMode(DRV_BK_MODE_e.VOLT_AUTO)
+        else:
+            type_columns = ['current source', 'current multimeter', 'current EPC']
+            self._meter.setMode(DRV_BK_MODE_e.CURR_R2A)
+        result = pd.DataFrame(columns = type_columns)
+
+        val_source = val_min
         self._source.setOutput(True)
-        while volt_source <= v_max:
-            self._source.setCVMode(volt_source)
-            time.sleep(5)
-            while abs(volt_source - self._source.getVoltage()) > _DEFAULTS.ERROR_RANGE:
-                time.sleep(0.5)
-            
-            av_volt_meter: list= []
-            av_volt_epc: list= []
+        while val_source <= val_max:
+            if type_cal is _CALIB_DATA_e.VOLT_HS or type_cal is _CALIB_DATA_e.VOLT_LS:
+                self._source.setCVMode(val_source)
+                while abs(val_source - self._source.getVoltage()) > _DEFAULTS.ERROR_RANGE:
+                    time.sleep(0.5)
+            else:
+                self._source.setCCMode(val_source)
+                current = self._source.getCurrent()
+                while abs(val_source - self._source.getCurrent()) > _DEFAULTS.ERROR_RANGE:
+                    time.sleep(0.5)
+            av_meter: list= []
+            av_epc: list= []
             for _ in range(0,9, 1):
-                voltage_multimeter = self._meter.getMeas().voltage
-                av_volt_meter.append(voltage_multimeter)
-                av_volt_epc.append(voltage_multimeter) #TODO: Cambiarlo por lo obtenido del EPC
-            av_volt_meter = int(statistics.mean(av_volt_meter))
-            av_volt_epc = int(statistics.mean(av_volt_epc))
-            result = pd.concat([result, pd.DataFrame([[volt_source, av_volt_meter, av_volt_epc]],\
-                                                    columns=['voltage source', 'voltage multimeter', 'voltage EPC'])], ignore_index=True)
-            volt_source += step
+                if type_cal == _CALIB_DATA_e.VOLT_HS or type_cal == _CALIB_DATA_e.VOLT_LS:
+                    val_meter = self._meter.getMeas().voltage
+                else:
+                    val_meter = self._meter.getMeas().current
+                av_meter.append(val_meter)
+                av_epc.append(val_meter)    #TODO: Cambiarlo por lo obtenido del EPC
+            result = pd.concat([result, pd.DataFrame([[val_source, int(mean(av_meter)), int(mean(av_epc))]], columns = type_columns)], ignore_index=True)
+
+            val_source += step
         self._source.setOutput(False)
         return result
 
@@ -171,9 +188,10 @@ class PWR_CALIB_c():
         Raises:
             - #TODO: ¿¿¿¿????
         '''
-        x = np.array(df['voltage multimeter']).tolist()
-        y = np.array(df['voltage EPC']).tolist()
+        x = np.array(df.iloc[:,1]).tolist() #Column of multimeter
+        y = np.array(df.iloc[:,2]).tolist() #Column of EPC
         
+
         factor, intersection = np.polyfit(x, y, 1)
         offset = intersection - (factor * x[0])
         factor = float(round(factor, 3))
@@ -181,7 +199,7 @@ class PWR_CALIB_c():
         return factor, offset
 
 
-    def _save_calib_data(self, type_cal: str, df: pd.DataFrame, factor: int, offset: int) -> None:
+    def _save_calib_data(self, type_cal: _CALIB_DATA_e, df: pd.DataFrame, factor: int, offset: int) -> None:
         ''' Save the calibration data in a csv file and in a yaml file.
         Args:
             - type_cal (str): Type of calibration to be saved.
@@ -193,11 +211,10 @@ class PWR_CALIB_c():
         Raises:
             - #TODO: ¿¿¿¿????
         '''
-
+        type_cal = type_cal.value
         name_path = f"CALIB_MAIN/DATAS/data_{self._epc_sn}"
         name_path_info = f"{name_path}/epc_calib_info_{self._epc_sn}.yaml"
         name_path_dates = f"{name_path}/epc_calib_{type_cal}_{self._epc_sn}.csv"
-
         with open(name_path_info, 'r') as file:
             conf_dev = yaml.load(file, Loader=yaml.FullLoader)
             if conf_dev['calib_data'][type_cal]['factor'] == None or conf_dev['calib_data'][type_cal]['offset'] == None or conf_dev['calib_data'][type_cal]['date'] == None:
