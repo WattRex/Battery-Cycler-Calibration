@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,linux,c
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,linux,c
 
+### Firmware project specific configuration ###
+fw_code/firmware/
+
 ### STM32 CUBE IDE project ###
 *Release/
 *Debug/
@@ -58,6 +61,7 @@ firmware/Sources/EPC_CONF/*
 # Debug files
 *.dSYM/
 *.su
+*.cyclo
 *.idb
 *.pdb
 
