@@ -88,6 +88,8 @@ STM32.elf STM32.map: $(OBJS) $(USER_OBJS) $(SOURCE_PATH)/STM32/STM32F334R8TX_FLA
 	-Wl,-Map="STM32.map" -Wl,--gc-sections -static --specs=nano.specs \
 	-mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
+	arm-none-eabi-objcopy -O binary STM32.elf STM32.bin
+	@echo 'Generating binary'
 	@echo ' '
 
 default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
@@ -102,7 +104,7 @@ STM32.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 
 # Other Targets
 clean:
-	-$(RM) STM32.elf STM32.list STM32.map default.size.stdout
+	-$(RM) STM32.elf STM32.list STM32.map default.size.stdout STM32.bin
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

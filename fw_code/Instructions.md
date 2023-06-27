@@ -1,13 +1,14 @@
 ## 1. Step to compile and flash STM32CubeIDE project from command line:
 - Change desired configuration on `fw_code/firmware/Sources/EPC_CONF/epc_conf.*`
 - Compile the project: 
-````sh
+```sh
 cd fw_code/build
 make all
 ```
 
 It will generate an STM32.elf binary file, that will be flashed to uC.
-- Flash binary: ``
+- Flash binary: `st-flash write STM32.bin 0x08000000`
+- Flash reset uC: `st-flash reset` 
 
 ## 4. Install Pack GNU Arm Embedded GCC
 - Install xpm (XPack packet manager): `npm install --global xpm@latest`
@@ -52,3 +53,8 @@ cp: cannot create regular file '/usr/local/bin/node': Text file bus
 You need to remove the node file first: `sudo rm /usr/local/bin/node`
 - Restart the Raspberry Pi Zero W
 
+
+## References
+- [Install Arm GNU Toolchain on Ubuntu 22.04](https://lindevs.com/install-arm-gnu-toolchain-on-ubuntu)
+- [Using Raspberry Pi for Embedded Systems Development](https://rawats.medium.com/using-raspberry-pi-for-embedded-systems-development-part-1-2d32c42acb5c)
+- Flash stm32 with raspberry: [stm32duino-raspberrypi](https://github.com/koendv/stm32duino-raspberrypi)
