@@ -1,2 +1,0 @@
-source_port: /dev/ttyACM0
-multimeter_port: /dev/ttyUSB0
