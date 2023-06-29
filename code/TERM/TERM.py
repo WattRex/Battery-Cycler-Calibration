@@ -7,11 +7,11 @@ sys.path.append(os.getcwd())  #get absolute path
 #######################      LOGGING CONFIGURATION       #######################
 from SYS.SYS_LOG import SYS_LOG_Logger_c, SYS_LOG_LoggerGetModuleLogger
 if __name__ == '__main__':
-    cycler_logger = SYS_LOG_Logger_c('./SYS/SYS_LOG/logginConfig.conf')
-log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./log_config.yaml")
+    root_logger = SYS_LOG_Logger_c('./SYS/SYS_LOG/logginConfig.conf')
+log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./CONFIG/log_config.yaml")
 
 #######################         GENERIC IMPORTS          #######################
-import time
+from time import sleep
 from enum import Enum
 from consolemenu import SelectionMenu, Screen
 
@@ -19,7 +19,7 @@ from consolemenu import SelectionMenu, Screen
 
 
 #######################          MODULE IMPORTS          #######################
-from PWR_CALIB.PWR_CALIB import PWR_Mode_e
+from POWER import PWR_Mode_e
 from STM_FLASH.STM_FLASH import STM_FLASH_Epc_Conf_c
 
 
@@ -75,8 +75,8 @@ class TERM_c():
         for i in range(len(lines)):
             Screen.clear()
             print(padding + "\n".join(lines[:i]))
-            time.sleep(0.1)
-        time.sleep(3)
+            sleep(0.1)
+        sleep(3)
         Screen.clear()
         print(padding + intro_text)
     
@@ -163,11 +163,11 @@ if __name__ == '__main__':
     terminal = TERM_c()
     terminal.showIntro()
     princ_opt = terminal.queryOptions()
-    time.sleep(2)
+    sleep(2)
     terminal.queryEPCConf()
-    time.sleep(2)
+    sleep(2)
     calib_mode = terminal.queryCalibMode()
-    time.sleep(2)
+    sleep(2)
     for i in range(10):
         terminal.showProgressBar(i,10)
-        time.sleep(0.5)
+        sleep(0.5)
