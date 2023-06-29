@@ -2,8 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,linux,c
 
 ### Project specific ###
-DRV/*
-SYS/*
+code/DRV/*
+code/SYS/*
 *.yaml
 *.yml
 *.csv
