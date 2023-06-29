@@ -41,7 +41,7 @@
       </counter>
       <counter>
         <item-type type-id="class" type="Class" />
-        <value>3</value>
+        <value>10</value>
       </counter>
       <counter>
         <item-type type-id="collaboration" type="Collaboration" />
@@ -123,7 +123,7 @@
       </counter>
       <counter>
         <item-type type-id="artifact" type="Artifact" />
-        <value>31</value>
+        <value>32</value>
       </counter>
       <counter>
         <item-type type-id="drawing-rounded-rect" type="Rounded Rectangle" />
@@ -147,7 +147,7 @@
       </counter>
       <counter>
         <item-type type-id="group" type="Group" />
-        <value>133</value>
+        <value>389</value>
       </counter>
       <counter>
         <item-type type-id="constraint" type="Constraint" />
@@ -159,11 +159,11 @@
       </counter>
       <counter>
         <item-type type-id="property" type="Property" />
-        <value>99</value>
+        <value>106</value>
       </counter>
       <counter>
         <item-type type-id="class" type="Class" />
-        <value>8</value>
+        <value>15</value>
       </counter>
       <counter>
         <item-type type-id="comment" type="Comment" />
@@ -179,7 +179,7 @@
       </counter>
       <counter>
         <item-type type-id="enumeration" type="Enumeration" />
-        <value>7</value>
+        <value>9</value>
       </counter>
       <counter>
         <item-type type-id="hta-task" type="Task" />
@@ -275,11 +275,11 @@
     <fields>
       <counter>
         <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
-        <value>22</value>
+        <value>23</value>
       </counter>
       <counter>
         <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.EnumerationItemField</type>
-        <value>18</value>
+        <value>29</value>
       </counter>
     </fields>
   </counters>
@@ -313,7 +313,7 @@
     <custom-types>
       <parameters />
       <types>
-        <type id="Class:63e6f0361252438780162ba880d99c7c" tid="" name="PWR_CALIB" description="" class-ref="63e6f0361252438780162ba880d99c7c" />
+        <type id="Class:63e6f0361252438780162ba880d99c7c" tid="" name="PWR" description="" class-ref="63e6f0361252438780162ba880d99c7c" />
         <type id="Class:di8eb50684ee0445afa938493337897a682941" tid="" name="STM_FLASH" description="" class-ref="di8eb50684ee0445afa938493337897a682941" />
         <type id="Class:e7e3516383d34d0d87ee52a47bb82cc2" tid="" name="PWR_Mode_e" description="" class-ref="e7e3516383d34d0d87ee52a47bb82cc2" />
         <type id="Class:dif4c671f93abe4b8986d57b66e394dfc89009" tid="" name="STM_FLASH_Epc_Conf_c" description="" class-ref="dif4c671f93abe4b8986d57b66e394dfc89009" />
@@ -322,6 +322,33 @@
     </custom-types>
   </types>
   <items>
+    <item id="di77a5ee5e059e4b2c8ff14c0aaffe09a98736" cid="PROP076" type="property" name="VOLT_HS_MAX" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creation-date="06/28/2023 12:49:06" visibility="private">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
+    </item>
     <item id="di70f8fe4fda9c4b3db212ce8206dde2a45544" cid="ELEM009" type="text" name="Text1" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:25:07">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF000000" font="Segoe UI;18;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -350,7 +377,7 @@
       </drawing-text>
     </item>
     <item id="4eb1b98dccef4c2a9e29b53866a23db5" cid="GROUP001" type="group" name="Group" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:25:46" />
-    <item id="97e16bcdbe6c424ab3e97a447ff8771f" cid="PROP078" type="property" name="TEMP_ANOD" style-class="" owner="e7e3516383d34d0d87ee52a47bb82cc2" creation-date="06/28/2023 12:49:17" visibility="private">
+    <item id="2a75f45e5f9a4a1cb91d0117405857fc" cid="PROP079" type="property" name="TEMP_AMB" style-class="" owner="e7e3516383d34d0d87ee52a47bb82cc2" creation-date="06/28/2023 12:49:20" visibility="private">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -377,7 +404,7 @@
       <structural-feature type="" type-id="" />
       <property />
     </item>
-    <item id="2a75f45e5f9a4a1cb91d0117405857fc" cid="PROP079" type="property" name="TEMP_AMB" style-class="" owner="e7e3516383d34d0d87ee52a47bb82cc2" creation-date="06/28/2023 12:49:20" visibility="private">
+    <item id="97e16bcdbe6c424ab3e97a447ff8771f" cid="PROP078" type="property" name="TEMP_ANOD" style-class="" owner="e7e3516383d34d0d87ee52a47bb82cc2" creation-date="06/28/2023 12:49:17" visibility="private">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -406,7 +433,7 @@
     </item>
     <item id="3712be1693eb4900a65e6f8707619b79" cid="PROP001" type="property" name="" style-class="" owner="9eed1154a3d4404e87ceffa89877bd45" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:48:13" visibility="private">
       <feature />
-      <structural-feature type="PWR_CALIB" type-id="Class:63e6f0361252438780162ba880d99c7c" />
+      <structural-feature type="PWR" type-id="Class:63e6f0361252438780162ba880d99c7c" />
       <property />
     </item>
     <item id="f209d8f2523e44beaf113cd568d66803" cid="RQI001" type="uml-required-interface-end" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:15:55">
@@ -504,7 +531,7 @@
       <structural-feature type="" type-id="" />
       <property />
     </item>
-    <item id="8ec6b64a7e814dc2a9ebf64c3e8b2acc" cid="PROP084" type="property" name="calib_option" style-class="" owner="b35e851f7f7b4e48ac71bd1611c8ebd1" creation-date="06/28/2023 13:25:56" visibility="private">
+    <item id="8ec6b64a7e814dc2a9ebf64c3e8b2acc" cid="PROP084" type="property" name="status" style-class="" owner="b35e851f7f7b4e48ac71bd1611c8ebd1" creation-date="06/28/2023 13:25:56" visibility="private">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -540,7 +567,7 @@
     <item id="c36fca55633b4830bf27a456412565db" cid="RQI003" type="uml-required-interface-end" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:18:09">
       <required-interface interface-ref="3c66f6fb08f14c3bb04bc7a6ae136d27" />
     </item>
-    <item id="dida64065b18254ea99287b2504d73e5119009" cid="PROP023" type="property" name="sw_ver" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:53:36" visibility="private">
+    <item id="dida64065b18254ea99287b2504d73e5119009" cid="PROP023" type="property" name="sw_ver" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:53:36" visibility="public">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -571,6 +598,33 @@
       <interface />
     </item>
     <item id="dic0b9cf88586b4f14a284020ad438e0758959" cid="CN003" type="comment-connector" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:06:54" from="1e6b4582f9754b00847f7cbabec38e10" to="dic10de566551a4f979bce9edb1095504e3052" />
+    <item id="af868a80c8994e85bb608154d8510870" cid="PROP025" type="property" name="can_id" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:31" visibility="public">
+      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" dash-style="Solid" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" dash-style="Solid" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
+    </item>
     <item id="22f687906684403785521200c43f5cda" cid="PROP017" type="property" name="source" style-class="" owner="a76a13677d264cbe8934d5cb6d002b02" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:53:26" visibility="private">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -629,16 +683,124 @@
       <property />
     </item>
     <item id="did979dbed2b634850af13400dde07fc855488" cid="CN002" type="comment-connector" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:04:42" from="74e651fe14b44a8aac4dad4982281823" to="dic10de566551a4f979bce9edb1095504e3052" />
+    <item id="dfea2df9cb904a759797b9332831ed76" cid="PROP103" type="property" name="CURR_MIN" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/29/2023 13:02:12" visibility="private">
+      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" dash-style="Solid" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" dash-style="Solid" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
+    </item>
+    <item id="3c66f6fb08f14c3bb04bc7a6ae136d27" cid="IFC004" type="uml-interface" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:17:59">
+      <interface>
+        <required-interface-ref>c36fca55633b4830bf27a456412565db</required-interface-ref>
+      </interface>
+    </item>
     <item id="ecb328af459a42ca996452dd9d9701d6" cid="IFC002" type="uml-interface" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:16:23">
       <interface>
         <required-interface-ref>f209d8f2523e44beaf113cd568d66803</required-interface-ref>
         <required-interface-ref>fb573c40d1574eb2871c2e584d544415</required-interface-ref>
       </interface>
     </item>
-    <item id="3c66f6fb08f14c3bb04bc7a6ae136d27" cid="IFC004" type="uml-interface" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:17:59">
-      <interface>
-        <required-interface-ref>c36fca55633b4830bf27a456412565db</required-interface-ref>
-      </interface>
+    <item id="diafd3612ca58b48ebb10030786c4ad3488736" cid="PROP075" type="property" name="VOLT_HS_MIN" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creation-date="06/28/2023 12:49:06" visibility="private">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
+    </item>
+    <item id="di51bcc73db5a44042b87ad40335092ec88736" cid="PROP077" type="property" name="VOLT_HS_STEP" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creation-date="06/28/2023 12:49:13" visibility="private">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
+    </item>
+    <item id="di3d5c2dc95fe8444f8e7d37f738ecff358736" cid="PROP080" type="property" name="VOLT_LS_STEP" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creation-date="06/28/2023 12:49:56" visibility="private">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
     </item>
     <item id="f1ec288f590444e4b5b569155e6aaceb" cid="PROP075" type="property" name="VOLT_HS" style-class="" owner="e7e3516383d34d0d87ee52a47bb82cc2" creation-date="06/28/2023 12:49:06" visibility="private">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
@@ -700,6 +862,60 @@
       <structural-feature type="" type-id="" />
       <property />
     </item>
+    <item id="29af522142e64c8ca934a3d901dc1024" cid="PROP026" type="property" name="sn" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:36" visibility="public">
+      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" dash-style="Solid" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" dash-style="Solid" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
+    </item>
+    <item id="did1aa515a2a4e4978b8808978544290d68736" cid="PROP078" type="property" name="VOLT_LS_MIN" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creation-date="06/28/2023 12:49:17" visibility="private">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
+    </item>
     <item id="734259c79444413e92b8f1b359359d4a" cid="PROP081" type="property" name="epc_conf" style-class="" owner="dic10de566551a4f979bce9edb1095504e3052" creation-date="06/28/2023 13:14:32" visibility="private">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -729,6 +945,60 @@
     </item>
     <item id="224e64c5631742dea3f3834bc8fea51b" cid="IFC005" type="uml-interface" name="" style-class="" creation-date="06/28/2023 13:01:36">
       <interface />
+    </item>
+    <item id="519c55301323468d81791bdf4db82f92" cid="PROP024" type="property" name="hw_ver" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:28" visibility="public">
+      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" dash-style="Solid" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" dash-style="Solid" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
+    </item>
+    <item id="02ee8698f526462485e3f7bc224fd170" cid="PROP105" type="property" name="CURR_STEP" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/29/2023 13:02:24" visibility="private">
+      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" dash-style="Solid" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" dash-style="Solid" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
     </item>
     <item id="bf0e63c6903a4d8683df750982e1c1e1" cid="PROP083" type="property" name="epc_config" style-class="" owner="b35e851f7f7b4e48ac71bd1611c8ebd1" creation-date="06/28/2023 13:25:51" visibility="private">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
@@ -760,8 +1030,62 @@
     <item id="fb573c40d1574eb2871c2e584d544415" cid="RQI002" type="uml-required-interface-end" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:16:28">
       <required-interface interface-ref="ecb328af459a42ca996452dd9d9701d6" />
     </item>
+    <item id="e1326d0a5c824bf1bfb227ea356f3b08" cid="PROP104" type="property" name="CURR_MAX" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/29/2023 13:02:16" visibility="private">
+      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" dash-style="Solid" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" dash-style="Solid" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
+    </item>
     <item id="438fa5d802064992a546252ed2b7bc8b" cid="RQI004" type="uml-required-interface-end" name="" style-class="" creation-date="06/28/2023 13:01:30">
       <required-interface interface-ref="7d8cd0d31c334f068a44deab460a75d6" />
+    </item>
+    <item id="di63ac37cd9a9f4a7d8d1693398e8a41d28736" cid="PROP079" type="property" name="VOLT_LS_MAX" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creation-date="06/28/2023 12:49:20" visibility="private">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+        <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+        <text-style type="tagged-value" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <text-style type="stereotype" use-defaults="false" color="#FF555555" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+        <background type="solid" colors="#FFF2F2F2,#FFF2F2F2" />
+        <border color="#FF555555" width="2" />
+        <label-connector color="#80000000" width="1" dash-style="Dash" />
+        <alternate-styles>
+          <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#322A2A2A" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <text-style type="name" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="text" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+            <text-style type="tagged-value" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9.75;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <text-style type="stereotype" use-defaults="false" color="#FFE9E9E9" font="Segoe UI;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+            <background type="solid" colors="#FF203D85,#FF203D85" />
+            <border color="#FF203D85" width="2" />
+            <label-connector color="#80000000" width="1" dash-style="Dash" />
+          </alternate-style>
+        </alternate-styles>
+      </style>
+      <feature />
+      <structural-feature type="" type-id="" />
+      <property />
     </item>
     <item id="1e6b4582f9754b00847f7cbabec38e10" cid="CMT004" type="comment" name="Comment" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:06:54">
       <comment>ApplyCalib:
@@ -782,7 +1106,7 @@ Read calib info file and write calibration to epc_conf.c</comment>
       </meta>
       <abstract-items />
       <sub-models />
-      <diagram type="uml-component" id="peb619ef107a94c7292c7cdf192cdb7a2_404577011" name="Components Diagram" order-index="1" overview-order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="160,-363" zoom="0.7">
+      <diagram type="uml-component" id="peb619ef107a94c7292c7cdf192cdb7a2_404577011" name="Components Diagram" order-index="1" overview-order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="0,-258" zoom="0.8">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -825,10 +1149,16 @@ Read calib info file and write calibration to epc_conf.c</comment>
               <owned-item ref="fad216f516ca45b3a97e1fe6fa5881cc" />
               <owned-item ref="3712be1693eb4900a65e6f8707619b79" />
               <owned-item ref="fad216f516ca45b3a97e1fe6fa5881cc" />
+              <owned-item ref="3712be1693eb4900a65e6f8707619b79" />
+              <owned-item ref="fad216f516ca45b3a97e1fe6fa5881cc" />
+              <owned-item ref="3712be1693eb4900a65e6f8707619b79" />
+              <owned-item ref="fad216f516ca45b3a97e1fe6fa5881cc" />
+              <owned-item ref="3712be1693eb4900a65e6f8707619b79" />
+              <owned-item ref="fad216f516ca45b3a97e1fe6fa5881cc" />
             </owned-items>
             <relation from="63e6f0361252438780162ba880d99c7c" to="083c2be32d7b4e2d94ab5be8c8e865e3" derived="false">
-              <start-role id="umlar-99937420-2c33-44da-8d31-5c09f4fbb632" name="" navigability="" association-type="association" visibility="private" property-ref="3712be1693eb4900a65e6f8707619b79" />
-              <end-role id="umlar-f2207b23-ca96-4cc5-b20b-6ff5b843ebd5" name="" navigability="yes" association-type="association" visibility="private" property-ref="fad216f516ca45b3a97e1fe6fa5881cc" />
+              <start-role id="umlar-b65d883f-ab93-4dd8-b281-c4c739066ff4" name="" navigability="" association-type="association" visibility="private" property-ref="3712be1693eb4900a65e6f8707619b79" />
+              <end-role id="umlar-ccfbfd11-c75c-44fe-871f-0bb23e33ac8b" name="" navigability="yes" association-type="association" visibility="private" property-ref="fad216f516ca45b3a97e1fe6fa5881cc" />
             </relation>
           </item>
           <item id="di23a982da17c64fd6be8d93943a6cfa804300" cid="ELEM033" type="uml-provided-interface-connector" name="" style-class="" creation-date="06/20/2023 13:17:59" from="di16dc0a2781a74137a069884758267e164931" />
@@ -839,8 +1169,8 @@ Read calib info file and write calibration to epc_conf.c</comment>
               <owned-item ref="di57b5ae5fe7ec496da45005e78d8d65804794" />
             </owned-items>
             <relation from="083c2be32d7b4e2d94ab5be8c8e865e3" to="di8eb50684ee0445afa938493337897a682941" derived="false">
-              <start-role id="umlar-19ddd418-5c74-4ca1-bbdf-9d77f39a0218" name="" navigability="" association-type="association" visibility="private" property-ref="diba27cb906b0c4d63ba32de97fbbb4cb44794" />
-              <end-role id="umlar-d04c09be-d935-4eb6-abef-707831628f05" name="" navigability="yes" association-type="association" visibility="private" property-ref="di57b5ae5fe7ec496da45005e78d8d65804794" />
+              <start-role id="umlar-23dcf392-e3cc-476f-a783-88a3d8d03d95" name="" navigability="" association-type="association" visibility="private" property-ref="diba27cb906b0c4d63ba32de97fbbb4cb44794" />
+              <end-role id="umlar-9c69b99c-f365-434d-bc3f-aafc5ea13e6d" name="" navigability="yes" association-type="association" visibility="private" property-ref="di57b5ae5fe7ec496da45005e78d8d65804794" />
             </relation>
           </item>
           <item id="di5c572119db0744cd9c9496a6fc0396011899" cid="ELEM016" type="constraint-connector" name="SCPI" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:19:06" from="di7764c03a2b6d46fe8fed96c2a032f4384432" to="dib757d702f4cb4e02b95ee1e5f88138f85544" visibility="package" />
@@ -920,7 +1250,7 @@ Debugger</text>
           </item>
           <item id="di8d0f429e65494074a04339458516eb069247" cid="PROP003" type="property" name="" style-class="" owner="dicb97208d569b42e9ab08df83a2e712329247" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:48:13" visibility="private">
             <feature />
-            <structural-feature type="PWR_CALIB" type-id="Class:63e6f0361252438780162ba880d99c7c" />
+            <structural-feature type="PWR" type-id="Class:63e6f0361252438780162ba880d99c7c" />
             <property />
           </item>
           <item id="di134511abb30b414bb2110200fd8678218187" cid="REL003" type="relationship" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:48:13" to="di90a102e4e6044088844a5706372e58a21881" visibility="package">
@@ -929,8 +1259,8 @@ Debugger</text>
               <owned-item ref="di63ad62a84c884051832a496e4d347b8f8187" />
             </owned-items>
             <relation from="" to="di90a102e4e6044088844a5706372e58a21881" derived="false">
-              <start-role id="umlar-f2a56b64-6d6b-42e2-9e50-afa990f1ee48" name="" navigability="" association-type="association" visibility="private" property-ref="di8ee79f425dd04ed79c0dcb67751f60e18187" />
-              <end-role id="umlar-04315def-0025-44a8-8423-ac744b7a2670" name="" navigability="yes" association-type="association" visibility="private" property-ref="di63ad62a84c884051832a496e4d347b8f8187" />
+              <start-role id="umlar-62d350ed-8a2d-48cf-a306-e0796f5048a7" name="" navigability="" association-type="association" visibility="private" property-ref="di8ee79f425dd04ed79c0dcb67751f60e18187" />
+              <end-role id="umlar-208a25ab-2a64-4d28-9ecf-07cfb52b91c9" name="" navigability="yes" association-type="association" visibility="private" property-ref="di63ad62a84c884051832a496e4d347b8f8187" />
             </relation>
           </item>
           <item id="di7505c31f38c842a5917b0f8752f6e9dd5544" cid="GROUP002" type="group" name="Group" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:25:46" />
@@ -1000,11 +1330,14 @@ Debugger</text>
             <owned-items>
               <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
               <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
+              <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
+              <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
+              <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
             </owned-items>
             <style class="Flat Orange" />
             <component />
           </item>
-          <item id="959586cdcc704068b7436a9a133bb8ac" cid="CPT005" type="component" name="CALIB_MAN" style-class="Flat Orange" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:16:43" visibility="undefined">
+          <item id="959586cdcc704068b7436a9a133bb8ac" cid="CPT005" type="component" name="MANAGER" style-class="Flat Orange" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:16:43" visibility="undefined">
             <stereotypes>
               <stereotype name="component" />
             </stereotypes>
@@ -1031,7 +1364,7 @@ Debugger</text>
             <structural-feature type="" type-id="" />
             <property />
           </item>
-          <item id="63e6f0361252438780162ba880d99c7c" cid="CPT004" type="component" name="PWR_CALIB" style-class="Flat Orange" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:14:59" visibility="undefined">
+          <item id="63e6f0361252438780162ba880d99c7c" cid="CPT004" type="component" name="PWR" style-class="Flat Orange" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:14:59" visibility="undefined">
             <stereotypes>
               <stereotype name="component" />
             </stereotypes>
@@ -1080,6 +1413,9 @@ Debugger</text>
             <owned-items>
               <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
               <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
+              <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
+              <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
+              <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
             </owned-items>
             <component />
           </item>
@@ -1090,7 +1426,7 @@ Debugger</text>
           </item>
           <item id="di8ee79f425dd04ed79c0dcb67751f60e18187" cid="PROP005" type="property" name="" style-class="" owner="di134511abb30b414bb2110200fd8678218187" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:48:13" visibility="private">
             <feature />
-            <structural-feature type="PWR_CALIB" type-id="Class:63e6f0361252438780162ba880d99c7c" />
+            <structural-feature type="PWR" type-id="Class:63e6f0361252438780162ba880d99c7c" />
             <property />
           </item>
           <item id="di7764c03a2b6d46fe8fed96c2a032f4384432" cid="PORT002" type="port" name="SERIAL/ETHERNET" style-class="" owner="di411bd74e84624c6cb4ebd206a01684463452" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:19:21" visibility="undefined">
@@ -1140,10 +1476,13 @@ Debugger</text>
               <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
               <owned-item ref="dic01bbf7cb15e4a20810a847622f7d3696687" />
               <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
+              <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
+              <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
+              <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
             </owned-items>
             <relation from="" to="di3c7ac1cd7cf2453682415b64f7ccd5c99693" derived="false">
-              <start-role id="umlar-019fbadb-4bf8-4230-9ef7-f79e0970eb1f" name="" navigability="" association-type="association" visibility="private" property-ref="dic01bbf7cb15e4a20810a847622f7d3696687" />
-              <end-role id="umlar-0ed85d8b-45bc-4744-85a1-836f94fb816d" name="" navigability="yes" association-type="association" visibility="private" property-ref="dieaac40aca66d46108be9dab2255094d86687" />
+              <start-role id="umlar-2934c4f2-9a19-4d54-a5cf-85f38115e10c" name="" navigability="" association-type="association" visibility="private" property-ref="dic01bbf7cb15e4a20810a847622f7d3696687" />
+              <end-role id="umlar-58193702-2911-49f1-b701-0fcec58b9fe2" name="" navigability="yes" association-type="association" visibility="private" property-ref="dieaac40aca66d46108be9dab2255094d86687" />
             </relation>
           </item>
           <item id="di0b5da86b60d742e19643d442e55d12189457" cid="PORT003" type="port" name="CAN" style-class="" owner="die7718b3e9e29462a9fa69a721c64ec3b6015" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:19:21" visibility="undefined">
@@ -1179,25 +1518,31 @@ Debugger</text>
             <structural-feature type="STM_FLASH" type-id="Class:di8eb50684ee0445afa938493337897a682941" />
             <property />
           </item>
-          <item id="6f3eef377b474f45ae079edd5f63d8fb" cid="ELEM029" type="uml-provided-interface-connector" name="" style-class="" creation-date="06/28/2023 13:01:36" from="di8eb50684ee0445afa938493337897a682941" to="224e64c5631742dea3f3834bc8fea51b" />
           <item id="dia60d844133b94be58d0e0dc50a0dae6e3468" cid="CON002" type="constraint" name="epc_calib_info_{s_n}.txt" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:29:27" visibility="public">
             <constraint>epc_calib_{s_n}_ls_volt.csv</constraint>
           </item>
+          <item id="6f3eef377b474f45ae079edd5f63d8fb" cid="ELEM029" type="uml-provided-interface-connector" name="" style-class="" creation-date="06/28/2023 13:01:36" from="di8eb50684ee0445afa938493337897a682941" to="224e64c5631742dea3f3834bc8fea51b" />
           <item id="dicb97208d569b42e9ab08df83a2e712329247" cid="REL002" type="relationship" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:48:13" to="dia60d844133b94be58d0e0dc50a0dae6e3468" visibility="package">
             <owned-items>
               <owned-item ref="di8d0f429e65494074a04339458516eb069247" />
               <owned-item ref="di2d2c753efd194c6599fab2e6754528519247" />
               <owned-item ref="di8d0f429e65494074a04339458516eb069247" />
               <owned-item ref="di2d2c753efd194c6599fab2e6754528519247" />
+              <owned-item ref="di8d0f429e65494074a04339458516eb069247" />
+              <owned-item ref="di2d2c753efd194c6599fab2e6754528519247" />
+              <owned-item ref="di8d0f429e65494074a04339458516eb069247" />
+              <owned-item ref="di2d2c753efd194c6599fab2e6754528519247" />
+              <owned-item ref="di8d0f429e65494074a04339458516eb069247" />
+              <owned-item ref="di2d2c753efd194c6599fab2e6754528519247" />
             </owned-items>
             <relation from="" to="dia60d844133b94be58d0e0dc50a0dae6e3468" derived="false">
-              <start-role id="umlar-65b586bd-8e5f-4d52-ae8e-4c9e00f8493b" name="" navigability="" association-type="association" visibility="private" property-ref="di8d0f429e65494074a04339458516eb069247" />
-              <end-role id="umlar-e4ae7055-ee3c-48f0-a63e-9f645b5258db" name="" navigability="yes" association-type="association" visibility="private" property-ref="di2d2c753efd194c6599fab2e6754528519247" />
+              <start-role id="umlar-930466ee-6af1-406b-b942-8d0fff0e7f85" name="" navigability="" association-type="association" visibility="private" property-ref="di8d0f429e65494074a04339458516eb069247" />
+              <end-role id="umlar-bd8df556-8357-4eb4-b271-cb6f9ce09c12" name="" navigability="yes" association-type="association" visibility="private" property-ref="di2d2c753efd194c6599fab2e6754528519247" />
             </relation>
           </item>
           <item id="dic01bbf7cb15e4a20810a847622f7d3696687" cid="PROP007" type="property" name="" style-class="" owner="dife541aca67d54b649418c94448034ee66687" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:48:13" visibility="private">
             <feature />
-            <structural-feature type="PWR_CALIB" type-id="Class:63e6f0361252438780162ba880d99c7c" />
+            <structural-feature type="PWR" type-id="Class:63e6f0361252438780162ba880d99c7c" />
             <property />
           </item>
         </abstract-items>
@@ -1568,7 +1913,7 @@ Debugger</text>
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-class" id="pe9baceaece72490fbb29855c3e0ebc0d_430049249" name="POWER" order-index="3" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-46,399" zoom="1.2">
+      <diagram type="uml-class" id="pe9baceaece72490fbb29855c3e0ebc0d_430049249" name="POWER" order-index="3" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-139,4">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -1580,11 +1925,47 @@ Debugger</text>
           </authors>
           <description />
           <creation-date>06/20/2023 13:51:07</creation-date>
-          <change-date>06/28/2023 13:21:24</change-date>
+          <change-date>06/29/2023 13:01:11</change-date>
           <revision-count>0</revision-count>
           <version />
         </meta>
         <abstract-items>
+          <item id="dia125f44861a74b19b2bdc5ddffde0ecf2779" cid="E008" type="enumeration" name="_PWR_Params_e" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/28/2023 12:41:39" visibility="undefined">
+            <stereotypes>
+              <stereotype name="enumeration" />
+            </stereotypes>
+            <stereotype-instances>
+              <stereotype id="e7e3516383d34d0d87ee52a47bb82cc2_enumeration_c" type="enumeration" ref="" />
+            </stereotype-instances>
+            <owned-items>
+              <owned-item ref="dfea2df9cb904a759797b9332831ed76" />
+              <owned-item ref="e1326d0a5c824bf1bfb227ea356f3b08" />
+              <owned-item ref="02ee8698f526462485e3f7bc224fd170" />
+            </owned-items>
+            <attributes>
+              <attribute id="ae2fe9af4cd614cfcb7db14431a8f5b2e70" cid="PROP075" name="VOLT_HS_MIN" creation-date="06/28/2023 12:49:06" property-ref="diafd3612ca58b48ebb10030786c4ad3488736" />
+              <attribute id="a444e4debd00a4a7eb4e8d5c21318496a885" cid="PROP076" name="VOLT_HS_MAX" creation-date="06/28/2023 12:49:06" property-ref="di77a5ee5e059e4b2c8ff14c0aaffe09a98736" />
+              <attribute id="a844abd88f7c1461ab507f57c3fe92d4e237" cid="PROP077" name="VOLT_HS_STEP" creation-date="06/28/2023 12:49:13" property-ref="di51bcc73db5a44042b87ad40335092ec88736" />
+              <attribute id="a0b2e6432e5214caf80063c5d871071e8797" cid="PROP078" name="VOLT_LS_MIN" creation-date="06/28/2023 12:49:17" property-ref="did1aa515a2a4e4978b8808978544290d68736" />
+              <attribute id="a8182f93b53714b4ab5b851ff2adad9d484" cid="PROP079" name="VOLT_LS_MAX" creation-date="06/28/2023 12:49:20" property-ref="di63ac37cd9a9f4a7d8d1693398e8a41d28736" />
+              <attribute id="a2721ab4383694432bba14395e1c4c308420" cid="PROP080" name="VOLT_LS_STEP" creation-date="06/28/2023 12:49:56" property-ref="di3d5c2dc95fe8444f8e7d37f738ecff358736" />
+              <attribute id="a3c44f3878c444a86981f83ce7c09ad48504" cid="PROP103" name="CURR_MIN" creation-date="06/29/2023 13:02:12" property-ref="dfea2df9cb904a759797b9332831ed76" />
+              <attribute id="a9a92135c020b4b0da8325ee4d128057e858" cid="PROP104" name="CURR_MAX" creation-date="06/29/2023 13:02:16" property-ref="e1326d0a5c824bf1bfb227ea356f3b08" />
+              <attribute id="ad7af224433c6456ca61c1b4a3942fda1207" cid="PROP105" name="CURR_STEP" creation-date="06/29/2023 13:02:24" property-ref="02ee8698f526462485e3f7bc224fd170" />
+            </attributes>
+            <enumeration-items>
+              <enumeration-item id="af5f03b1c202a43189cad31d4dfe3a92d691" cid="ENI019" name="VOLT_HS_MIN" creation-date="06/29/2023 13:03:04" value="0" />
+              <enumeration-item id="affee0d7560f141f384199f56f9a019fe277" cid="ENI020" name="VOLT_HS_MAX" creation-date="06/29/2023 13:03:56" value="0" />
+              <enumeration-item id="a409027390ab843aea0fe19c5a94b0bed18" cid="ENI021" name="VOLT_HS_STEP" creation-date="06/29/2023 13:03:59" value="0" />
+              <enumeration-item id="a0727b5fca5f04b63af6b16f34d689dda827" cid="ENI022" name="VOLT_LS_MIN" creation-date="06/29/2023 13:04:06" value="0" />
+              <enumeration-item id="ab16c1f39480d493981650b03b5628037898" cid="ENI023" name="VOLT_LS_MAX" creation-date="06/29/2023 13:04:09" value="0" />
+              <enumeration-item id="a29864227abc24a378f419ed7a75a87bd642" cid="ENI024" name="VOLT_LS_STEP" creation-date="06/29/2023 13:04:13" value="0" />
+              <enumeration-item id="aa815fd5ad28249e1ad4695993f05a8b417" cid="ENI025" name="CURR_MIN" creation-date="06/29/2023 13:04:17" value="0" />
+              <enumeration-item id="a011e4e450f5d494db2e0080804d09d5f651" cid="ENI026" name="CURR_MAX" creation-date="06/29/2023 13:04:19" value="0" />
+              <enumeration-item id="a1cbaae7fefc447b1a5e5c2d91baf197544" cid="ENI027" name="CURR_STEP" creation-date="06/29/2023 13:04:21" value="0" />
+              <enumeration-item id="a30ba11736b6a4ec982235e9e2c66d625762" cid="ENI028" name="" creation-date="06/29/2023 13:04:28" />
+            </enumeration-items>
+          </item>
           <item id="e7e3516383d34d0d87ee52a47bb82cc2" cid="E005" type="enumeration" name="PWR_Mode_e" style-class="" creation-date="06/28/2023 12:41:39" visibility="undefined">
             <stereotypes>
               <stereotype name="enumeration" />
@@ -1593,6 +1974,24 @@ Debugger</text>
               <stereotype id="e7e3516383d34d0d87ee52a47bb82cc2_enumeration_c" type="enumeration" ref="" />
             </stereotype-instances>
             <owned-items>
+              <owned-item ref="97e16bcdbe6c424ab3e97a447ff8771f" />
+              <owned-item ref="2a75f45e5f9a4a1cb91d0117405857fc" />
+              <owned-item ref="3e148f9022be42148eb9755bbb51756b" />
+              <owned-item ref="43177718fc89406d9c1de5949c027bdb" />
+              <owned-item ref="f1ec288f590444e4b5b569155e6aaceb" />
+              <owned-item ref="a935c401b6634934a7d60d6f7c724edd" />
+              <owned-item ref="97e16bcdbe6c424ab3e97a447ff8771f" />
+              <owned-item ref="2a75f45e5f9a4a1cb91d0117405857fc" />
+              <owned-item ref="3e148f9022be42148eb9755bbb51756b" />
+              <owned-item ref="43177718fc89406d9c1de5949c027bdb" />
+              <owned-item ref="f1ec288f590444e4b5b569155e6aaceb" />
+              <owned-item ref="a935c401b6634934a7d60d6f7c724edd" />
+              <owned-item ref="97e16bcdbe6c424ab3e97a447ff8771f" />
+              <owned-item ref="2a75f45e5f9a4a1cb91d0117405857fc" />
+              <owned-item ref="3e148f9022be42148eb9755bbb51756b" />
+              <owned-item ref="43177718fc89406d9c1de5949c027bdb" />
+              <owned-item ref="f1ec288f590444e4b5b569155e6aaceb" />
+              <owned-item ref="a935c401b6634934a7d60d6f7c724edd" />
               <owned-item ref="97e16bcdbe6c424ab3e97a447ff8771f" />
               <owned-item ref="2a75f45e5f9a4a1cb91d0117405857fc" />
               <owned-item ref="3e148f9022be42148eb9755bbb51756b" />
@@ -1640,6 +2039,15 @@ Debugger</text>
               <owned-item ref="eb182121b3094ee39bd237507707a0f6" />
               <owned-item ref="b4e29cce4f7441b089bd37b4ba048525" />
               <owned-item ref="22f687906684403785521200c43f5cda" />
+              <owned-item ref="eb182121b3094ee39bd237507707a0f6" />
+              <owned-item ref="b4e29cce4f7441b089bd37b4ba048525" />
+              <owned-item ref="22f687906684403785521200c43f5cda" />
+              <owned-item ref="eb182121b3094ee39bd237507707a0f6" />
+              <owned-item ref="b4e29cce4f7441b089bd37b4ba048525" />
+              <owned-item ref="22f687906684403785521200c43f5cda" />
+              <owned-item ref="eb182121b3094ee39bd237507707a0f6" />
+              <owned-item ref="b4e29cce4f7441b089bd37b4ba048525" />
+              <owned-item ref="22f687906684403785521200c43f5cda" />
             </owned-items>
             <attributes>
               <attribute id="ab706ebae4f2941c5921ede391958065e118" cid="PROP017" name="source" creation-date="06/20/2023 13:53:26" property-ref="22f687906684403785521200c43f5cda" />
@@ -1657,7 +2065,7 @@ Debugger</text>
               </operation>
               <operation id="o07cfbb4371b540bebf4d822096e88fbf795" cid="OP017" name="config_devices" creation-date="06/28/2023 14:26:12" type="" type-id="" visibility="private" />
               <operation id="o62e0504c948e4af5b4734b677fc06010610" cid="OP015" name="writeData" creation-date="06/28/2023 14:19:57" type="" type-id="" visibility="private" />
-              <operation id="o7c0fe7fcaa8f45d5b10d51837bb95783611" cid="OP018" name="CheckExistingCalib" creation-date="06/28/2023 14:36:49" type="Boolean" type-id="Uml.Boolean" visibility="public">
+              <operation id="o7c0fe7fcaa8f45d5b10d51837bb95783611" cid="OP018" name="checkExistingCalib" creation-date="06/28/2023 14:36:49" type="Boolean" type-id="Uml.Boolean" visibility="private">
                 <parameters>
                   <parameter id="p31e609f96cd04b3794de4f504be31ebe" name="mode" type="PWR_Mode_e" type-id="Class:e7e3516383d34d0d87ee52a47bb82cc2" />
                 </parameters>
@@ -1665,7 +2073,7 @@ Debugger</text>
                   <source-code language="ActionScript" />
                 </source-codes>
               </operation>
-              <operation id="o6b5ea39e8f6d4c0c9b28a8ec1f15760d278" cid="OP002" name="CalibVoltHS" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
+              <operation id="o6b5ea39e8f6d4c0c9b28a8ec1f15760d278" cid="OP002" name="calibVoltHS" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
                 <parameters>
                   <parameter id="p7bbc180231644e75a06782b44c0614a4" name="v_min" type="" type-id="" />
                   <parameter id="p114089392bab4ee4aac3a8951667f7b5" name="step" type="" type-id="" />
@@ -1675,20 +2083,21 @@ Debugger</text>
                   <source-code language="ActionScript" />
                 </source-codes>
               </operation>
-              <operation id="oc2121ba801c74778a3e1c269db4026f8478" cid="OP003" name="CalibVoltLS" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
+              <operation id="oc2121ba801c74778a3e1c269db4026f8478" cid="OP003" name="calibVoltLS" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
                 <parameters>
                   <parameter id="pf3fca52db3984a028ba30cf5fc340b99" name="v_min" type="" type-id="" />
                   <parameter id="p9d67f18a62374d289f07644d2299526e" name="step" type="" type-id="" />
                   <parameter id="p7ff3cc8b35754984b4f00eebc7b7bb00" name="v_max" type="" type-id="" />
                 </parameters>
               </operation>
-              <operation id="o5b1967ed562045d797dbe191ba2d4125117" cid="OP004" name="CalibCurr" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
+              <operation id="o5b1967ed562045d797dbe191ba2d4125117" cid="OP004" name="calibCurr" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
                 <parameters>
                   <parameter id="pc132fde239374b48ab87d9d1ddb3c690" name="c_min" type="" type-id="" />
                   <parameter id="p5da2faff4f69460b9814a8a737a589cb" name="step" type="" type-id="" />
                   <parameter id="pf0cd0829f4834f8c83e08c1c925543bf" name="c_max" type="" type-id="" />
                 </parameters>
               </operation>
+              <operation id="o59c1513159944157bf2d51c6377ccc71732" cid="OP022" name="ejecutarIteracion y le paso por aqui el terminal" creation-date="06/29/2023 12:15:31" type="" type-id="" visibility="undefined" />
             </operations>
             <source-codes>
               <source-code language="ActionScript" />
@@ -1697,7 +2106,7 @@ Debugger</text>
         </abstract-items>
         <layer id="2f1b6ece5a9943e290f8f649537c0d0a" name="Default" visible="true" enabled="true" locked="false">
           <item id="a76a13677d264cbe8934d5cb6d002b02" iid="cbd68ff8bd9346edb01ef3c42fa8c83f" show-fields="true" creation-date="06/20/2023 13:51:14" order-index="1" type="entity">
-            <layout ax="180" ay="100" awidth="440" aheight="231" x="180" y="100" width="440" height="230" rotation-center="40,-5" />
+            <layout ax="180" ay="100" awidth="440" aheight="263" x="180" y="100" width="440" height="263" rotation-center="40,-21" />
             <classifier />
             <class />
           </item>
@@ -1706,17 +2115,21 @@ Debugger</text>
             <enumeration />
           </item>
           <item id="147e78888aa24546bf3bf6c3d81ac317" iid="844959bad5f8487eaa75d0c6e40fae4c" creation-date="06/28/2023 13:21:12" order-index="3" type="relation">
-            <layout line-style="rounded-rectangular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="410" y1="470" x2="400" y2="331" start-border-pos="0.129310344827586" end-border-pos="0.625" start-local-pos="150" end-local-pos="220" name-position="0,20">
+            <layout line-style="rounded-rectangular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="410" y1="470" x2="400" y2="363" start-border-pos="0.129310344827586" end-border-pos="0.625" start-local-pos="150" end-local-pos="220" name-position="0,20">
               <points>
                 <point x="410" y="470" />
-                <point x="400" y="331" />
+                <point x="400" y="363" />
               </points>
             </layout>
             <relation from="e7e3516383d34d0d87ee52a47bb82cc2" from-iid="a68f2e5ece06414dad5a296ba8f9915c" to="a76a13677d264cbe8934d5cb6d002b02" to-iid="cbd68ff8bd9346edb01ef3c42fa8c83f" />
           </item>
+          <item id="dia125f44861a74b19b2bdc5ddffde0ecf2779" iid="b0069fd439124b9a98c6b858a673e4b8" creation-date="06/28/2023 12:41:39" order-index="2" type="entity">
+            <layout ax="620" ay="470" awidth="290" aheight="232" x="620" y="470" width="290" height="232" rotation-center="-75,-27.5" />
+            <enumeration />
+          </item>
         </layer>
       </diagram>
-      <diagram type="uml-class" id="pe5e28c74f7264a72a16a9afda03fc6a6_877141480" name="STM_FLASH" order-index="4" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-240,-130" zoom="0.9">
+      <diagram type="uml-class" id="pe5e28c74f7264a72a16a9afda03fc6a6_877141480" name="STM_FLASH" order-index="4" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-238,49" zoom="1.2">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -1740,6 +2153,9 @@ Debugger</text>
               <owned-item ref="29af522142e64c8ca934a3d901dc1024" />
               <owned-item ref="519c55301323468d81791bdf4db82f92" />
               <owned-item ref="dida64065b18254ea99287b2504d73e5119009" />
+              <owned-item ref="dida64065b18254ea99287b2504d73e5119009" />
+              <owned-item ref="dida64065b18254ea99287b2504d73e5119009" />
+              <owned-item ref="dida64065b18254ea99287b2504d73e5119009" />
             </owned-items>
             <attributes>
               <attribute id="6fd7f584-d93a-4e34-91ce-7ff6dd11c806" cid="PROP023" name="sw_ver" creation-date="06/20/2023 13:53:36" property-ref="dida64065b18254ea99287b2504d73e5119009" />
@@ -1755,13 +2171,16 @@ Debugger</text>
             <owned-items>
               <owned-item ref="734259c79444413e92b8f1b359359d4a" />
               <owned-item ref="734259c79444413e92b8f1b359359d4a" />
+              <owned-item ref="734259c79444413e92b8f1b359359d4a" />
+              <owned-item ref="734259c79444413e92b8f1b359359d4a" />
+              <owned-item ref="734259c79444413e92b8f1b359359d4a" />
             </owned-items>
             <attributes>
               <attribute id="aac2b337d3e4f4a32a98804d7641b79f638" cid="PROP081" name="epc_conf" creation-date="06/28/2023 13:14:32" property-ref="734259c79444413e92b8f1b359359d4a" />
             </attributes>
             <operations>
               <operation id="o5e9b8dac56e145a1aee0bf812b5b9368143" cid="OP013" name="STM_FLASH" creation-date="06/28/2023 13:15:37" type="" type-id="" visibility="public" />
-              <operation id="f003d0b1-d291-4e7e-a73e-fbc3647c67fa" cid="OP001" name="ConfigureDev" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
+              <operation id="f003d0b1-d291-4e7e-a73e-fbc3647c67fa" cid="OP001" name="configureDev" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
                 <parameters>
                   <parameter id="p24cbdd5859a0440a8a2ea74ca260e57c" name="epc_config" type="STM_FLASH_Epc_Conf_c" type-id="Class:dif4c671f93abe4b8986d57b66e394dfc89009" />
                 </parameters>
@@ -1769,9 +2188,9 @@ Debugger</text>
                   <source-code language="ActionScript" />
                 </source-codes>
               </operation>
-              <operation id="oc4463e9f94d14eddb941a78d632fd56f984" cid="OP005" name="ApplyCalib" creation-date="06/20/2023 14:05:49" type="" type-id="" visibility="public" />
-              <operation id="o75f97f53cbac4a05a74c3582698ddcb0613" cid="OP011" name="BuildProject" creation-date="06/20/2023 15:38:21" type="" type-id="" visibility="public" />
-              <operation id="c29213c7-719e-43ee-92d6-adbeb52f31dc" cid="OP002" name="Flash_uC" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
+              <operation id="oc4463e9f94d14eddb941a78d632fd56f984" cid="OP005" name="applyCalib" creation-date="06/20/2023 14:05:49" type="" type-id="" visibility="public" />
+              <operation id="o75f97f53cbac4a05a74c3582698ddcb0613" cid="OP011" name="buildProject" creation-date="06/20/2023 15:38:21" type="" type-id="" visibility="public" />
+              <operation id="c29213c7-719e-43ee-92d6-adbeb52f31dc" cid="OP002" name="flashUC" creation-date="06/20/2023 13:55:48" type="" type-id="" visibility="public">
                 <parameters>
                   <parameter id="p0d6e082e2dde456ea8f3cbb51ca5403d" name="binary_name" type="String" type-id="Uml.String" />
                 </parameters>
@@ -1784,16 +2203,6 @@ Debugger</text>
               <source-code language="ActionScript" />
             </source-codes>
           </item>
-          <item id="af868a80c8994e85bb608154d8510870" cid="PROP025" type="property" name="can_id" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:31" visibility="private">
-            <feature />
-            <structural-feature type="" type-id="" />
-            <property />
-          </item>
-          <item id="29af522142e64c8ca934a3d901dc1024" cid="PROP026" type="property" name="sn" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:36" visibility="private">
-            <feature />
-            <structural-feature type="" type-id="" />
-            <property />
-          </item>
           <item id="cd1d447832614d44abd156a5b2e64833" cid="ELEM023" type="usage" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:57" from="dif4c671f93abe4b8986d57b66e394dfc89009" to="dic10de566551a4f979bce9edb1095504e3052" visibility="package">
             <stereotypes>
               <stereotype name="use" />
@@ -1801,11 +2210,6 @@ Debugger</text>
             <stereotype-instances>
               <stereotype id="cd1d447832614d44abd156a5b2e64833_use_c" type="use" ref="" />
             </stereotype-instances>
-          </item>
-          <item id="519c55301323468d81791bdf4db82f92" cid="PROP024" type="property" name="hw_ver" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:28" visibility="private">
-            <feature />
-            <structural-feature type="" type-id="" />
-            <property />
           </item>
         </abstract-items>
         <layer id="2f1b6ece5a9943e290f8f649537c0d0a" name="Default" visible="true" enabled="true" locked="false">
@@ -1854,7 +2258,7 @@ Debugger</text>
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-class" id="padc6ceab11584248b76aa41eb117da23_759566190" name="MANAGER" order-index="5" overview-order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="350,94" zoom="1.6">
+      <diagram type="uml-class" id="padc6ceab11584248b76aa41eb117da23_759566190" name="MANAGER" order-index="5" overview-order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="254,1" zoom="1.6">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -1871,8 +2275,14 @@ Debugger</text>
           <version />
         </meta>
         <abstract-items>
-          <item id="b35e851f7f7b4e48ac71bd1611c8ebd1" cid="C004" type="class" name="CALIB_MAN" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:43:52" visibility="undefined">
+          <item id="b35e851f7f7b4e48ac71bd1611c8ebd1" cid="C004" type="class" name="MANAGER_c" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:43:52" visibility="undefined">
             <owned-items>
+              <owned-item ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
+              <owned-item ref="bf0e63c6903a4d8683df750982e1c1e1" />
+              <owned-item ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
+              <owned-item ref="bf0e63c6903a4d8683df750982e1c1e1" />
+              <owned-item ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
+              <owned-item ref="bf0e63c6903a4d8683df750982e1c1e1" />
               <owned-item ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
               <owned-item ref="bf0e63c6903a4d8683df750982e1c1e1" />
               <owned-item ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
@@ -1880,12 +2290,12 @@ Debugger</text>
             </owned-items>
             <attributes>
               <attribute id="a23591a017336424e84025e6c8e7530b1294" cid="PROP083" name="epc_config" creation-date="06/28/2023 13:25:51" property-ref="bf0e63c6903a4d8683df750982e1c1e1" />
-              <attribute id="a7775d4341e46487287aa4ba77523c1d3598" cid="PROP084" name="calib_option" creation-date="06/28/2023 13:25:56" property-ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
+              <attribute id="a7775d4341e46487287aa4ba77523c1d3598" cid="PROP084" name="status" creation-date="06/28/2023 13:25:56" property-ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
             </attributes>
             <operations>
-              <operation id="o69e8deb05c8c4f8bb217be7440f867cc888" cid="OP006" name="CALIB_MAN" creation-date="06/20/2023 14:46:09" type="" type-id="" visibility="public" />
-              <operation id="o4b5caa699f204560a6ed93db86ed8cac234" cid="OP016" name="calib_status" creation-date="06/28/2023 14:24:00" type="" type-id="" visibility="private" />
-              <operation id="oef99f66601ee40858e56a600846390c8449" cid="OP007" name="execute_status_machine" creation-date="06/20/2023 14:46:09" type="" type-id="" visibility="public" />
+              <operation id="o69e8deb05c8c4f8bb217be7440f867cc888" cid="OP006" name="MANAGER_c" creation-date="06/20/2023 14:46:09" type="" type-id="" visibility="public" />
+              <operation id="o4b5caa699f204560a6ed93db86ed8cac234" cid="OP016" name="calibStatus" creation-date="06/28/2023 14:24:00" type="" type-id="" visibility="private" />
+              <operation id="oef99f66601ee40858e56a600846390c8449" cid="OP007" name="executeMachineStatus" creation-date="06/20/2023 14:46:09" type="" type-id="" visibility="public" />
             </operations>
             <source-codes>
               <source-code language="ActionScript" />
@@ -1900,7 +2310,7 @@ Debugger</text>
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-component" id="pb8d8cd2bed4b450bb246c8fb984cd5a1_544587412" name="ProjectStructure" order-index="2" overview-order-index="3" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="149,-124" zoom="0.6">
+      <diagram type="uml-component" id="pb8d8cd2bed4b450bb246c8fb984cd5a1_544587412" name="ProjectStructure" order-index="2" overview-order-index="3" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="517,-143" zoom="0.8">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -1912,7 +2322,7 @@ Debugger</text>
           </authors>
           <description />
           <creation-date>06/28/2023 09:42:18</creation-date>
-          <change-date>06/28/2023 14:33:11</change-date>
+          <change-date>06/29/2023 12:57:13</change-date>
           <revision-count>0</revision-count>
           <version />
         </meta>
@@ -2029,6 +2439,18 @@ Debugger</text>
               <owned-item ref="bd3b8e21d7f14b3ebeaec95965937596" />
             </owned-items>
           </item>
+          <item id="diea3b6dba0d2d459786880b450039a1a67027" cid="AF031" type="artifact" name="log_config.yaml" style-class="" owner="di2d67858b701c4941bb6b2a841509a8026589" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/28/2023 12:31:29" visibility="undefined">
+            <stereotypes>
+              <stereotype name="artifact" />
+            </stereotypes>
+            <stereotype-instances>
+              <stereotype id="882b4f41438246c3b582971272c887de_artifact_c" type="artifact" ref="" />
+            </stereotype-instances>
+            <owned-items>
+              <owned-item ref="fd0d8186b1c841dd9b2c83c933491514" />
+            </owned-items>
+            <artifact filename="" />
+          </item>
           <item id="294e6196439d496082d1ebdc44563fac" cid="PROP040" type="property" name="EPC_CONF_info" style-class="" owner="bd3b8e21d7f14b3ebeaec95965937596" creation-date="06/28/2023 09:48:04" visibility="private">
             <feature />
             <structural-feature type="" type-id="" />
@@ -2094,6 +2516,9 @@ Debugger</text>
             <owned-items>
               <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
               <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
+              <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
+              <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
+              <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
             </owned-items>
           </item>
           <item id="di5774c7113ef043a1a65f0a120f5f3e2e7335" cid="PROP072" type="property" name="_S_N" style-class="" creation-date="06/28/2023 09:48:15" visibility="private">
@@ -2125,15 +2550,30 @@ Debugger</text>
               <owned-item ref="didf73aecdfe084b99b0ac3bd8ced51d9f8621" />
               <owned-item ref="dibf8bf63c321c44ac95e72b082b77bff04147" />
               <owned-item ref="di59bc2a999e354699acabe6d1f0180d0e6008" />
+              <owned-item ref="2f9ad93f11e241ebb3bf9360996a036a" />
+              <owned-item ref="didf73aecdfe084b99b0ac3bd8ced51d9f8621" />
+              <owned-item ref="dibf8bf63c321c44ac95e72b082b77bff04147" />
+              <owned-item ref="di59bc2a999e354699acabe6d1f0180d0e6008" />
+              <owned-item ref="2f9ad93f11e241ebb3bf9360996a036a" />
+              <owned-item ref="didf73aecdfe084b99b0ac3bd8ced51d9f8621" />
+              <owned-item ref="dibf8bf63c321c44ac95e72b082b77bff04147" />
+              <owned-item ref="di59bc2a999e354699acabe6d1f0180d0e6008" />
+              <owned-item ref="2f9ad93f11e241ebb3bf9360996a036a" />
+              <owned-item ref="didf73aecdfe084b99b0ac3bd8ced51d9f8621" />
+              <owned-item ref="dibf8bf63c321c44ac95e72b082b77bff04147" />
+              <owned-item ref="di59bc2a999e354699acabe6d1f0180d0e6008" />
             </owned-items>
           </item>
-          <item id="did4d3cc615a8a4c74b0a532af881b24bc4963" cid="PKG028" type="package" name="PWR_CALIB" style-class="" owner="di2455d1180b314896b2e8e6da904465f19679" creation-date="06/28/2023 09:43:45" visibility="undefined" />
+          <item id="did4d3cc615a8a4c74b0a532af881b24bc4963" cid="PKG028" type="package" name="POWER" style-class="" owner="di2455d1180b314896b2e8e6da904465f19679" creation-date="06/28/2023 09:43:45" visibility="undefined" />
           <item id="dibe8fe0199ca74e9f8ade4c740410cc315640" cid="PKG026" type="package" name="epc_xxx" style-class="" owner="di229da6b6f24c4cb5867c729d3d8d194c5640" creation-date="06/28/2023 09:43:45" visibility="undefined">
             <owned-items>
               <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
               <owned-item ref="dicc88226f0f51441984c755aee477adcd1810" />
               <owned-item ref="d295101b48084b52933fcad31259045b" />
               <owned-item ref="dib5cc6fb9f7334edc906daa66ddd85c0d5568" />
+              <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
+              <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
+              <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
               <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
             </owned-items>
           </item>
@@ -2142,6 +2582,12 @@ Debugger</text>
               <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
               <owned-item ref="di0e9f645ec616408084714aca392913074419" />
               <owned-item ref="di95a542a36d6749ce828fb26338f0269e7921" />
+              <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
+              <owned-item ref="di0e9f645ec616408084714aca392913074419" />
+              <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
+              <owned-item ref="di0e9f645ec616408084714aca392913074419" />
+              <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
+              <owned-item ref="di0e9f645ec616408084714aca392913074419" />
               <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
               <owned-item ref="di0e9f645ec616408084714aca392913074419" />
             </owned-items>
@@ -2183,6 +2629,9 @@ Debugger</text>
               <owned-item ref="di15ef7ea89e304d8eba18b4089d08dbe27819" />
               <owned-item ref="di469b494abbe74b1b9b8e116d345a495e7819" />
               <owned-item ref="dic8236752033b43549db9945d9152930e7819" />
+              <owned-item ref="dic8236752033b43549db9945d9152930e7819" />
+              <owned-item ref="dic8236752033b43549db9945d9152930e7819" />
+              <owned-item ref="dic8236752033b43549db9945d9152930e7819" />
             </owned-items>
           </item>
           <item id="di0f5f56835d6c4b4088fb76fb22b7bbe47335" cid="PROP067" type="property" name="EPC_CONF_MEAS_offset" style-class="" creation-date="06/28/2023 09:47:56" visibility="private">
@@ -2192,6 +2641,12 @@ Debugger</text>
           </item>
           <item id="di229da6b6f24c4cb5867c729d3d8d194c5640" cid="PKG019" type="package" name="data" style-class="" creation-date="06/28/2023 09:43:17" visibility="undefined">
             <owned-items>
+              <owned-item ref="dibe8fe0199ca74e9f8ade4c740410cc315640" />
+              <owned-item ref="did10615ae0b75484aad762d0a84fdc22d7819" />
+              <owned-item ref="dibe8fe0199ca74e9f8ade4c740410cc315640" />
+              <owned-item ref="did10615ae0b75484aad762d0a84fdc22d7819" />
+              <owned-item ref="dibe8fe0199ca74e9f8ade4c740410cc315640" />
+              <owned-item ref="did10615ae0b75484aad762d0a84fdc22d7819" />
               <owned-item ref="dibe8fe0199ca74e9f8ade4c740410cc315640" />
               <owned-item ref="did10615ae0b75484aad762d0a84fdc22d7819" />
               <owned-item ref="dibe8fe0199ca74e9f8ade4c740410cc315640" />
@@ -2254,6 +2709,21 @@ Debugger</text>
               <owned-item ref="did4d3cc615a8a4c74b0a532af881b24bc4963" />
               <owned-item ref="dibcfa38a0a04242a2a527c3822d0bb7b56330" />
               <owned-item ref="di16a7dc03b4f54611a894ec2cb4ea6e0a8594" />
+              <owned-item ref="di88161d1c20114c9ba6ab6e1fb1173afc4503" />
+              <owned-item ref="di282749e5aa024c2db32e111967f3d9133610" />
+              <owned-item ref="did4d3cc615a8a4c74b0a532af881b24bc4963" />
+              <owned-item ref="dibcfa38a0a04242a2a527c3822d0bb7b56330" />
+              <owned-item ref="di16a7dc03b4f54611a894ec2cb4ea6e0a8594" />
+              <owned-item ref="di88161d1c20114c9ba6ab6e1fb1173afc4503" />
+              <owned-item ref="di282749e5aa024c2db32e111967f3d9133610" />
+              <owned-item ref="did4d3cc615a8a4c74b0a532af881b24bc4963" />
+              <owned-item ref="dibcfa38a0a04242a2a527c3822d0bb7b56330" />
+              <owned-item ref="di16a7dc03b4f54611a894ec2cb4ea6e0a8594" />
+              <owned-item ref="di88161d1c20114c9ba6ab6e1fb1173afc4503" />
+              <owned-item ref="di282749e5aa024c2db32e111967f3d9133610" />
+              <owned-item ref="did4d3cc615a8a4c74b0a532af881b24bc4963" />
+              <owned-item ref="dibcfa38a0a04242a2a527c3822d0bb7b56330" />
+              <owned-item ref="di16a7dc03b4f54611a894ec2cb4ea6e0a8594" />
             </owned-items>
           </item>
           <item id="die2d8e112ebee43ec81aa24e85018ca072436" cid="PROP057" type="property" name="_HW_VER" style-class="" owner="dic5d71cae6f1648b5a07da553b03551888206" creation-date="06/28/2023 09:48:14" visibility="private">
@@ -2302,6 +2772,12 @@ Debugger</text>
               <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
               <owned-item ref="13c2e9a3f0484cbaa72cb1f86e54f936" />
               <owned-item ref="01e48f7e99c9493081230cd01498b8fe" />
+              <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
+              <owned-item ref="13c2e9a3f0484cbaa72cb1f86e54f936" />
+              <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
+              <owned-item ref="13c2e9a3f0484cbaa72cb1f86e54f936" />
+              <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
+              <owned-item ref="13c2e9a3f0484cbaa72cb1f86e54f936" />
               <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
               <owned-item ref="13c2e9a3f0484cbaa72cb1f86e54f936" />
             </owned-items>
@@ -2418,6 +2894,21 @@ Debugger</text>
               <owned-item ref="f8b789c1431e4917b68438fcacb82fb1" />
               <owned-item ref="68fcfeeeb0b14535aed5e43be68854e2" />
               <owned-item ref="74eb54f04b1147399f880e07b3fe5f67" />
+              <owned-item ref="a3889438b9ff4c10a99a2b177ee2932c" />
+              <owned-item ref="f1f41a3bef944d1aac637561c0c887e6" />
+              <owned-item ref="f8b789c1431e4917b68438fcacb82fb1" />
+              <owned-item ref="68fcfeeeb0b14535aed5e43be68854e2" />
+              <owned-item ref="74eb54f04b1147399f880e07b3fe5f67" />
+              <owned-item ref="a3889438b9ff4c10a99a2b177ee2932c" />
+              <owned-item ref="f1f41a3bef944d1aac637561c0c887e6" />
+              <owned-item ref="f8b789c1431e4917b68438fcacb82fb1" />
+              <owned-item ref="68fcfeeeb0b14535aed5e43be68854e2" />
+              <owned-item ref="74eb54f04b1147399f880e07b3fe5f67" />
+              <owned-item ref="a3889438b9ff4c10a99a2b177ee2932c" />
+              <owned-item ref="f1f41a3bef944d1aac637561c0c887e6" />
+              <owned-item ref="f8b789c1431e4917b68438fcacb82fb1" />
+              <owned-item ref="68fcfeeeb0b14535aed5e43be68854e2" />
+              <owned-item ref="74eb54f04b1147399f880e07b3fe5f67" />
             </owned-items>
             <attributes>
               <attribute id="a2a0a0371f6a94fd3bbd5cca301b36d88627" cid="PROP087" name="WS_PATH" creation-date="06/28/2023 14:27:59" property-ref="f71f781bd3144a15bb26c9a1b3e5ebf4" />
@@ -2445,6 +2936,12 @@ Debugger</text>
           </item>
           <item id="di8638c7496cca4a96a4ce9d368857f4138206" cid="PKG017" type="package" name="EPC_CONF" style-class="" creation-date="06/28/2023 09:45:40" visibility="undefined">
             <owned-items>
+              <owned-item ref="dic5d71cae6f1648b5a07da553b03551888206" />
+              <owned-item ref="di31da5ca09828437ea315f409aa43c9b98206" />
+              <owned-item ref="dic5d71cae6f1648b5a07da553b03551888206" />
+              <owned-item ref="di31da5ca09828437ea315f409aa43c9b98206" />
+              <owned-item ref="dic5d71cae6f1648b5a07da553b03551888206" />
+              <owned-item ref="di31da5ca09828437ea315f409aa43c9b98206" />
               <owned-item ref="dic5d71cae6f1648b5a07da553b03551888206" />
               <owned-item ref="di31da5ca09828437ea315f409aa43c9b98206" />
               <owned-item ref="dic5d71cae6f1648b5a07da553b03551888206" />
@@ -2516,6 +3013,11 @@ Debugger</text>
               <owned-item ref="882b4f41438246c3b582971272c887de" />
               <owned-item ref="8515b5b3491545918fabac67d055713c" />
               <owned-item ref="d05921b26e284e52b1e172368c27a32e" />
+              <owned-item ref="d05921b26e284e52b1e172368c27a32e" />
+              <owned-item ref="d05921b26e284e52b1e172368c27a32e" />
+              <owned-item ref="diea3b6dba0d2d459786880b450039a1a67027" />
+              <owned-item ref="diea3b6dba0d2d459786880b450039a1a67027" />
+              <owned-item ref="d05921b26e284e52b1e172368c27a32e" />
             </owned-items>
           </item>
           <item id="dicdb2a08cc0494c7fa4f1f37678ce978f9137" cid="CN008" type="comment-connector" name="" style-class="" creation-date="06/28/2023 12:22:01" from="9e4d7361b05e4d3db7dd3ccf82db36b6" to="dicc88226f0f51441984c755aee477adcd1810" />
@@ -2524,7 +3026,7 @@ Debugger</text>
             <structural-feature type="" type-id="" />
             <property />
           </item>
-          <item id="die6ddc66803cd411ca1344b2478ed37519679" cid="PKG011" type="package" name="CALIB_MAN" style-class="" owner="di2455d1180b314896b2e8e6da904465f19679" creation-date="06/28/2023 09:43:45" visibility="undefined">
+          <item id="die6ddc66803cd411ca1344b2478ed37519679" cid="PKG011" type="package" name="MANAGER" style-class="" owner="di2455d1180b314896b2e8e6da904465f19679" creation-date="06/28/2023 09:43:45" visibility="undefined">
             <associated-diagrams>
               <diagram id="padc6ceab11584248b76aa41eb117da23_759566190" />
             </associated-diagrams>
@@ -2561,6 +3063,12 @@ Debugger</text>
               <owned-item ref="8760922a9e684c8e8ef0bb703eff8f43" />
               <owned-item ref="212cafc9caf54042aedb47b38a5f38b1" />
               <owned-item ref="ed2329b1473641bbb88c3d6458b5514f" />
+              <owned-item ref="11acf96784ed4a968e0b80d529494109" />
+              <owned-item ref="4484222743f2473d898395cb7218cefe" />
+              <owned-item ref="11acf96784ed4a968e0b80d529494109" />
+              <owned-item ref="4484222743f2473d898395cb7218cefe" />
+              <owned-item ref="11acf96784ed4a968e0b80d529494109" />
+              <owned-item ref="4484222743f2473d898395cb7218cefe" />
               <owned-item ref="11acf96784ed4a968e0b80d529494109" />
               <owned-item ref="4484222743f2473d898395cb7218cefe" />
             </owned-items>
@@ -2608,7 +3116,7 @@ Debugger</text>
             <layout ax="850" ay="380" awidth="168" aheight="185" x="850" y="380" width="130" height="90" expanded="850,380,168,185" collapsed="0,0,0,0" rotation-center="5,35" />
           </item>
           <item id="2f9ad93f11e241ebb3bf9360996a036a" iid="924b944848fa43a29404be6e042c5a88" container="13c2e9a3f0484cbaa72cb1f86e54f936" container-iid="def6b519215c411fa65eceaf721afb4e" creation-date="06/28/2023 09:45:40" order-index="23" type="entity">
-            <layout ax="690" ay="180" awidth="84" aheight="56" x="690" y="180" width="300" height="200" expanded="690,180,84,56" collapsed="0,0,0,0" />
+            <layout ax="690" ay="176" awidth="84" aheight="60" x="690" y="176" width="300" height="60" expanded="690,176,84,60" collapsed="0,0,0,0" rotation-center="0,2" />
             <package name-in-body="false" />
           </item>
           <item id="didf73aecdfe084b99b0ac3bd8ced51d9f8621" iid="3aac4b07f7a24c2a84186fa7f1b2abda" container="13c2e9a3f0484cbaa72cb1f86e54f936" container-iid="def6b519215c411fa65eceaf721afb4e" creation-date="06/28/2023 09:45:40" order-index="25" type="entity">
@@ -2731,18 +3239,25 @@ Debugger</text>
             <relation from="9e4d7361b05e4d3db7dd3ccf82db36b6" from-iid="533715b8dd4c456199f855fe2d38eaf2" to="dicc88226f0f51441984c755aee477adcd1810" to-iid="93062c606cd8423aa1d9d24ffe2eaf95" to-field="d295101b48084b52933fcad31259045b_artifact" />
           </item>
           <item id="e979c7090a444741b87c0f520372db2b" iid="ec41f742869d4a03bbc7ff5f3e4e948e" creation-date="06/28/2023 12:31:02" order-index="42" type="entity">
-            <layout ax="170" ay="-100" awidth="3000" aheight="780" x="171" y="-99" width="3000" height="780" expanded="170,-100,3000,780" collapsed="0,0,0,0" rotation-center="-1350,-290" />
+            <layout ax="170" ay="-100" awidth="3000" aheight="780" x="171" y="-99" width="3000" height="780" expanded="170,-100,3000,780" collapsed="0,0,0,0" rotation-center="-1350,-290" container-layout="simple">
+              <container-layout padding="10,10,10,10" />
+            </layout>
           </item>
           <item id="di2d67858b701c4941bb6b2a841509a8026589" iid="0a0164cd3ab54f50866628cbc03eeae9" container="e979c7090a444741b87c0f520372db2b" container-iid="ec41f742869d4a03bbc7ff5f3e4e948e" creation-date="06/28/2023 09:43:45" order-index="17" type="entity">
-            <layout ax="1220" ay="430" awidth="364" aheight="184" x="1220" y="430" width="410" height="210" expanded="1220,430,364,184" collapsed="0,0,0,0" rotation-center="-68.5,-113" />
+            <layout ax="1220" ay="430" awidth="364" aheight="184" x="1220" y="430" width="410" height="210" expanded="1220,430,364,184" collapsed="0,0,0,0" rotation-center="-68.5,-113" container-layout="simple">
+              <container-layout padding="10,10,10,10" />
+            </layout>
             <package name-in-body="false" />
+          </item>
+          <item id="diea3b6dba0d2d459786880b450039a1a67027" iid="f9efdb4765044f31893cf2dd4ac0f7a7" container="di2d67858b701c4941bb6b2a841509a8026589" container-iid="0a0164cd3ab54f50866628cbc03eeae9" creation-date="06/28/2023 12:31:29" order-index="43" type="entity">
+            <layout ax="1240" ay="485" awidth="140" aheight="110" x="1240" y="485" width="140" height="110" expanded="1240,485,140,110" collapsed="0,0,0,0" rotation-center="-5,25" />
           </item>
           <item id="882b4f41438246c3b582971272c887de" iid="500e895640a54ad7b8d3ed41a101c162" container="di2d67858b701c4941bb6b2a841509a8026589" container-iid="0a0164cd3ab54f50866628cbc03eeae9" creation-date="06/28/2023 12:31:29" order-index="43" type="entity">
             <layout ax="1420" ay="480" awidth="140" aheight="110" x="1650" y="480" width="140" height="110" expanded="1420,480,140,110" collapsed="0,0,0,0" rotation-center="-5,25" />
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-class" id="pf609ef76e2c34f668a92e702626cebc5_381652280" name="TERM" order-index="6" overview-order-index="4" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-268,9" zoom="1.2">
+      <diagram type="uml-class" id="pf609ef76e2c34f668a92e702626cebc5_381652280" name="TERM" order-index="6" overview-order-index="4" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="273,187" zoom="1.8">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -2788,12 +3303,6 @@ Debugger</text>
 	- T_BODY
 - Flash with calibration data</comment>
           </item>
-          <item id="di6bcb50b2421c415c8a81889cedde51829349" cid="CMT013" type="comment" name="Comment" style-class="" creation-date="06/20/2023 14:51:06">
-            <comment>Asegurarse que se cumple la secuencia de: 
-- configurar dispositivo
-- calibración de sensores utilizados (hacer preguntas de seguridad si no se han almacenado calibrado) 
-- flasheo customizado</comment>
-          </item>
           <item id="675dfff6dbdb427899d822aa0ba01fa4" cid="ELEM028" type="usage" name="" style-class="" creation-date="06/28/2023 13:10:26" from="di48df10b454494f0c8ef01f7ce2267df77478" to="di2ca6ad137d534fcdbc7fb6f0e85eb6659349" visibility="package">
             <stereotypes>
               <stereotype name="use" />
@@ -2802,12 +3311,22 @@ Debugger</text>
               <stereotype id="675dfff6dbdb427899d822aa0ba01fa4_use_c" type="use" ref="" />
             </stereotype-instances>
           </item>
+          <item id="di6bcb50b2421c415c8a81889cedde51829349" cid="CMT013" type="comment" name="Comment" style-class="" creation-date="06/20/2023 14:51:06">
+            <comment>Asegurarse que se cumple la secuencia de: 
+- configurar dispositivo
+- calibración de sensores utilizados (hacer preguntas de seguridad si no se han almacenado calibrado) 
+- flasheo customizado</comment>
+          </item>
           <item id="di2ca6ad137d534fcdbc7fb6f0e85eb6659349" cid="C005" type="class" name="TERM_c" style-class="" creation-date="06/20/2023 14:43:52" visibility="undefined">
             <operations>
               <operation id="o69e8deb05c8c4f8bb217be7440f867cc888" cid="OP006" name="TERM_c" creation-date="06/20/2023 14:46:09" type="" type-id="" visibility="public" />
               <operation id="o90dbc93158ab411eb0cbbdda28cf5764483" cid="OP019" name="showtIntro" creation-date="06/29/2023 08:51:51" type="" type-id="" visibility="public" />
-              <operation id="o036a0de4689648ca97e4992ead6e8935728" cid="OP020" name="clear" creation-date="06/29/2023 08:53:33" type="" type-id="" visibility="public" />
-              <operation id="o531e38f2ba7b49b98e43b1d4340be1b9424" cid="OP021" name="showProgressBar" creation-date="06/29/2023 08:54:12" type="" type-id="" visibility="public" />
+              <operation id="o531e38f2ba7b49b98e43b1d4340be1b9424" cid="OP021" name="showProgressBar" creation-date="06/29/2023 08:54:12" type="" type-id="" visibility="public">
+                <parameters>
+                  <parameter id="p270af35623a747b79cf874603a19eaba" name="iteration" type="" type-id="" />
+                  <parameter id="pa60764ac71f04eefae0eb0f5f1177acd" name="total" type="" type-id="" />
+                </parameters>
+              </operation>
               <operation id="oc801b5dbeba24f4ab07f5425f5bb459c888" cid="OP008" name="queryOptions" creation-date="06/20/2023 14:46:09" type="TERM_Option_e" type-id="Class:di48df10b454494f0c8ef01f7ce2267df77478" visibility="public">
                 <source-codes>
                   <source-code language="ActionScript" />
@@ -2876,7 +3395,7 @@ Debugger</text>
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-statechart" id="p728c342862ac49888d2680cb354a5da1_988927286" name="StatusMachine" order-index="7" overview-order-index="5" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-599,-402" zoom="0.1">
+      <diagram type="uml-statechart" id="p728c342862ac49888d2680cb354a5da1_988927286" name="StatusMachine" order-index="7" overview-order-index="5" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-254,-197" zoom="0.7">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -2975,6 +3494,11 @@ Debugger</text>
           </item>
           <item id="di5dc7917556914918a8bc70490519cfb43563" cid="CH003" type="choice" name="Calibration done" style-class="" creation-date="06/28/2023 13:28:14" visibility="undefined" />
           <item id="5dacee1d319b41558dfc06c104b13693" cid="CH001" type="choice" name="Selected option" style-class="" creation-date="06/28/2023 13:28:14" visibility="undefined" />
+          <item id="6122b0df3bdf4056b5edd647098cd3a9" cid="ELEM041" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:32:54" from="5dacee1d319b41558dfc06c104b13693" to="di6cf034a261c24faeb05d78ffd014dc0c6175" visibility="package">
+            <transition guard="" behaviourExpression="">
+              <trigger>1</trigger>
+            </transition>
+          </item>
           <item id="di2eb46b47aece40de8604a9aac8e5e7437867" cid="ELEM049" type="frame" name="Calib" style-class="" creation-date="06/28/2023 14:06:44">
             <owned-items>
               <owned-item ref="di00ba1ddb36e94aa9b1bcf60c962000978967" />
@@ -3019,16 +3543,40 @@ Debugger</text>
               <owned-item ref="9fa6ae561e9f46bd999d9c8284e692ee" />
               <owned-item ref="difd4775731e74439f86679dfb5a1a27883296" />
               <owned-item ref="di168097e6b800432ead65879c3b5e7fde3296" />
+              <owned-item ref="di00ba1ddb36e94aa9b1bcf60c962000978967" />
+              <owned-item ref="di16371203e91e4488b460c2b9de212aa85617" />
+              <owned-item ref="4790f67d8b5b420a9062eadf3e56ad9a" />
+              <owned-item ref="cc90c7dc235a4e29b730d79e1a483c41" />
+              <owned-item ref="dic9985ae72e6d4c81ac8f98d208af6dcb6817" />
+              <owned-item ref="787b09725195450fa82e920d926ef921" />
+              <owned-item ref="9fa6ae561e9f46bd999d9c8284e692ee" />
+              <owned-item ref="difd4775731e74439f86679dfb5a1a27883296" />
+              <owned-item ref="di168097e6b800432ead65879c3b5e7fde3296" />
+              <owned-item ref="di00ba1ddb36e94aa9b1bcf60c962000978967" />
+              <owned-item ref="di16371203e91e4488b460c2b9de212aa85617" />
+              <owned-item ref="4790f67d8b5b420a9062eadf3e56ad9a" />
+              <owned-item ref="cc90c7dc235a4e29b730d79e1a483c41" />
+              <owned-item ref="dic9985ae72e6d4c81ac8f98d208af6dcb6817" />
+              <owned-item ref="787b09725195450fa82e920d926ef921" />
+              <owned-item ref="9fa6ae561e9f46bd999d9c8284e692ee" />
+              <owned-item ref="difd4775731e74439f86679dfb5a1a27883296" />
+              <owned-item ref="di168097e6b800432ead65879c3b5e7fde3296" />
+              <owned-item ref="di00ba1ddb36e94aa9b1bcf60c962000978967" />
+              <owned-item ref="di16371203e91e4488b460c2b9de212aa85617" />
+              <owned-item ref="4790f67d8b5b420a9062eadf3e56ad9a" />
+              <owned-item ref="cc90c7dc235a4e29b730d79e1a483c41" />
+              <owned-item ref="dic9985ae72e6d4c81ac8f98d208af6dcb6817" />
+              <owned-item ref="787b09725195450fa82e920d926ef921" />
+              <owned-item ref="9fa6ae561e9f46bd999d9c8284e692ee" />
+              <owned-item ref="difd4775731e74439f86679dfb5a1a27883296" />
+              <owned-item ref="di168097e6b800432ead65879c3b5e7fde3296" />
             </owned-items>
             <frame />
           </item>
-          <item id="6122b0df3bdf4056b5edd647098cd3a9" cid="ELEM041" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:32:54" from="5dacee1d319b41558dfc06c104b13693" to="di6cf034a261c24faeb05d78ffd014dc0c6175" visibility="package">
+          <item id="bc81c9ea078a4d1aa68d31e8916f329a" cid="ELEM036" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:30:56" from="di2e10ffe1706f4914a34fe0774758e72b9140" to="di5dc7917556914918a8bc70490519cfb43563" visibility="package">
             <transition guard="" behaviourExpression="">
-              <trigger>1</trigger>
+              <trigger>Yes</trigger>
             </transition>
-          </item>
-          <item id="1f0c3d10e89e454489d3fb6c6177d133" cid="ELEM050" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:42:15" from="di9e59606465ce4b2196c9fc7640274ab06316" to="001e4f4f4d5b4c54a9ad47648a9c76c8" visibility="package">
-            <transition guard="" behaviourExpression="" />
           </item>
           <item id="f94488d738834110aba7f39ec4f5fad2" cid="FS001" type="final-state" name="" style-class="" creation-date="06/28/2023 13:35:42" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
@@ -3036,10 +3584,8 @@ Debugger</text>
               <actions />
             </state>
           </item>
-          <item id="bc81c9ea078a4d1aa68d31e8916f329a" cid="ELEM036" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:30:56" from="di2e10ffe1706f4914a34fe0774758e72b9140" to="di5dc7917556914918a8bc70490519cfb43563" visibility="package">
-            <transition guard="" behaviourExpression="">
-              <trigger>Yes</trigger>
-            </transition>
+          <item id="1f0c3d10e89e454489d3fb6c6177d133" cid="ELEM050" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:42:15" from="di9e59606465ce4b2196c9fc7640274ab06316" to="001e4f4f4d5b4c54a9ad47648a9c76c8" visibility="package">
+            <transition guard="" behaviourExpression="" />
           </item>
           <item id="di0b5d72144626492b83a3070f4fe3d40d2098" cid="ST010" type="state" name="CALIB" style-class="" creation-date="06/28/2023 13:27:43" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
@@ -3047,19 +3593,25 @@ Debugger</text>
               <actions />
             </state>
           </item>
-          <item id="di3c82fdeee07a4fdca0fde755a6dbfdb72095" cid="ELEM088" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="1b09c1a753874b45bb312afdae833570" to="c91809171ef142a8bee607bbab453aff">
-            <connector end-cap="arrow" />
-          </item>
-          <item id="di464837a6414c4763b0da891cf509ea004440" cid="ELEM087" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="6cb1ba1b3ae747b88c825b4259d35b48" to="c91809171ef142a8bee607bbab453aff">
-            <connector end-cap="arrow" />
-          </item>
           <item id="c63a53dcce4a4b3ba0aadac4c66ba954" cid="ELEM037" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:31:09" from="di5dc7917556914918a8bc70490519cfb43563" to="di1a3678447a5640e8bf61780b2771ddf31360" visibility="package">
             <transition guard="" behaviourExpression="">
               <trigger>No</trigger>
             </transition>
           </item>
+          <item id="di464837a6414c4763b0da891cf509ea004440" cid="ELEM087" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="6cb1ba1b3ae747b88c825b4259d35b48" to="c91809171ef142a8bee607bbab453aff">
+            <connector end-cap="arrow" />
+          </item>
+          <item id="di3c82fdeee07a4fdca0fde755a6dbfdb72095" cid="ELEM088" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="1b09c1a753874b45bb312afdae833570" to="c91809171ef142a8bee607bbab453aff">
+            <connector end-cap="arrow" />
+          </item>
           <item id="e65f0bfc64734da2bf4ee0652942b0e7" cid="ELEM075" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:43:25" from="di55678036fed945d6878b9fab5a2c87d07163" to="db8e52339bf24c37aa9ffc9dce13632a">
             <connector end-cap="arrow" />
+          </item>
+          <item id="diedcca8faab2c4ca39f2464f832e4a8ed2098" cid="ST012" type="state" name="FLASH CALIB" style-class="" creation-date="06/28/2023 13:27:43" visibility="undefined">
+            <state composite="false" orthogonal="false" simple="false" submachine-state="false">
+              <state-invariant />
+              <actions />
+            </state>
           </item>
           <item id="80aefc2472c54070bf524783047c306e" cid="ST018" type="state" name="Calibrate voltage low side" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:14:12" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
@@ -3067,12 +3619,6 @@ Debugger</text>
               <actions>
                 <action id="sa-dd877793-a63a-4474-be03-ac3d532c4d97" name="CalibVoltLS" behavior="" />
               </actions>
-            </state>
-          </item>
-          <item id="diedcca8faab2c4ca39f2464f832e4a8ed2098" cid="ST012" type="state" name="FLASH CALIB" style-class="" creation-date="06/28/2023 13:27:43" visibility="undefined">
-            <state composite="false" orthogonal="false" simple="false" submachine-state="false">
-              <state-invariant />
-              <actions />
             </state>
           </item>
           <item id="7dae03c509fe4f1ea54c17f420831d9c" cid="IS002" type="initial-state" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:07:50" visibility="undefined" />
@@ -3083,20 +3629,20 @@ Debugger</text>
           <item id="di293fabce83dc48db91fefe757277e1885158" cid="ELEM079" type="universal-connector" name="4" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="di88c45344f2a449369b9e35eda393275e9066" to="b4e19f054de04345b6fbd4a4eeeb9b09">
             <connector end-cap="arrow" />
           </item>
-          <item id="2afe24254a1c400588b491f5fef72ce0" cid="CH007" type="choice" name="Calib Exists" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:37:08" visibility="undefined" />
           <item id="a71f5fc83cfb44988f6885e515469f3d" cid="ELEM022" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:30:02" from="di69493d0efa9944fe99fa35c8cc130aac7543" to="dic09d6c89a71940ceb8b160fd80c4b16f7700" visibility="package">
             <transition guard="" behaviourExpression="" />
           </item>
+          <item id="2afe24254a1c400588b491f5fef72ce0" cid="CH007" type="choice" name="Calib Exists" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:37:08" visibility="undefined" />
           <item id="di8f82f62dd7804931af8846e7833f15374599" cid="ELEM080" type="universal-connector" name="5" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="di88c45344f2a449369b9e35eda393275e9066" to="6cb1ba1b3ae747b88c825b4259d35b48">
+            <connector end-cap="arrow" />
+          </item>
+          <item id="dica77b186e2ba4be1832588735fecadbd6578" cid="ELEM084" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="80aefc2472c54070bf524783047c306e" to="c91809171ef142a8bee607bbab453aff">
             <connector end-cap="arrow" />
           </item>
           <item id="dif85617e770c84536a890f49360eedac72980" cid="ELEM091" type="general-transition" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:37:23" from="2afe24254a1c400588b491f5fef72ce0" to="di55678036fed945d6878b9fab5a2c87d07163" visibility="package">
             <transition guard="" behaviourExpression="">
               <trigger>No</trigger>
             </transition>
-          </item>
-          <item id="dica77b186e2ba4be1832588735fecadbd6578" cid="ELEM084" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="80aefc2472c54070bf524783047c306e" to="c91809171ef142a8bee607bbab453aff">
-            <connector end-cap="arrow" />
           </item>
           <item id="6cb1ba1b3ae747b88c825b4259d35b48" cid="ST021" type="state" name="Calibrate ambient temperature" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:14:45" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
@@ -3107,11 +3653,11 @@ Debugger</text>
           <item id="dib4ac373ec3994b91944f32a1b1dbdcf28989" cid="ELEM092" type="universal-connector" name="Yes" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:43:25" from="2afe24254a1c400588b491f5fef72ce0">
             <connector end-cap="arrow" />
           </item>
-          <item id="b989a1d61b47493eaed29e53816e29aa" cid="ELEM046" type="frame" name="Normal Operation" style-class="" creation-date="06/28/2023 14:06:44">
-            <frame />
-          </item>
           <item id="di3b3b1af37db94bec9a49744768a891929759" cid="ELEM057" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:50:08" from="diedcca8faab2c4ca39f2464f832e4a8ed2098" to="dic09d6c89a71940ceb8b160fd80c4b16f7700" visibility="package">
             <transition guard="" behaviourExpression="" />
+          </item>
+          <item id="b989a1d61b47493eaed29e53816e29aa" cid="ELEM046" type="frame" name="Normal Operation" style-class="" creation-date="06/28/2023 14:06:44">
+            <frame />
           </item>
           <item id="3874f3f0508943289962144e821c7b97" cid="ELEM047" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:35:26" from="5dacee1d319b41558dfc06c104b13693" to="di7d1634fe2168487db783228c2a41f26e1097" visibility="package">
             <transition guard="" behaviourExpression="">
@@ -3121,8 +3667,10 @@ Debugger</text>
           <item id="di4cd70eeb457c4ceb99532aa2741f8eee2704" cid="ELEM078" type="universal-connector" name="2" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="di88c45344f2a449369b9e35eda393275e9066" to="80aefc2472c54070bf524783047c306e">
             <connector end-cap="arrow" />
           </item>
-          <item id="di02262f4c27f049c788166e39048d68b97128" cid="ELEM086" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="b4e19f054de04345b6fbd4a4eeeb9b09" to="c91809171ef142a8bee607bbab453aff">
-            <connector end-cap="arrow" />
+          <item id="di44ce0afc3ecb425fae097899b51663d96163" cid="ELEM042" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:32:54" to="di1a3678447a5640e8bf61780b2771ddf31360" visibility="package">
+            <transition guard="" behaviourExpression="">
+              <trigger>3</trigger>
+            </transition>
           </item>
           <item id="1b09c1a753874b45bb312afdae833570" cid="ST022" type="state" name="Calibrate body temperature" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:14:47" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
@@ -3130,10 +3678,8 @@ Debugger</text>
               <actions />
             </state>
           </item>
-          <item id="di44ce0afc3ecb425fae097899b51663d96163" cid="ELEM042" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:32:54" to="di1a3678447a5640e8bf61780b2771ddf31360" visibility="package">
-            <transition guard="" behaviourExpression="">
-              <trigger>3</trigger>
-            </transition>
+          <item id="di02262f4c27f049c788166e39048d68b97128" cid="ELEM086" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="b4e19f054de04345b6fbd4a4eeeb9b09" to="c91809171ef142a8bee607bbab453aff">
+            <connector end-cap="arrow" />
           </item>
           <item id="65886109593845888d7dfee06f6bcba0" cid="ELEM039" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:31:58" from="dic09d6c89a71940ceb8b160fd80c4b16f7700" to="001e4f4f4d5b4c54a9ad47648a9c76c8" visibility="package">
             <transition guard="" behaviourExpression="" />
@@ -3155,12 +3701,6 @@ Debugger</text>
               <actions />
             </state>
           </item>
-          <item id="2255cf4dfe354f9b8778151a8927b563" cid="FS002" type="final-state" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:17:40" visibility="undefined">
-            <state composite="false" orthogonal="false" simple="false" submachine-state="false">
-              <state-invariant />
-              <actions />
-            </state>
-          </item>
           <item id="di69493d0efa9944fe99fa35c8cc130aac7543" cid="ST005" type="state" name="FLASH CALIB" style-class="" creation-date="06/28/2023 13:27:43" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
               <state-invariant />
@@ -3169,6 +3709,12 @@ Debugger</text>
                 <action id="sa-c7bb8ad1-decb-4086-b331-3b2b22830af0" name="BuildProject" behavior="" />
                 <action id="sa-3a719d70-bb4e-40b5-b899-2850217cb321" name="Flash_uC(STM32.bin)" behavior="" />
               </actions>
+            </state>
+          </item>
+          <item id="2255cf4dfe354f9b8778151a8927b563" cid="FS002" type="final-state" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:17:40" visibility="undefined">
+            <state composite="false" orthogonal="false" simple="false" submachine-state="false">
+              <state-invariant />
+              <actions />
             </state>
           </item>
           <item id="di6cf034a261c24faeb05d78ffd014dc0c6175" cid="ST002" type="state" name="Flash Orig" style-class="" creation-date="06/28/2023 13:27:43" visibility="undefined">
@@ -3199,26 +3745,18 @@ Debugger</text>
           <item id="6d3b179b2ce34250aa90f7b389f2d775" cid="ELEM040" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:32:45" from="di6cf034a261c24faeb05d78ffd014dc0c6175" to="dic09d6c89a71940ceb8b160fd80c4b16f7700" visibility="package">
             <transition guard="" behaviourExpression="" />
           </item>
-          <item id="died23369069434149aa7cb5104be1d3244585" cid="ELEM083" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="9fa6ae561e9f46bd999d9c8284e692ee" to="c91809171ef142a8bee607bbab453aff">
-            <connector end-cap="arrow" />
-          </item>
           <item id="di21392f09f2404892a61c0081a63d47202098" cid="ST011" type="state" name="CONF_DEV" style-class="" creation-date="06/28/2023 13:27:43" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
               <state-invariant />
               <actions />
             </state>
           </item>
+          <item id="died23369069434149aa7cb5104be1d3244585" cid="ELEM083" type="universal-connector" name="" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="9fa6ae561e9f46bd999d9c8284e692ee" to="c91809171ef142a8bee607bbab453aff">
+            <connector end-cap="arrow" />
+          </item>
           <item id="di3ccdeefe670045bfaec110c363c5ed467851" cid="ELEM055" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:27:55" from="di21392f09f2404892a61c0081a63d47202098" to="di0b5d72144626492b83a3070f4fe3d40d2098" visibility="package">
             <transition guard="" behaviourExpression="">
               <trigger />
-            </transition>
-          </item>
-          <item id="79b03ce461b34be7a5f9cca9c768da97" cid="ELEM051" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:43:39" from="di1a3678447a5640e8bf61780b2771ddf31360" to="001e4f4f4d5b4c54a9ad47648a9c76c8" visibility="package">
-            <transition guard="" behaviourExpression="" />
-          </item>
-          <item id="die877729aaa4e4ba1ad870e2b57d0a4ad5105" cid="ELEM043" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:32:54" to="di9e59606465ce4b2196c9fc7640274ab06316" visibility="package">
-            <transition guard="" behaviourExpression="">
-              <trigger>2</trigger>
             </transition>
           </item>
           <item id="001e4f4f4d5b4c54a9ad47648a9c76c8" cid="ST001" type="state" name="Query Options" style-class="" creation-date="06/28/2023 13:27:43" visibility="undefined">
@@ -3229,8 +3767,21 @@ Debugger</text>
               </actions>
             </state>
           </item>
+          <item id="die877729aaa4e4ba1ad870e2b57d0a4ad5105" cid="ELEM043" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:32:54" to="di9e59606465ce4b2196c9fc7640274ab06316" visibility="package">
+            <transition guard="" behaviourExpression="">
+              <trigger>2</trigger>
+            </transition>
+          </item>
+          <item id="79b03ce461b34be7a5f9cca9c768da97" cid="ELEM051" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:43:39" from="di1a3678447a5640e8bf61780b2771ddf31360" to="001e4f4f4d5b4c54a9ad47648a9c76c8" visibility="package">
+            <transition guard="" behaviourExpression="" />
+          </item>
           <item id="di74a2e2d10b2945289db3d13a066696d02578" cid="ELEM082" type="universal-connector" name="7" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" change-tracking-state="added" creation-date="06/26/2023 12:03:09" from="di88c45344f2a449369b9e35eda393275e9066" to="2255cf4dfe354f9b8778151a8927b563">
             <connector end-cap="arrow" />
+          </item>
+          <item id="fec1e88aa0964992a4d6fe61ddd96350" cid="ELEM058" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:53:59" from="5dacee1d319b41558dfc06c104b13693" to="di21392f09f2404892a61c0081a63d47202098" visibility="package">
+            <transition guard="" behaviourExpression="">
+              <trigger>5</trigger>
+            </transition>
           </item>
           <item id="di55678036fed945d6878b9fab5a2c87d07163" cid="ST025" type="state" name="Write CalibData" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:19:27" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
@@ -3239,11 +3790,6 @@ Debugger</text>
                 <action id="sa-fb817ec6-b3f1-4e81-bc0f-465fe888c112" name="writeData" behavior="" />
               </actions>
             </state>
-          </item>
-          <item id="fec1e88aa0964992a4d6fe61ddd96350" cid="ELEM058" type="general-transition" name="" style-class="" creation-date="06/28/2023 13:53:59" from="5dacee1d319b41558dfc06c104b13693" to="di21392f09f2404892a61c0081a63d47202098" visibility="package">
-            <transition guard="" behaviourExpression="">
-              <trigger>5</trigger>
-            </transition>
           </item>
           <item id="c91809171ef142a8bee607bbab453aff" cid="ST023" type="state" name="Check existing calib" style-class="" owner="di2eb46b47aece40de8604a9aac8e5e7437867" creation-date="06/28/2023 14:19:27" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
@@ -3733,12 +4279,7 @@ Debugger</text>
           <version />
         </meta>
         <abstract-items>
-          <item id="15c7d09412d342caa63bba562ec153b5" cid="PROP097" type="property" name="V_HS_CALIB_FILE_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:55" visibility="private">
-            <feature />
-            <structural-feature type="" type-id="" />
-            <property />
-          </item>
-          <item id="f8351273aa0649a1be531bc8aa11fcc6" cid="PROP098" type="property" name="I_CALIB_FILE_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:56" visibility="private">
+          <item id="59b2d2adc6d846f397fc4a25f37808aa" cid="PROP096" type="property" name="V_LS_CALIB_FILE_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:52" visibility="private">
             <feature />
             <structural-feature type="" type-id="" />
             <property />
@@ -3748,17 +4289,7 @@ Debugger</text>
             <structural-feature type="" type-id="" />
             <property />
           </item>
-          <item id="59b2d2adc6d846f397fc4a25f37808aa" cid="PROP096" type="property" name="V_LS_CALIB_FILE_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:52" visibility="private">
-            <feature />
-            <structural-feature type="" type-id="" />
-            <property />
-          </item>
-          <item id="082dd73c7acb45b989d0a5da4844d0df" cid="PROP094" type="property" name="DATA_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:46" visibility="private">
-            <feature />
-            <structural-feature type="" type-id="" />
-            <property />
-          </item>
-          <item id="c426ccccec634839b4ec87184231eb25" cid="PROP095" type="property" name="INFO_FILE_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:50" visibility="private">
+          <item id="15c7d09412d342caa63bba562ec153b5" cid="PROP097" type="property" name="V_HS_CALIB_FILE_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:55" visibility="private">
             <feature />
             <structural-feature type="" type-id="" />
             <property />
@@ -3777,6 +4308,18 @@ Debugger</text>
               <owned-item ref="59b2d2adc6d846f397fc4a25f37808aa" />
               <owned-item ref="082dd73c7acb45b989d0a5da4844d0df" />
               <owned-item ref="c426ccccec634839b4ec87184231eb25" />
+              <owned-item ref="59b2d2adc6d846f397fc4a25f37808aa" />
+              <owned-item ref="ddf7c528492842f283710a597b428b50" />
+              <owned-item ref="15c7d09412d342caa63bba562ec153b5" />
+              <owned-item ref="15c7d09412d342caa63bba562ec153b5" />
+              <owned-item ref="f8351273aa0649a1be531bc8aa11fcc6" />
+              <owned-item ref="ddf7c528492842f283710a597b428b50" />
+              <owned-item ref="59b2d2adc6d846f397fc4a25f37808aa" />
+              <owned-item ref="082dd73c7acb45b989d0a5da4844d0df" />
+              <owned-item ref="c426ccccec634839b4ec87184231eb25" />
+              <owned-item ref="59b2d2adc6d846f397fc4a25f37808aa" />
+              <owned-item ref="ddf7c528492842f283710a597b428b50" />
+              <owned-item ref="15c7d09412d342caa63bba562ec153b5" />
             </owned-items>
             <attributes>
               <attribute id="a67941695a7ca4b918a4ee00169387e55396" cid="PROP093" name="WS_PATH" creation-date="06/28/2023 14:30:39" property-ref="ddf7c528492842f283710a597b428b50" />
@@ -3789,6 +4332,21 @@ Debugger</text>
             <source-codes>
               <source-code language="ActionScript" />
             </source-codes>
+          </item>
+          <item id="c426ccccec634839b4ec87184231eb25" cid="PROP095" type="property" name="INFO_FILE_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:50" visibility="private">
+            <feature />
+            <structural-feature type="" type-id="" />
+            <property />
+          </item>
+          <item id="082dd73c7acb45b989d0a5da4844d0df" cid="PROP094" type="property" name="DATA_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:46" visibility="private">
+            <feature />
+            <structural-feature type="" type-id="" />
+            <property />
+          </item>
+          <item id="f8351273aa0649a1be531bc8aa11fcc6" cid="PROP098" type="property" name="I_CALIB_FILE_PATH" style-class="" owner="9408dc82b1904723a992e24568665b3e" creation-date="06/28/2023 14:30:56" visibility="private">
+            <feature />
+            <structural-feature type="" type-id="" />
+            <property />
           </item>
         </abstract-items>
         <layer id="5c346854d6e2440392590d5cc7e319b6" name="Default" visible="true" enabled="true" locked="false">
