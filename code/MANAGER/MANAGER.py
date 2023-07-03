@@ -106,7 +106,6 @@ class MANAGER_c():
             #Flash original program
             if self.__status is TERM_Option_e.FLASH_ORIG:
                 log.info(f"Flashing original program")
-                self.__stm: STM_FLASH_c = STM_FLASH_c(epc_conf = _DEFAULT_EPC_CONF)
                 self.__stm.flashUC(binary_name = "STM32_org.bin")
 
             #Configure device
