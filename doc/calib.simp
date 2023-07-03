@@ -147,7 +147,7 @@
       </counter>
       <counter>
         <item-type type-id="group" type="Group" />
-        <value>389</value>
+        <value>488</value>
       </counter>
       <counter>
         <item-type type-id="constraint" type="Constraint" />
@@ -377,7 +377,7 @@
       </drawing-text>
     </item>
     <item id="4eb1b98dccef4c2a9e29b53866a23db5" cid="GROUP001" type="group" name="Group" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:25:46" />
-    <item id="2a75f45e5f9a4a1cb91d0117405857fc" cid="PROP079" type="property" name="TEMP_AMB" style-class="" owner="e7e3516383d34d0d87ee52a47bb82cc2" creation-date="06/28/2023 12:49:20" visibility="private">
+    <item id="97e16bcdbe6c424ab3e97a447ff8771f" cid="PROP078" type="property" name="TEMP_ANOD" style-class="" owner="e7e3516383d34d0d87ee52a47bb82cc2" creation-date="06/28/2023 12:49:17" visibility="private">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -404,7 +404,7 @@
       <structural-feature type="" type-id="" />
       <property />
     </item>
-    <item id="97e16bcdbe6c424ab3e97a447ff8771f" cid="PROP078" type="property" name="TEMP_ANOD" style-class="" owner="e7e3516383d34d0d87ee52a47bb82cc2" creation-date="06/28/2023 12:49:17" visibility="private">
+    <item id="2a75f45e5f9a4a1cb91d0117405857fc" cid="PROP079" type="property" name="TEMP_AMB" style-class="" owner="e7e3516383d34d0d87ee52a47bb82cc2" creation-date="06/28/2023 12:49:20" visibility="private">
       <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -599,7 +599,7 @@
     </item>
     <item id="dic0b9cf88586b4f14a284020ad438e0758959" cid="CN003" type="comment-connector" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:06:54" from="1e6b4582f9754b00847f7cbabec38e10" to="dic10de566551a4f979bce9edb1095504e3052" />
     <item id="af868a80c8994e85bb608154d8510870" cid="PROP025" type="property" name="can_id" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:31" visibility="public">
-      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
@@ -684,7 +684,7 @@
     </item>
     <item id="did979dbed2b634850af13400dde07fc855488" cid="CN002" type="comment-connector" name="" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:04:42" from="74e651fe14b44a8aac4dad4982281823" to="dic10de566551a4f979bce9edb1095504e3052" />
     <item id="dfea2df9cb904a759797b9332831ed76" cid="PROP103" type="property" name="CURR_MIN" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/29/2023 13:02:12" visibility="private">
-      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
@@ -863,7 +863,7 @@
       <property />
     </item>
     <item id="29af522142e64c8ca934a3d901dc1024" cid="PROP026" type="property" name="sn" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:36" visibility="public">
-      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
@@ -947,7 +947,7 @@
       <interface />
     </item>
     <item id="519c55301323468d81791bdf4db82f92" cid="PROP024" type="property" name="hw_ver" style-class="" owner="dif4c671f93abe4b8986d57b66e394dfc89009" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:02:28" visibility="public">
-      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
@@ -974,7 +974,7 @@
       <property />
     </item>
     <item id="02ee8698f526462485e3f7bc224fd170" cid="PROP105" type="property" name="CURR_STEP" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/29/2023 13:02:24" visibility="private">
-      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
@@ -1031,7 +1031,7 @@
       <required-interface interface-ref="ecb328af459a42ca996452dd9d9701d6" />
     </item>
     <item id="e1326d0a5c824bf1bfb227ea356f3b08" cid="PROP104" type="property" name="CURR_MAX" style-class="" owner="dia125f44861a74b19b2bdc5ddffde0ecf2779" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/29/2023 13:02:16" visibility="private">
-      <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-visible="true" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="2" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
         <text-style type="name" use-defaults="false" color="#FF555555" font="Segoe UI;11.25;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
         <text-style type="text" use-defaults="false" color="#FF555555" font="Segoe UI;9.75;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
@@ -1106,7 +1106,7 @@ Read calib info file and write calibration to epc_conf.c</comment>
       </meta>
       <abstract-items />
       <sub-models />
-      <diagram type="uml-component" id="peb619ef107a94c7292c7cdf192cdb7a2_404577011" name="Components Diagram" order-index="1" overview-order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="0,-258" zoom="0.8">
+      <diagram type="uml-component" id="peb619ef107a94c7292c7cdf192cdb7a2_404577011" name="Components Diagram" order-index="1" overview-order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-27,-261" zoom="0.8">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -1155,10 +1155,14 @@ Read calib info file and write calibration to epc_conf.c</comment>
               <owned-item ref="fad216f516ca45b3a97e1fe6fa5881cc" />
               <owned-item ref="3712be1693eb4900a65e6f8707619b79" />
               <owned-item ref="fad216f516ca45b3a97e1fe6fa5881cc" />
+              <owned-item ref="3712be1693eb4900a65e6f8707619b79" />
+              <owned-item ref="fad216f516ca45b3a97e1fe6fa5881cc" />
+              <owned-item ref="3712be1693eb4900a65e6f8707619b79" />
+              <owned-item ref="fad216f516ca45b3a97e1fe6fa5881cc" />
             </owned-items>
             <relation from="63e6f0361252438780162ba880d99c7c" to="083c2be32d7b4e2d94ab5be8c8e865e3" derived="false">
-              <start-role id="umlar-b65d883f-ab93-4dd8-b281-c4c739066ff4" name="" navigability="" association-type="association" visibility="private" property-ref="3712be1693eb4900a65e6f8707619b79" />
-              <end-role id="umlar-ccfbfd11-c75c-44fe-871f-0bb23e33ac8b" name="" navigability="yes" association-type="association" visibility="private" property-ref="fad216f516ca45b3a97e1fe6fa5881cc" />
+              <start-role id="umlar-cdd2495b-ddc6-4688-9d94-a8d7bd8b1741" name="" navigability="" association-type="association" visibility="private" property-ref="3712be1693eb4900a65e6f8707619b79" />
+              <end-role id="umlar-4095ca65-6049-4503-b469-51bba745e0d1" name="" navigability="yes" association-type="association" visibility="private" property-ref="fad216f516ca45b3a97e1fe6fa5881cc" />
             </relation>
           </item>
           <item id="di23a982da17c64fd6be8d93943a6cfa804300" cid="ELEM033" type="uml-provided-interface-connector" name="" style-class="" creation-date="06/20/2023 13:17:59" from="di16dc0a2781a74137a069884758267e164931" />
@@ -1169,8 +1173,8 @@ Read calib info file and write calibration to epc_conf.c</comment>
               <owned-item ref="di57b5ae5fe7ec496da45005e78d8d65804794" />
             </owned-items>
             <relation from="083c2be32d7b4e2d94ab5be8c8e865e3" to="di8eb50684ee0445afa938493337897a682941" derived="false">
-              <start-role id="umlar-23dcf392-e3cc-476f-a783-88a3d8d03d95" name="" navigability="" association-type="association" visibility="private" property-ref="diba27cb906b0c4d63ba32de97fbbb4cb44794" />
-              <end-role id="umlar-9c69b99c-f365-434d-bc3f-aafc5ea13e6d" name="" navigability="yes" association-type="association" visibility="private" property-ref="di57b5ae5fe7ec496da45005e78d8d65804794" />
+              <start-role id="umlar-71ba0ce0-2b16-4fc0-8f67-a6b8c52b6702" name="" navigability="" association-type="association" visibility="private" property-ref="diba27cb906b0c4d63ba32de97fbbb4cb44794" />
+              <end-role id="umlar-27c438b3-72ed-469d-8347-6be43c0d5624" name="" navigability="yes" association-type="association" visibility="private" property-ref="di57b5ae5fe7ec496da45005e78d8d65804794" />
             </relation>
           </item>
           <item id="di5c572119db0744cd9c9496a6fc0396011899" cid="ELEM016" type="constraint-connector" name="SCPI" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:19:06" from="di7764c03a2b6d46fe8fed96c2a032f4384432" to="dib757d702f4cb4e02b95ee1e5f88138f85544" visibility="package" />
@@ -1259,8 +1263,8 @@ Debugger</text>
               <owned-item ref="di63ad62a84c884051832a496e4d347b8f8187" />
             </owned-items>
             <relation from="" to="di90a102e4e6044088844a5706372e58a21881" derived="false">
-              <start-role id="umlar-62d350ed-8a2d-48cf-a306-e0796f5048a7" name="" navigability="" association-type="association" visibility="private" property-ref="di8ee79f425dd04ed79c0dcb67751f60e18187" />
-              <end-role id="umlar-208a25ab-2a64-4d28-9ecf-07cfb52b91c9" name="" navigability="yes" association-type="association" visibility="private" property-ref="di63ad62a84c884051832a496e4d347b8f8187" />
+              <start-role id="umlar-4a368c09-ed37-48eb-8f5b-357c6dd9c60c" name="" navigability="" association-type="association" visibility="private" property-ref="di8ee79f425dd04ed79c0dcb67751f60e18187" />
+              <end-role id="umlar-de3630c1-94b0-4352-8a1b-c12b906b6d0d" name="" navigability="yes" association-type="association" visibility="private" property-ref="di63ad62a84c884051832a496e4d347b8f8187" />
             </relation>
           </item>
           <item id="di7505c31f38c842a5917b0f8752f6e9dd5544" cid="GROUP002" type="group" name="Group" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:25:46" />
@@ -1328,6 +1332,8 @@ Debugger</text>
               <stereotype id="b6e10ca7b62e47f2b7e2548859854e3e" type="component" ref="" />
             </stereotype-instances>
             <owned-items>
+              <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
+              <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
               <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
               <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
               <owned-item ref="ddbcb3994ff64eeaa95ead5a564adaa5" />
@@ -1416,6 +1422,8 @@ Debugger</text>
               <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
               <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
               <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
+              <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
+              <owned-item ref="e6f0f501372b436e989c88f4bd06ef2e" />
             </owned-items>
             <component />
           </item>
@@ -1479,10 +1487,12 @@ Debugger</text>
               <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
               <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
               <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
+              <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
+              <owned-item ref="dieaac40aca66d46108be9dab2255094d86687" />
             </owned-items>
             <relation from="" to="di3c7ac1cd7cf2453682415b64f7ccd5c99693" derived="false">
-              <start-role id="umlar-2934c4f2-9a19-4d54-a5cf-85f38115e10c" name="" navigability="" association-type="association" visibility="private" property-ref="dic01bbf7cb15e4a20810a847622f7d3696687" />
-              <end-role id="umlar-58193702-2911-49f1-b701-0fcec58b9fe2" name="" navigability="yes" association-type="association" visibility="private" property-ref="dieaac40aca66d46108be9dab2255094d86687" />
+              <start-role id="umlar-36229446-05f6-4b37-9a85-e683fb088eae" name="" navigability="" association-type="association" visibility="private" property-ref="dic01bbf7cb15e4a20810a847622f7d3696687" />
+              <end-role id="umlar-f2ab0040-173d-436b-9b68-9b99abe8a4f9" name="" navigability="yes" association-type="association" visibility="private" property-ref="dieaac40aca66d46108be9dab2255094d86687" />
             </relation>
           </item>
           <item id="di0b5da86b60d742e19643d442e55d12189457" cid="PORT003" type="port" name="CAN" style-class="" owner="die7718b3e9e29462a9fa69a721c64ec3b6015" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:19:21" visibility="undefined">
@@ -1534,10 +1544,14 @@ Debugger</text>
               <owned-item ref="di2d2c753efd194c6599fab2e6754528519247" />
               <owned-item ref="di8d0f429e65494074a04339458516eb069247" />
               <owned-item ref="di2d2c753efd194c6599fab2e6754528519247" />
+              <owned-item ref="di8d0f429e65494074a04339458516eb069247" />
+              <owned-item ref="di2d2c753efd194c6599fab2e6754528519247" />
+              <owned-item ref="di8d0f429e65494074a04339458516eb069247" />
+              <owned-item ref="di2d2c753efd194c6599fab2e6754528519247" />
             </owned-items>
             <relation from="" to="dia60d844133b94be58d0e0dc50a0dae6e3468" derived="false">
-              <start-role id="umlar-930466ee-6af1-406b-b942-8d0fff0e7f85" name="" navigability="" association-type="association" visibility="private" property-ref="di8d0f429e65494074a04339458516eb069247" />
-              <end-role id="umlar-bd8df556-8357-4eb4-b271-cb6f9ce09c12" name="" navigability="yes" association-type="association" visibility="private" property-ref="di2d2c753efd194c6599fab2e6754528519247" />
+              <start-role id="umlar-c6da1c11-8df0-48d8-976e-013ac9b50c43" name="" navigability="" association-type="association" visibility="private" property-ref="di8d0f429e65494074a04339458516eb069247" />
+              <end-role id="umlar-8aa148b9-9b26-4d4a-b99b-38ede4c572a8" name="" navigability="yes" association-type="association" visibility="private" property-ref="di2d2c753efd194c6599fab2e6754528519247" />
             </relation>
           </item>
           <item id="dic01bbf7cb15e4a20810a847622f7d3696687" cid="PROP007" type="property" name="" style-class="" owner="dife541aca67d54b649418c94448034ee66687" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:48:13" visibility="private">
@@ -1913,7 +1927,7 @@ Debugger</text>
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-class" id="pe9baceaece72490fbb29855c3e0ebc0d_430049249" name="POWER" order-index="3" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-139,4">
+      <diagram type="uml-class" id="pe9baceaece72490fbb29855c3e0ebc0d_430049249" name="POWER" order-index="3" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="4,89" zoom="1.4">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -1941,6 +1955,24 @@ Debugger</text>
               <owned-item ref="dfea2df9cb904a759797b9332831ed76" />
               <owned-item ref="e1326d0a5c824bf1bfb227ea356f3b08" />
               <owned-item ref="02ee8698f526462485e3f7bc224fd170" />
+              <owned-item ref="di77a5ee5e059e4b2c8ff14c0aaffe09a98736" />
+              <owned-item ref="dfea2df9cb904a759797b9332831ed76" />
+              <owned-item ref="diafd3612ca58b48ebb10030786c4ad3488736" />
+              <owned-item ref="di51bcc73db5a44042b87ad40335092ec88736" />
+              <owned-item ref="di3d5c2dc95fe8444f8e7d37f738ecff358736" />
+              <owned-item ref="did1aa515a2a4e4978b8808978544290d68736" />
+              <owned-item ref="02ee8698f526462485e3f7bc224fd170" />
+              <owned-item ref="e1326d0a5c824bf1bfb227ea356f3b08" />
+              <owned-item ref="di63ac37cd9a9f4a7d8d1693398e8a41d28736" />
+              <owned-item ref="di77a5ee5e059e4b2c8ff14c0aaffe09a98736" />
+              <owned-item ref="dfea2df9cb904a759797b9332831ed76" />
+              <owned-item ref="diafd3612ca58b48ebb10030786c4ad3488736" />
+              <owned-item ref="di51bcc73db5a44042b87ad40335092ec88736" />
+              <owned-item ref="di3d5c2dc95fe8444f8e7d37f738ecff358736" />
+              <owned-item ref="did1aa515a2a4e4978b8808978544290d68736" />
+              <owned-item ref="02ee8698f526462485e3f7bc224fd170" />
+              <owned-item ref="e1326d0a5c824bf1bfb227ea356f3b08" />
+              <owned-item ref="di63ac37cd9a9f4a7d8d1693398e8a41d28736" />
             </owned-items>
             <attributes>
               <attribute id="ae2fe9af4cd614cfcb7db14431a8f5b2e70" cid="PROP075" name="VOLT_HS_MIN" creation-date="06/28/2023 12:49:06" property-ref="diafd3612ca58b48ebb10030786c4ad3488736" />
@@ -1974,6 +2006,18 @@ Debugger</text>
               <stereotype id="e7e3516383d34d0d87ee52a47bb82cc2_enumeration_c" type="enumeration" ref="" />
             </stereotype-instances>
             <owned-items>
+              <owned-item ref="97e16bcdbe6c424ab3e97a447ff8771f" />
+              <owned-item ref="2a75f45e5f9a4a1cb91d0117405857fc" />
+              <owned-item ref="3e148f9022be42148eb9755bbb51756b" />
+              <owned-item ref="43177718fc89406d9c1de5949c027bdb" />
+              <owned-item ref="f1ec288f590444e4b5b569155e6aaceb" />
+              <owned-item ref="a935c401b6634934a7d60d6f7c724edd" />
+              <owned-item ref="97e16bcdbe6c424ab3e97a447ff8771f" />
+              <owned-item ref="2a75f45e5f9a4a1cb91d0117405857fc" />
+              <owned-item ref="3e148f9022be42148eb9755bbb51756b" />
+              <owned-item ref="43177718fc89406d9c1de5949c027bdb" />
+              <owned-item ref="f1ec288f590444e4b5b569155e6aaceb" />
+              <owned-item ref="a935c401b6634934a7d60d6f7c724edd" />
               <owned-item ref="97e16bcdbe6c424ab3e97a447ff8771f" />
               <owned-item ref="2a75f45e5f9a4a1cb91d0117405857fc" />
               <owned-item ref="3e148f9022be42148eb9755bbb51756b" />
@@ -2048,6 +2092,12 @@ Debugger</text>
               <owned-item ref="eb182121b3094ee39bd237507707a0f6" />
               <owned-item ref="b4e29cce4f7441b089bd37b4ba048525" />
               <owned-item ref="22f687906684403785521200c43f5cda" />
+              <owned-item ref="eb182121b3094ee39bd237507707a0f6" />
+              <owned-item ref="b4e29cce4f7441b089bd37b4ba048525" />
+              <owned-item ref="22f687906684403785521200c43f5cda" />
+              <owned-item ref="eb182121b3094ee39bd237507707a0f6" />
+              <owned-item ref="b4e29cce4f7441b089bd37b4ba048525" />
+              <owned-item ref="22f687906684403785521200c43f5cda" />
             </owned-items>
             <attributes>
               <attribute id="ab706ebae4f2941c5921ede391958065e118" cid="PROP017" name="source" creation-date="06/20/2023 13:53:26" property-ref="22f687906684403785521200c43f5cda" />
@@ -2063,7 +2113,7 @@ Debugger</text>
                   <source-code language="ActionScript" />
                 </source-codes>
               </operation>
-              <operation id="o07cfbb4371b540bebf4d822096e88fbf795" cid="OP017" name="config_devices" creation-date="06/28/2023 14:26:12" type="" type-id="" visibility="private" />
+              <operation id="o07cfbb4371b540bebf4d822096e88fbf795" cid="OP017" name="configDevice" creation-date="06/28/2023 14:26:12" type="" type-id="" visibility="private" />
               <operation id="o62e0504c948e4af5b4734b677fc06010610" cid="OP015" name="writeData" creation-date="06/28/2023 14:19:57" type="" type-id="" visibility="private" />
               <operation id="o7c0fe7fcaa8f45d5b10d51837bb95783611" cid="OP018" name="checkExistingCalib" creation-date="06/28/2023 14:36:49" type="Boolean" type-id="Uml.Boolean" visibility="private">
                 <parameters>
@@ -2129,7 +2179,7 @@ Debugger</text>
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-class" id="pe5e28c74f7264a72a16a9afda03fc6a6_877141480" name="STM_FLASH" order-index="4" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-238,49" zoom="1.2">
+      <diagram type="uml-class" id="pe5e28c74f7264a72a16a9afda03fc6a6_877141480" name="STM_FLASH" order-index="4" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -2156,6 +2206,14 @@ Debugger</text>
               <owned-item ref="dida64065b18254ea99287b2504d73e5119009" />
               <owned-item ref="dida64065b18254ea99287b2504d73e5119009" />
               <owned-item ref="dida64065b18254ea99287b2504d73e5119009" />
+              <owned-item ref="dida64065b18254ea99287b2504d73e5119009" />
+              <owned-item ref="af868a80c8994e85bb608154d8510870" />
+              <owned-item ref="29af522142e64c8ca934a3d901dc1024" />
+              <owned-item ref="519c55301323468d81791bdf4db82f92" />
+              <owned-item ref="dida64065b18254ea99287b2504d73e5119009" />
+              <owned-item ref="af868a80c8994e85bb608154d8510870" />
+              <owned-item ref="29af522142e64c8ca934a3d901dc1024" />
+              <owned-item ref="519c55301323468d81791bdf4db82f92" />
             </owned-items>
             <attributes>
               <attribute id="6fd7f584-d93a-4e34-91ce-7ff6dd11c806" cid="PROP023" name="sw_ver" creation-date="06/20/2023 13:53:36" property-ref="dida64065b18254ea99287b2504d73e5119009" />
@@ -2169,6 +2227,8 @@ Debugger</text>
           </item>
           <item id="dic10de566551a4f979bce9edb1095504e3052" cid="C002" type="class" name="STM_FLASH" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 13:51:14" visibility="undefined">
             <owned-items>
+              <owned-item ref="734259c79444413e92b8f1b359359d4a" />
+              <owned-item ref="734259c79444413e92b8f1b359359d4a" />
               <owned-item ref="734259c79444413e92b8f1b359359d4a" />
               <owned-item ref="734259c79444413e92b8f1b359359d4a" />
               <owned-item ref="734259c79444413e92b8f1b359359d4a" />
@@ -2258,7 +2318,7 @@ Debugger</text>
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-class" id="padc6ceab11584248b76aa41eb117da23_759566190" name="MANAGER" order-index="5" overview-order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="254,1" zoom="1.6">
+      <diagram type="uml-class" id="padc6ceab11584248b76aa41eb117da23_759566190" name="MANAGER" order-index="5" overview-order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="580,147" zoom="2.2">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -2277,6 +2337,10 @@ Debugger</text>
         <abstract-items>
           <item id="b35e851f7f7b4e48ac71bd1611c8ebd1" cid="C004" type="class" name="MANAGER_c" style-class="" creator="CDoZfQE0eoPT0twKUywpA6bcSVmND/ES1wvVTUIWqr7nDuuw" creation-date="06/20/2023 14:43:52" visibility="undefined">
             <owned-items>
+              <owned-item ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
+              <owned-item ref="bf0e63c6903a4d8683df750982e1c1e1" />
+              <owned-item ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
+              <owned-item ref="bf0e63c6903a4d8683df750982e1c1e1" />
               <owned-item ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
               <owned-item ref="bf0e63c6903a4d8683df750982e1c1e1" />
               <owned-item ref="8ec6b64a7e814dc2a9ebf64c3e8b2acc" />
@@ -2310,7 +2374,7 @@ Debugger</text>
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-component" id="pb8d8cd2bed4b450bb246c8fb984cd5a1_544587412" name="ProjectStructure" order-index="2" overview-order-index="3" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="517,-143" zoom="0.8">
+      <diagram type="uml-component" id="pb8d8cd2bed4b450bb246c8fb984cd5a1_544587412" name="ProjectStructure" order-index="2" overview-order-index="3" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="272,-241" zoom="0.7">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -2322,7 +2386,7 @@ Debugger</text>
           </authors>
           <description />
           <creation-date>06/28/2023 09:42:18</creation-date>
-          <change-date>06/29/2023 12:57:13</change-date>
+          <change-date>07/03/2023 09:05:04</change-date>
           <revision-count>0</revision-count>
           <version />
         </meta>
@@ -2456,7 +2520,7 @@ Debugger</text>
             <structural-feature type="" type-id="" />
             <property />
           </item>
-          <item id="dib04a7e8cdb2e48e28c527edd186cb44e2328" cid="PKG031" type="package" name="DRV_EA" style-class="" owner="dibcfa38a0a04242a2a527c3822d0bb7b56330" creation-date="06/28/2023 09:43:45" visibility="undefined" />
+          <item id="dib04a7e8cdb2e48e28c527edd186cb44e2328" cid="PKG031" type="package" name="DRV_EA" style-class="" owner="e979c7090a444741b87c0f520372db2b" creation-date="06/28/2023 09:43:45" visibility="undefined" />
           <item id="3033be4a14f84f0f933b48d046ef562b" cid="PROP038" type="property" name="EPC_CONF_MEAS_factors" style-class="" owner="bd3b8e21d7f14b3ebeaec95965937596" creation-date="06/28/2023 09:47:43" visibility="private">
             <feature />
             <structural-feature type="" type-id="" />
@@ -2519,6 +2583,8 @@ Debugger</text>
               <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
               <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
               <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
+              <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
+              <owned-item ref="501277049aa9459fa6d58c2fb1f604cd" />
             </owned-items>
           </item>
           <item id="di5774c7113ef043a1a65f0a120f5f3e2e7335" cid="PROP072" type="property" name="_S_N" style-class="" creation-date="06/28/2023 09:48:15" visibility="private">
@@ -2533,7 +2599,7 @@ Debugger</text>
           </item>
           <item id="di160a578e825f4d2a93d0c314420d45324503" cid="PKG036" type="package" name="SYS_CONF" style-class="" owner="di88161d1c20114c9ba6ab6e1fb1173afc4503" creation-date="06/28/2023 09:43:45" visibility="undefined" />
           <item id="di9d436048574c47f99d0d0fdf64793f1a8206" cid="PKG015" type="package" name="EPC_ST" style-class="" creation-date="06/28/2023 09:45:40" visibility="undefined" />
-          <item id="di0e9f645ec616408084714aca392913074419" cid="PKG033" type="package" name="DRV_EPC" style-class="" owner="dibcfa38a0a04242a2a527c3822d0bb7b56330" creation-date="06/28/2023 09:43:45" visibility="undefined" />
+          <item id="di0e9f645ec616408084714aca392913074419" cid="PKG033" type="package" name="DRV_EPC" style-class="" owner="e979c7090a444741b87c0f520372db2b" creation-date="06/28/2023 09:43:45" visibility="undefined" />
           <item id="di817387e37ffc496c969878822a497cd32436" cid="PROP058" type="property" name="_S_N" style-class="" owner="dic5d71cae6f1648b5a07da553b03551888206" creation-date="06/28/2023 09:48:15" visibility="private">
             <feature />
             <structural-feature type="" type-id="" />
@@ -2546,6 +2612,14 @@ Debugger</text>
               <owned-item ref="dibf8bf63c321c44ac95e72b082b77bff04147" />
               <owned-item ref="di59bc2a999e354699acabe6d1f0180d0e6008" />
               <owned-item ref="dic8b6990822a74f2aa4204035f8ecdb1d2813" />
+              <owned-item ref="2f9ad93f11e241ebb3bf9360996a036a" />
+              <owned-item ref="didf73aecdfe084b99b0ac3bd8ced51d9f8621" />
+              <owned-item ref="dibf8bf63c321c44ac95e72b082b77bff04147" />
+              <owned-item ref="di59bc2a999e354699acabe6d1f0180d0e6008" />
+              <owned-item ref="2f9ad93f11e241ebb3bf9360996a036a" />
+              <owned-item ref="didf73aecdfe084b99b0ac3bd8ced51d9f8621" />
+              <owned-item ref="dibf8bf63c321c44ac95e72b082b77bff04147" />
+              <owned-item ref="di59bc2a999e354699acabe6d1f0180d0e6008" />
               <owned-item ref="2f9ad93f11e241ebb3bf9360996a036a" />
               <owned-item ref="didf73aecdfe084b99b0ac3bd8ced51d9f8621" />
               <owned-item ref="dibf8bf63c321c44ac95e72b082b77bff04147" />
@@ -2575,21 +2649,13 @@ Debugger</text>
               <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
               <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
               <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
+              <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
+              <owned-item ref="di0a97e705edb044938216fd397ab112f44442" />
             </owned-items>
           </item>
           <item id="dibcfa38a0a04242a2a527c3822d0bb7b56330" cid="PKG030" type="package" name="DRV" style-class="" owner="di2455d1180b314896b2e8e6da904465f19679" creation-date="06/28/2023 09:43:45" visibility="undefined">
             <owned-items>
-              <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
-              <owned-item ref="di0e9f645ec616408084714aca392913074419" />
               <owned-item ref="di95a542a36d6749ce828fb26338f0269e7921" />
-              <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
-              <owned-item ref="di0e9f645ec616408084714aca392913074419" />
-              <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
-              <owned-item ref="di0e9f645ec616408084714aca392913074419" />
-              <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
-              <owned-item ref="di0e9f645ec616408084714aca392913074419" />
-              <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
-              <owned-item ref="di0e9f645ec616408084714aca392913074419" />
             </owned-items>
           </item>
           <item id="di09d99735e13a40bab32b720d9bfd609e8206" cid="PKG014" type="package" name="MID" style-class="" creation-date="06/28/2023 09:45:40" visibility="undefined" />
@@ -2632,6 +2698,8 @@ Debugger</text>
               <owned-item ref="dic8236752033b43549db9945d9152930e7819" />
               <owned-item ref="dic8236752033b43549db9945d9152930e7819" />
               <owned-item ref="dic8236752033b43549db9945d9152930e7819" />
+              <owned-item ref="dic8236752033b43549db9945d9152930e7819" />
+              <owned-item ref="dic8236752033b43549db9945d9152930e7819" />
             </owned-items>
           </item>
           <item id="di0f5f56835d6c4b4088fb76fb22b7bbe47335" cid="PROP067" type="property" name="EPC_CONF_MEAS_offset" style-class="" creation-date="06/28/2023 09:47:56" visibility="private">
@@ -2641,6 +2709,10 @@ Debugger</text>
           </item>
           <item id="di229da6b6f24c4cb5867c729d3d8d194c5640" cid="PKG019" type="package" name="data" style-class="" creation-date="06/28/2023 09:43:17" visibility="undefined">
             <owned-items>
+              <owned-item ref="dibe8fe0199ca74e9f8ade4c740410cc315640" />
+              <owned-item ref="did10615ae0b75484aad762d0a84fdc22d7819" />
+              <owned-item ref="dibe8fe0199ca74e9f8ade4c740410cc315640" />
+              <owned-item ref="did10615ae0b75484aad762d0a84fdc22d7819" />
               <owned-item ref="dibe8fe0199ca74e9f8ade4c740410cc315640" />
               <owned-item ref="did10615ae0b75484aad762d0a84fdc22d7819" />
               <owned-item ref="dibe8fe0199ca74e9f8ade4c740410cc315640" />
@@ -2662,7 +2734,11 @@ Debugger</text>
             </stereotype-instances>
             <artifact filename="" />
           </item>
-          <item id="di16a7dc03b4f54611a894ec2cb4ea6e0a8594" cid="PKG038" type="package" name="TERMINAL" style-class="" owner="di2455d1180b314896b2e8e6da904465f19679" creation-date="06/28/2023 09:43:45" visibility="undefined" />
+          <item id="di16a7dc03b4f54611a894ec2cb4ea6e0a8594" cid="PKG038" type="package" name="TERM" style-class="" owner="di2455d1180b314896b2e8e6da904465f19679" creation-date="06/28/2023 09:43:45" visibility="undefined">
+            <associated-diagrams>
+              <diagram id="pf609ef76e2c34f668a92e702626cebc5_381652280" />
+            </associated-diagrams>
+          </item>
           <item id="di31da5ca09828437ea315f409aa43c9b98206" cid="AF010" type="artifact" name="epc_conf.h" style-class="" owner="di8638c7496cca4a96a4ce9d368857f4138206" creation-date="06/28/2023 09:46:45" visibility="undefined">
             <stereotypes>
               <stereotype name="artifact" />
@@ -2724,6 +2800,16 @@ Debugger</text>
               <owned-item ref="did4d3cc615a8a4c74b0a532af881b24bc4963" />
               <owned-item ref="dibcfa38a0a04242a2a527c3822d0bb7b56330" />
               <owned-item ref="di16a7dc03b4f54611a894ec2cb4ea6e0a8594" />
+              <owned-item ref="di88161d1c20114c9ba6ab6e1fb1173afc4503" />
+              <owned-item ref="di282749e5aa024c2db32e111967f3d9133610" />
+              <owned-item ref="did4d3cc615a8a4c74b0a532af881b24bc4963" />
+              <owned-item ref="dibcfa38a0a04242a2a527c3822d0bb7b56330" />
+              <owned-item ref="di16a7dc03b4f54611a894ec2cb4ea6e0a8594" />
+              <owned-item ref="di88161d1c20114c9ba6ab6e1fb1173afc4503" />
+              <owned-item ref="di282749e5aa024c2db32e111967f3d9133610" />
+              <owned-item ref="did4d3cc615a8a4c74b0a532af881b24bc4963" />
+              <owned-item ref="dibcfa38a0a04242a2a527c3822d0bb7b56330" />
+              <owned-item ref="di16a7dc03b4f54611a894ec2cb4ea6e0a8594" />
             </owned-items>
           </item>
           <item id="die2d8e112ebee43ec81aa24e85018ca072436" cid="PROP057" type="property" name="_HW_VER" style-class="" owner="dic5d71cae6f1648b5a07da553b03551888206" creation-date="06/28/2023 09:48:14" visibility="private">
@@ -2753,10 +2839,12 @@ Debugger</text>
           <item id="e979c7090a444741b87c0f520372db2b" cid="ELEM026" type="frame" name="Repository" style-class="" creation-date="06/28/2023 12:31:02">
             <owned-items>
               <owned-item ref="di2d67858b701c4941bb6b2a841509a8026589" />
+              <owned-item ref="di0e9f645ec616408084714aca392913074419" />
+              <owned-item ref="dib04a7e8cdb2e48e28c527edd186cb44e2328" />
             </owned-items>
             <frame />
           </item>
-          <item id="di95a542a36d6749ce828fb26338f0269e7921" cid="PKG032" type="package" name="DRV_BK" style-class="" owner="dibcfa38a0a04242a2a527c3822d0bb7b56330" creation-date="06/28/2023 09:43:45" visibility="undefined" />
+          <item id="di95a542a36d6749ce828fb26338f0269e7921" cid="PKG032" type="package" name="DRV_BK_PREC" style-class="" owner="dibcfa38a0a04242a2a527c3822d0bb7b56330" creation-date="06/28/2023 09:43:45" visibility="undefined" />
           <item id="4921a2ff13db4b28bd12cbbb1b8ab3ad" cid="AF003" type="artifact" name="makefile" style-class="" owner="8c36ccbc035f4c7abc2130fe10c83d2e" creation-date="06/28/2023 09:43:54" visibility="undefined">
             <stereotypes>
               <stereotype name="artifact" />
@@ -2772,6 +2860,10 @@ Debugger</text>
               <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
               <owned-item ref="13c2e9a3f0484cbaa72cb1f86e54f936" />
               <owned-item ref="01e48f7e99c9493081230cd01498b8fe" />
+              <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
+              <owned-item ref="13c2e9a3f0484cbaa72cb1f86e54f936" />
+              <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
+              <owned-item ref="13c2e9a3f0484cbaa72cb1f86e54f936" />
               <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
               <owned-item ref="13c2e9a3f0484cbaa72cb1f86e54f936" />
               <owned-item ref="8c36ccbc035f4c7abc2130fe10c83d2e" />
@@ -2909,6 +3001,16 @@ Debugger</text>
               <owned-item ref="f8b789c1431e4917b68438fcacb82fb1" />
               <owned-item ref="68fcfeeeb0b14535aed5e43be68854e2" />
               <owned-item ref="74eb54f04b1147399f880e07b3fe5f67" />
+              <owned-item ref="a3889438b9ff4c10a99a2b177ee2932c" />
+              <owned-item ref="f1f41a3bef944d1aac637561c0c887e6" />
+              <owned-item ref="f8b789c1431e4917b68438fcacb82fb1" />
+              <owned-item ref="68fcfeeeb0b14535aed5e43be68854e2" />
+              <owned-item ref="74eb54f04b1147399f880e07b3fe5f67" />
+              <owned-item ref="a3889438b9ff4c10a99a2b177ee2932c" />
+              <owned-item ref="f1f41a3bef944d1aac637561c0c887e6" />
+              <owned-item ref="f8b789c1431e4917b68438fcacb82fb1" />
+              <owned-item ref="68fcfeeeb0b14535aed5e43be68854e2" />
+              <owned-item ref="74eb54f04b1147399f880e07b3fe5f67" />
             </owned-items>
             <attributes>
               <attribute id="a2a0a0371f6a94fd3bbd5cca301b36d88627" cid="PROP087" name="WS_PATH" creation-date="06/28/2023 14:27:59" property-ref="f71f781bd3144a15bb26c9a1b3e5ebf4" />
@@ -2936,6 +3038,10 @@ Debugger</text>
           </item>
           <item id="di8638c7496cca4a96a4ce9d368857f4138206" cid="PKG017" type="package" name="EPC_CONF" style-class="" creation-date="06/28/2023 09:45:40" visibility="undefined">
             <owned-items>
+              <owned-item ref="dic5d71cae6f1648b5a07da553b03551888206" />
+              <owned-item ref="di31da5ca09828437ea315f409aa43c9b98206" />
+              <owned-item ref="dic5d71cae6f1648b5a07da553b03551888206" />
+              <owned-item ref="di31da5ca09828437ea315f409aa43c9b98206" />
               <owned-item ref="dic5d71cae6f1648b5a07da553b03551888206" />
               <owned-item ref="di31da5ca09828437ea315f409aa43c9b98206" />
               <owned-item ref="dic5d71cae6f1648b5a07da553b03551888206" />
@@ -3018,6 +3124,10 @@ Debugger</text>
               <owned-item ref="diea3b6dba0d2d459786880b450039a1a67027" />
               <owned-item ref="diea3b6dba0d2d459786880b450039a1a67027" />
               <owned-item ref="d05921b26e284e52b1e172368c27a32e" />
+              <owned-item ref="diea3b6dba0d2d459786880b450039a1a67027" />
+              <owned-item ref="d05921b26e284e52b1e172368c27a32e" />
+              <owned-item ref="diea3b6dba0d2d459786880b450039a1a67027" />
+              <owned-item ref="d05921b26e284e52b1e172368c27a32e" />
             </owned-items>
           </item>
           <item id="dicdb2a08cc0494c7fa4f1f37678ce978f9137" cid="CN008" type="comment-connector" name="" style-class="" creation-date="06/28/2023 12:22:01" from="9e4d7361b05e4d3db7dd3ccf82db36b6" to="dicc88226f0f51441984c755aee477adcd1810" />
@@ -3063,6 +3173,10 @@ Debugger</text>
               <owned-item ref="8760922a9e684c8e8ef0bb703eff8f43" />
               <owned-item ref="212cafc9caf54042aedb47b38a5f38b1" />
               <owned-item ref="ed2329b1473641bbb88c3d6458b5514f" />
+              <owned-item ref="11acf96784ed4a968e0b80d529494109" />
+              <owned-item ref="4484222743f2473d898395cb7218cefe" />
+              <owned-item ref="11acf96784ed4a968e0b80d529494109" />
+              <owned-item ref="4484222743f2473d898395cb7218cefe" />
               <owned-item ref="11acf96784ed4a968e0b80d529494109" />
               <owned-item ref="4484222743f2473d898395cb7218cefe" />
               <owned-item ref="11acf96784ed4a968e0b80d529494109" />
@@ -3148,19 +3262,11 @@ Debugger</text>
             <package name-in-body="false" />
           </item>
           <item id="dibcfa38a0a04242a2a527c3822d0bb7b56330" iid="5d22361c1f36466c94af0fd8c8173d02" container="di2455d1180b314896b2e8e6da904465f19679" container-iid="b5c768682c9e456b925382050561d3f3" creation-date="06/28/2023 09:43:45" order-index="10" type="entity">
-            <layout ax="1210" ay="260" awidth="394" aheight="130" x="1210" y="260" width="180" height="70" expanded="1210,260,394,130" collapsed="0,0,0,0" rotation-center="72,-122" />
+            <layout ax="1210" ay="260" awidth="437" aheight="130" x="1210" y="260" width="437" height="70" expanded="1210,260,437,130" collapsed="0,0,0,0" rotation-center="50.5,-122" />
             <package name-in-body="false" />
           </item>
           <item id="di95a542a36d6749ce828fb26338f0269e7921" iid="23922080e40b4af8a30ad9439f2fd02f" container="dibcfa38a0a04242a2a527c3822d0bb7b56330" container-iid="5d22361c1f36466c94af0fd8c8173d02" creation-date="06/28/2023 09:43:45" order-index="12" type="entity">
-            <layout ax="1240" ay="310" awidth="93" aheight="56" x="1640" y="380" width="180" height="70" expanded="1240,310,93,56" collapsed="0,0,0,0" rotation-center="72,-122" />
-            <package name-in-body="false" />
-          </item>
-          <item id="dib04a7e8cdb2e48e28c527edd186cb44e2328" iid="3f369493998847b380ab4f698c04ad7a" container="dibcfa38a0a04242a2a527c3822d0bb7b56330" container-iid="5d22361c1f36466c94af0fd8c8173d02" creation-date="06/28/2023 09:43:45" order-index="11" type="entity">
-            <layout ax="1360" ay="310" awidth="92" aheight="56" x="1760" y="380" width="180" height="70" expanded="1360,310,92,56" collapsed="0,0,0,0" rotation-center="72,-122" />
-            <package name-in-body="false" />
-          </item>
-          <item id="di0e9f645ec616408084714aca392913074419" iid="a9bb64c7cd9b40318b9149dbaac9f687" container="dibcfa38a0a04242a2a527c3822d0bb7b56330" container-iid="5d22361c1f36466c94af0fd8c8173d02" creation-date="06/28/2023 09:43:45" order-index="13" type="entity">
-            <layout ax="1480" ay="310" awidth="100" aheight="56" x="1880" y="380" width="180" height="70" expanded="1480,310,100,56" collapsed="0,0,0,0" rotation-center="72,-122" />
+            <layout ax="1240" ay="310" awidth="136" aheight="56" x="1640" y="380" width="180" height="70" expanded="1240,310,136,56" collapsed="0,0,0,0" rotation-center="72,-122" />
             <package name-in-body="false" />
           </item>
           <item id="die6ddc66803cd411ca1344b2478ed37519679" iid="69e7518dadf340678586c8cd6be66329" container="di2455d1180b314896b2e8e6da904465f19679" container-iid="b5c768682c9e456b925382050561d3f3" creation-date="06/28/2023 09:43:45" order-index="5" type="entity">
@@ -3247,6 +3353,14 @@ Debugger</text>
             <layout ax="1220" ay="430" awidth="364" aheight="184" x="1220" y="430" width="410" height="210" expanded="1220,430,364,184" collapsed="0,0,0,0" rotation-center="-68.5,-113" container-layout="simple">
               <container-layout padding="10,10,10,10" />
             </layout>
+            <package name-in-body="false" />
+          </item>
+          <item id="di0e9f645ec616408084714aca392913074419" iid="a9bb64c7cd9b40318b9149dbaac9f687" container="e979c7090a444741b87c0f520372db2b" container-iid="ec41f742869d4a03bbc7ff5f3e4e948e" creation-date="06/28/2023 09:43:45" order-index="13" type="entity">
+            <layout ax="1530" ay="310" awidth="100" aheight="56" x="1530" y="310" width="180" height="70" expanded="1530,310,100,56" collapsed="0,0,0,0" rotation-center="72,-122" />
+            <package name-in-body="false" />
+          </item>
+          <item id="dib04a7e8cdb2e48e28c527edd186cb44e2328" iid="3f369493998847b380ab4f698c04ad7a" container="e979c7090a444741b87c0f520372db2b" container-iid="ec41f742869d4a03bbc7ff5f3e4e948e" creation-date="06/28/2023 09:43:45" order-index="11" type="entity">
+            <layout ax="1406" ay="310" awidth="92" aheight="56" x="1406" y="310" width="180" height="70" expanded="1406,310,92,56" collapsed="0,0,0,0" rotation-center="72,-122" />
             <package name-in-body="false" />
           </item>
           <item id="diea3b6dba0d2d459786880b450039a1a67027" iid="f9efdb4765044f31893cf2dd4ac0f7a7" container="di2d67858b701c4941bb6b2a841509a8026589" container-iid="0a0164cd3ab54f50866628cbc03eeae9" creation-date="06/28/2023 12:31:29" order-index="43" type="entity">
@@ -3395,7 +3509,7 @@ Debugger</text>
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-statechart" id="p728c342862ac49888d2680cb354a5da1_988927286" name="StatusMachine" order-index="7" overview-order-index="5" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-254,-197" zoom="0.7">
+      <diagram type="uml-statechart" id="p728c342862ac49888d2680cb354a5da1_988927286" name="StatusMachine" order-index="7" overview-order-index="5" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="350,638" zoom="1.2">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -3534,6 +3648,24 @@ Debugger</text>
               <owned-item ref="di74a2e2d10b2945289db3d13a066696d02578" />
               <owned-item ref="di55678036fed945d6878b9fab5a2c87d07163" />
               <owned-item ref="c91809171ef142a8bee607bbab453aff" />
+              <owned-item ref="di00ba1ddb36e94aa9b1bcf60c962000978967" />
+              <owned-item ref="di16371203e91e4488b460c2b9de212aa85617" />
+              <owned-item ref="4790f67d8b5b420a9062eadf3e56ad9a" />
+              <owned-item ref="cc90c7dc235a4e29b730d79e1a483c41" />
+              <owned-item ref="dic9985ae72e6d4c81ac8f98d208af6dcb6817" />
+              <owned-item ref="787b09725195450fa82e920d926ef921" />
+              <owned-item ref="9fa6ae561e9f46bd999d9c8284e692ee" />
+              <owned-item ref="difd4775731e74439f86679dfb5a1a27883296" />
+              <owned-item ref="di168097e6b800432ead65879c3b5e7fde3296" />
+              <owned-item ref="di00ba1ddb36e94aa9b1bcf60c962000978967" />
+              <owned-item ref="di16371203e91e4488b460c2b9de212aa85617" />
+              <owned-item ref="4790f67d8b5b420a9062eadf3e56ad9a" />
+              <owned-item ref="cc90c7dc235a4e29b730d79e1a483c41" />
+              <owned-item ref="dic9985ae72e6d4c81ac8f98d208af6dcb6817" />
+              <owned-item ref="787b09725195450fa82e920d926ef921" />
+              <owned-item ref="9fa6ae561e9f46bd999d9c8284e692ee" />
+              <owned-item ref="difd4775731e74439f86679dfb5a1a27883296" />
+              <owned-item ref="di168097e6b800432ead65879c3b5e7fde3296" />
               <owned-item ref="di00ba1ddb36e94aa9b1bcf60c962000978967" />
               <owned-item ref="di16371203e91e4488b460c2b9de212aa85617" />
               <owned-item ref="4790f67d8b5b420a9062eadf3e56ad9a" />
@@ -3835,7 +3967,7 @@ Debugger</text>
             <relation from="di69493d0efa9944fe99fa35c8cc130aac7543" from-iid="928b90bed95d43c7996f7f97f5fb06bc" to="dic09d6c89a71940ceb8b160fd80c4b16f7700" to-iid="3079d22912d84c488dd02074c9a3ccd7" />
           </item>
           <item id="84f1768f370a41e380c6ef3ff8c6b5a2" iid="eca2938ef9f54cdea86932354c4e5449" creation-date="06/28/2023 13:30:08" order-index="5" type="relation">
-            <layout line-style="rounded-rectangular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1010" y1="570" x2="525" y2="610" start-border-pos="0.875" end-border-pos="0.625" start-local-pos="30" end-local-pos="50" name-position="0,20">
+            <layout line-style="rounded-rectangular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1010" y1="570" x2="525" y2="610" start-border-pos="0.875" end-border-pos="0.625" start-local-pos="30" end-local-pos="50" name-position="209,-140">
               <points>
                 <point x="1010" y="570" />
                 <point x="525" y="610" />
@@ -3905,10 +4037,10 @@ Debugger</text>
             <relation from="5dacee1d319b41558dfc06c104b13693" from-iid="facaa3577b8f4c86b4275b1dfed3b329" to="di6cf034a261c24faeb05d78ffd014dc0c6175" to-iid="d0cc739dc78e408a80eccb0b5d9938ce" />
           </item>
           <item id="di44ce0afc3ecb425fae097899b51663d96163" iid="48ee376996114878848f3f5cae7585c0" creation-date="06/28/2023 13:32:54" order-index="11" type="relation">
-            <layout line-style="rounded-rectangular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="570" y1="400" x2="790" y2="520" start-border-pos="0.625" end-border-pos="0.125" start-local-pos="20" end-local-pos="50" name-position="80,20">
+            <layout line-style="rounded-rectangular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="570" y1="400" x2="791" y2="520" start-border-pos="0.625" end-border-pos="0.127499997615814" start-local-pos="20" end-local-pos="50" name-position="80,20">
               <points>
                 <point x="570" y="400" />
-                <point x="790" y="520" />
+                <point x="791" y="520" />
               </points>
             </layout>
             <relation to="di1a3678447a5640e8bf61780b2771ddf31360" to-iid="c1fa070e844b45118c8a4ae7ae8b34e1" />
@@ -4302,6 +4434,15 @@ Debugger</text>
               <owned-item ref="c426ccccec634839b4ec87184231eb25" />
               <owned-item ref="082dd73c7acb45b989d0a5da4844d0df" />
               <owned-item ref="f8351273aa0649a1be531bc8aa11fcc6" />
+              <owned-item ref="15c7d09412d342caa63bba562ec153b5" />
+              <owned-item ref="f8351273aa0649a1be531bc8aa11fcc6" />
+              <owned-item ref="ddf7c528492842f283710a597b428b50" />
+              <owned-item ref="59b2d2adc6d846f397fc4a25f37808aa" />
+              <owned-item ref="082dd73c7acb45b989d0a5da4844d0df" />
+              <owned-item ref="c426ccccec634839b4ec87184231eb25" />
+              <owned-item ref="59b2d2adc6d846f397fc4a25f37808aa" />
+              <owned-item ref="ddf7c528492842f283710a597b428b50" />
+              <owned-item ref="15c7d09412d342caa63bba562ec153b5" />
               <owned-item ref="15c7d09412d342caa63bba562ec153b5" />
               <owned-item ref="f8351273aa0649a1be531bc8aa11fcc6" />
               <owned-item ref="ddf7c528492842f283710a597b428b50" />
