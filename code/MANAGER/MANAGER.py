@@ -12,18 +12,18 @@ log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./CONFI
 
 #######################         GENERIC IMPORTS          #######################
 
-
 #######################       THIRD PARTY IMPORTS        #######################
 
 #######################          MODULE IMPORTS          #######################
 from TERM import TERM_c, TERM_Option_e
 from STM_FLASH import STM_FLASH_Epc_Conf_c, STM_FLASH_c
 from POWER import *
+from CONFIG import CONFIG_WS_c
 #######################          PROJECT IMPORTS         #######################
 
 
-#######################              ENUMS               #######################
-
+#######################          CONSTANTS               #######################
+_DEFAULT_EPC_CONF = STM_FLASH_Epc_Conf_c(software = 1, hardware = 1, can_id = 1, serial_number =  1)
 
 
 #######################              CLASSES             #######################
@@ -33,8 +33,9 @@ class MANAGER_c():
     def __init__(self) -> None:
         self.__epc_config: STM_FLASH_Epc_Conf_c = None
         self.__status: TERM_Option_e = TERM_Option_e.CONF_DEV
-        self.__power = PWR_c(config_path_file = f"") #TODO: check path
-        self.__stm: STM_FLASH_c = None  #TODO: check path
+        self.__power = PWR_c(config_path_file = config.getWSPath()) #TODO: check path
+        self.__stm: STM_FLASH_c = STM_FLASH_c(epc_conf = _DEFAULT_EPC_CONF)
+
 
     def _calibStatus(self, mode: PWR_Mode_e) -> None:
         '''Calibrate the EPC in the specified mode
@@ -78,6 +79,7 @@ class MANAGER_c():
         log.info(f"Configuring device")
         self.__epc_config = term.queryEPCConf()
         self.__stm = STM_FLASH_c(epc_conf = self.__epc_config)
+        config.updatePath(sn = self.__epc_config.sn)
 
 
     def executeMachineStatus(self) -> None:
@@ -104,10 +106,8 @@ class MANAGER_c():
             #Flash original program
             if self.__status is TERM_Option_e.FLASH_ORIG:
                 log.info(f"Flashing original program")
-                if self.__epc_config is None:
-                    log.error("EPC configuration not set")
-                    self.__confDevice()
-                self.__stm.flashUC()
+                self.__stm: STM_FLASH_c = STM_FLASH_c(epc_conf = _DEFAULT_EPC_CONF)
+                self.__stm.flashUC(binary_name = "STM32_org.bin")
 
             #Configure device
             elif self.__status is TERM_Option_e.CONF_DEV:
@@ -145,7 +145,7 @@ class MANAGER_c():
                     else:
                         self.__stm.applyCalib()
                         self.__stm.buildProject()
-                        self.__stm.flashUC()
+                        self.__stm.flashUC(binary_name = "STM32.bin")
 
             #Guided mode
             elif self.__status is TERM_Option_e.GUIDED_MODE:
@@ -158,6 +158,7 @@ class MANAGER_c():
 
 if __name__ == '__main__':
     term = TERM_c()
+    config = CONFIG_WS_c()
     term.showIntro()
     man = MANAGER_c()
     man.executeMachineStatus()
