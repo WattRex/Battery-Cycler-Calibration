@@ -17,7 +17,7 @@ log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./CONFI
 
 #######################          MODULE IMPORTS          #######################
 from TERM import TERM_c, TERM_Option_e
-from STM_FLASH import STM_FLASH_Epc_Conf_c
+from STM_FLASH import STM_FLASH_Epc_Conf_c, STM_FLASH_c
 from POWER import *
 #######################          PROJECT IMPORTS         #######################
 
@@ -34,8 +34,8 @@ class MANAGER_c():
         self.__epc_config: STM_FLASH_Epc_Conf_c = None
         self.__status: TERM_Option_e = TERM_Option_e.CONF_DEV
         self.__power = PWR_c(config_path_file = f"") #TODO: check path
-    
-    
+        self.__stm: STM_FLASH_c = None  #TODO: check path
+
     def _calibStatus(self, mode: PWR_Mode_e) -> None:
         '''Calibrate the EPC in the specified mode
 
@@ -66,6 +66,20 @@ class MANAGER_c():
             pass
 
 
+    def __confDevice(self) -> None:
+        '''Configure the device
+        Args:
+            - None
+        Returns:
+            - None
+        Raises:
+            - None
+        '''
+        log.info(f"Configuring device")
+        self.__epc_config = term.queryEPCConf()
+        self.__stm = STM_FLASH_c(epc_conf = self.__epc_config)
+
+
     def executeMachineStatus(self) -> None:
         '''Execute the state machine
         Args:
@@ -78,7 +92,6 @@ class MANAGER_c():
         check_calib = {PWR_Mode_e.VOLT_HS: False, PWR_Mode_e.VOLT_LS: False, PWR_Mode_e.CURR: False,
                        PWR_Mode_e.TEMP_ANOD: False, PWR_Mode_e.TEMP_AMB: False, PWR_Mode_e.TEMP_BODY: False}
         guided = False
-        term = TERM_c()
 
         while self.__status is not TERM_Option_e.EXIT:
             #Guided mode option
@@ -91,18 +104,21 @@ class MANAGER_c():
             #Flash original program
             if self.__status is TERM_Option_e.FLASH_ORIG:
                 log.info(f"Flashing original program")
-                pass
+                if self.__epc_config is None:
+                    log.error("EPC configuration not set")
+                    self.__confDevice()
+                self.__stm.flashUC()
 
             #Configure device
             elif self.__status is TERM_Option_e.CONF_DEV:
-                log.info(f"Configuring device")
-                self.__epc_config = term.queryEPCConf()
+                self.__confDevice()
 
             #Calibrate device
             elif self.__status is TERM_Option_e.CALIB:
                 log.info(f"Calibrating device")
                 if self.__epc_config is None:
                     log.error("EPC configuration not set")
+                    self.__confDevice()
                 else:
                     if guided is True:
                         options_calib_mode = [PWR_Mode_e.VOLT_HS, PWR_Mode_e.VOLT_LS, PWR_Mode_e.CURR, PWR_Mode_e.TEMP_ANOD, PWR_Mode_e.TEMP_AMB, PWR_Mode_e.TEMP_BODY]
@@ -110,20 +126,26 @@ class MANAGER_c():
                             self._calibStatus(calib_mode)
                             check_calib[calib_mode] = True
                     else:
-                        calib_mode = self.__status = term.queryCalibMode()
+                        calib_mode = term.queryCalibMode()
                         self._calibStatus(calib_mode)
                         check_calib[calib_mode] = True
 
             #Flash with calibration data
             elif self.__status is TERM_Option_e.FLASH_CALIB:
                 log.info(f"Flashing with calibration data")
-                if self.__epc_config is None:
+                if self.__epc_config is None:   #TODO: This condition should check if EPC sent info is the same as the __epc_config
                     log.error("EPC configuration not set")
+                    self.__confDevice()
                 else:
                     if False in check_calib.values():
                         log.error("Not all calibration data are set")
+                        for calib in check_calib:
+                            if check_calib[calib] is False:
+                                self._calibStatus(mode = calib)
                     else:
-                        pass
+                        self.__stm.applyCalib()
+                        self.__stm.buildProject()
+                        self.__stm.flashUC()
 
             #Guided mode
             elif self.__status is TERM_Option_e.GUIDED_MODE:
@@ -134,7 +156,8 @@ class MANAGER_c():
 
 
 
-
 if __name__ == '__main__':
+    term = TERM_c()
+    term.showIntro()
     man = MANAGER_c()
     man.executeMachineStatus()
