@@ -11,14 +11,18 @@ if __name__ == '__main__':
 log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./CONFIG/log_config.yaml")
 
 #######################         GENERIC IMPORTS          #######################
+import yaml
+from pathlib import Path
 
 #######################       THIRD PARTY IMPORTS        #######################
+import time
+
 
 #######################          MODULE IMPORTS          #######################
 from TERM import TERM_c, TERM_Option_e
 from STM_FLASH import STM_FLASH_Epc_Conf_c, STM_FLASH_c
 from POWER import *
-from CONFIG import CONFIG_WS_c
+from CONFIG import *
 #######################          PROJECT IMPORTS         #######################
 
 
@@ -33,7 +37,7 @@ class MANAGER_c():
     def __init__(self) -> None:
         self.__epc_config: STM_FLASH_Epc_Conf_c = None
         self.__status: TERM_Option_e = TERM_Option_e.CONF_DEV
-        self.__power = PWR_c(config_path_file = config.getWSPath()) #TODO: check path
+        self.__power = PWR_c()
         self.__stm: STM_FLASH_c = STM_FLASH_c(epc_conf = _DEFAULT_EPC_CONF)
 
 
@@ -76,11 +80,21 @@ class MANAGER_c():
         Raises:
             - None
         '''
-        log.info(f"Configuring device")
-        self.__epc_config = term.queryEPCConf()
-        self.__stm = STM_FLASH_c(epc_conf = self.__epc_config)
-        config.updatePath(sn = self.__epc_config.sn)
 
+        global DEFAULT_INFO_EPC
+        log.info(f"Configuring device")
+        self.__epc_config = TERM_c.queryEPCConf()
+        self.__stm = STM_FLASH_c(epc_conf = self.__epc_config)
+
+        CONFIG_WS_c.updatePath(sn = self.__epc_config.sn)
+        info_file_path = CONFIG_WS_c.getInfoFilePath()
+        info_epc = DEFAULT_INFO_EPC
+        info_epc['device_version']['sw'] = self.__epc_config.sw_ver
+        info_epc['device_version']['hw'] = self.__epc_config.hw_ver
+        info_epc['device_version']['can_ID'] = self.__epc_config.can_id
+        info_epc['device_version']['s_n'] = self.__epc_config.sn
+        with open(info_file_path, 'w') as file:
+            yaml.dump(info_epc, file)
 
     def executeMachineStatus(self) -> None:
         '''Execute the state machine
@@ -101,7 +115,7 @@ class MANAGER_c():
                 option_guided = [None, TERM_Option_e.FLASH_ORIG, TERM_Option_e.CONF_DEV, TERM_Option_e.CALIB, TERM_Option_e.FLASH_CALIB, TERM_Option_e.EXIT]
                 self.__status = option_guided[option_guided.index(self.__status) + 1]
             else:
-                self.__status = term.queryOptions()
+                self.__status = TERM_c.queryOptions()
 
             #Flash original program
             if self.__status is TERM_Option_e.FLASH_ORIG:
@@ -125,7 +139,7 @@ class MANAGER_c():
                             self._calibStatus(calib_mode)
                             check_calib[calib_mode] = True
                     else:
-                        calib_mode = term.queryCalibMode()
+                        calib_mode = TERM_c.queryCalibMode()
                         self._calibStatus(calib_mode)
                         check_calib[calib_mode] = True
 
@@ -156,8 +170,6 @@ class MANAGER_c():
 
 
 if __name__ == '__main__':
-    term = TERM_c()
-    config = CONFIG_WS_c()
-    term.showIntro()
+    TERM_c.showIntro()
     man = MANAGER_c()
     man.executeMachineStatus()
