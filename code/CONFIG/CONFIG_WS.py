@@ -17,13 +17,13 @@ from pathlib import Path
 #######################          PROJECT IMPORTS         #######################
 
 #######################              ENUMS               #######################
-WS_PATH= f"/home/pi004/GIT_luroche/Battery-Cycler-Calibration"
-CONF_PORTS_FILE_PATH = f"{WS_PATH}/CONFIG/config.yaml"
-DATA_PATH = f"{WS_PATH}"
-INFO_FILE_PATH = f"{WS_PATH}"
-V_LS_CALIB_FILE_PATH = f"{WS_PATH}"
-V_HS_CALIB_FILE_PATH = f"{WS_PATH}"
-I_CALIB_FILE_PATH = f"{WS_PATH}"
+CONFIG_WS_PATH= f"/home/pi004/GIT_luroche/Battery-Cycler-Calibration"
+CONF_PORTS_FILE_PATH = f"{CONFIG_WS_PATH}/code/CONFIG/config_ports.yaml"
+DATA_PATH = f"{CONFIG_WS_PATH}"
+INFO_FILE_PATH = f"{CONFIG_WS_PATH}"
+V_LS_CALIB_FILE_PATH = f"{CONFIG_WS_PATH}"
+V_HS_CALIB_FILE_PATH = f"{CONFIG_WS_PATH}"
+I_CALIB_FILE_PATH = f"{CONFIG_WS_PATH}"
 
 
 DEFAULT_INFO_EPC = {    'device_version':  {'hw': None, 'sw': None, 'can_ID': None, 's_n': None},
@@ -47,7 +47,7 @@ class CONFIG_WS_c:
             - None
         '''
         global DATA_PATH, INFO_FILE_PATH, V_LS_CALIB_FILE_PATH, V_HS_CALIB_FILE_PATH, I_CALIB_FILE_PATH
-        DATA_PATH = f"{WS_PATH}/data/epc_{sn}"
+        DATA_PATH = f"{CONFIG_WS_PATH}/data/epc_{sn}"
         INFO_FILE_PATH = f"{DATA_PATH}/epc_{sn}_info.yaml"
         V_LS_CALIB_FILE_PATH = f"{DATA_PATH}/epc_{sn}_ls_volt.csv"
         V_HS_CALIB_FILE_PATH = f"{DATA_PATH}/epc_{sn}_hs_volt.csv"
