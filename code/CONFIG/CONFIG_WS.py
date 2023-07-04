@@ -17,19 +17,19 @@ from pathlib import Path
 #######################          PROJECT IMPORTS         #######################
 
 #######################              ENUMS               #######################
-CONFIG_WS_PATH= f"/home/pi004/GIT_luroche/Battery-Cycler-Calibration"
-CONF_PORTS_FILE_PATH = f"{CONFIG_WS_PATH}/code/CONFIG/config_ports.yaml"
-DATA_PATH = f"{CONFIG_WS_PATH}"
-INFO_FILE_PATH = f"{CONFIG_WS_PATH}"
-V_LS_CALIB_FILE_PATH = f"{CONFIG_WS_PATH}"
-V_HS_CALIB_FILE_PATH = f"{CONFIG_WS_PATH}"
-I_CALIB_FILE_PATH = f"{CONFIG_WS_PATH}"
+_WS_PATH= f"/home/pi004/GIT_luroche/Battery-Cycler-Calibration"
+_CONF_PORTS_FILE_PATH = f"{_WS_PATH}/code/CONFIG/config_ports.yaml"
+_DATA_PATH = f"{_WS_PATH}"
+_INFO_FILE_PATH = f"{_WS_PATH}"
+_V_LS_CALIB_FILE_PATH = f"{_WS_PATH}"
+_V_HS_CALIB_FILE_PATH = f"{_WS_PATH}"
+_I_CALIB_FILE_PATH = f"{_WS_PATH}"
 
 
-DEFAULT_INFO_EPC = {    'device_version':  {'hw': None, 'sw': None, 'can_ID': None, 's_n': None},
-                        'calib_data':      {'VOLT_HS': {'factor': None, 'offset': None, 'date': None},
-                                            'VOLT_LS': {'factor': None, 'offset': None, 'date': None},
-                                            'CURR':    {'factor': None, 'offset': None, 'date': None}}}
+CONFIG_DEFAULT_INFO_EPC = { 'device_version':  {'hw': None, 'sw': None, 'can_ID': None, 's_n': None},
+                            'calib_data':      {'VOLT_HS': {'factor': None, 'offset': None, 'date': None},
+                                                'VOLT_LS': {'factor': None, 'offset': None, 'date': None},
+                                                'CURR':    {'factor': None, 'offset': None, 'date': None}}}
 
 
 #######################              CLASSES             #######################
@@ -46,19 +46,19 @@ class CONFIG_WS_c:
         Raises:
             - None
         '''
-        global DATA_PATH, INFO_FILE_PATH, V_LS_CALIB_FILE_PATH, V_HS_CALIB_FILE_PATH, I_CALIB_FILE_PATH
-        DATA_PATH = f"{CONFIG_WS_PATH}/data/epc_{sn}"
-        INFO_FILE_PATH = f"{DATA_PATH}/epc_{sn}_info.yaml"
-        V_LS_CALIB_FILE_PATH = f"{DATA_PATH}/epc_{sn}_ls_volt.csv"
-        V_HS_CALIB_FILE_PATH = f"{DATA_PATH}/epc_{sn}_hs_volt.csv"
-        I_CALIB_FILE_PATH = f"{DATA_PATH}/epc_{sn}_curr.csv"
+        global _DATA_PATH, _INFO_FILE_PATH, _V_LS_CALIB_FILE_PATH, _V_HS_CALIB_FILE_PATH, _I_CALIB_FILE_PATH
+        _DATA_PATH = f"{_WS_PATH}/data/epc_{sn}"
+        _INFO_FILE_PATH = f"{_DATA_PATH}/epc_{sn}_info.yaml"
+        _V_LS_CALIB_FILE_PATH = f"{_DATA_PATH}/epc_{sn}_ls_volt.csv"
+        _V_HS_CALIB_FILE_PATH = f"{_DATA_PATH}/epc_{sn}_hs_volt.csv"
+        _I_CALIB_FILE_PATH = f"{_DATA_PATH}/epc_{sn}_curr.csv"
         
-        if not os.path.exists(DATA_PATH):
-            Path(DATA_PATH).mkdir(parents=True, exist_ok=True)
+        if not os.path.exists(_DATA_PATH):
+            Path(_DATA_PATH).mkdir(parents=True, exist_ok=True)
 
-        if not os.path.exists(INFO_FILE_PATH):
-            with open(INFO_FILE_PATH, 'w') as file:
-                info_epc = DEFAULT_INFO_EPC
+        if not os.path.exists(_INFO_FILE_PATH):
+            with open(_INFO_FILE_PATH, 'w') as file:
+                info_epc = CONFIG_DEFAULT_INFO_EPC
                 info_epc['device_version']['s_n'] = sn
                 yaml.dump(info_epc, file)
 
@@ -72,7 +72,7 @@ class CONFIG_WS_c:
         Raises:
             - None
         '''
-        return CONF_PORTS_FILE_PATH
+        return _CONF_PORTS_FILE_PATH
 
     @staticmethod
     def getInfoFilePath() -> str:
@@ -84,7 +84,7 @@ class CONFIG_WS_c:
         Raises:
             - None
         '''
-        return INFO_FILE_PATH
+        return _INFO_FILE_PATH
 
     @staticmethod
     def getVoltLowSidePath() -> str:
@@ -96,7 +96,7 @@ class CONFIG_WS_c:
         Raises:
             - None
         '''
-        return V_LS_CALIB_FILE_PATH
+        return _V_LS_CALIB_FILE_PATH
 
     @staticmethod
     def getVoltHighSidePath() -> str:
@@ -108,7 +108,7 @@ class CONFIG_WS_c:
         Raises:
             - None
         '''
-        return V_HS_CALIB_FILE_PATH
+        return _V_HS_CALIB_FILE_PATH
 
     @staticmethod
     def getCalibCurrentPath() -> str:
@@ -120,4 +120,4 @@ class CONFIG_WS_c:
         Raises:
             - None
         '''
-        return I_CALIB_FILE_PATH
+        return _I_CALIB_FILE_PATH
