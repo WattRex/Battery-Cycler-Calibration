@@ -20,7 +20,7 @@ from pathlib import Path
 WS_PATH= f"/home/pi004/GIT_luroche/Battery-Cycler-Calibration"
 CONF_PORTS_FILE_PATH = f"{WS_PATH}/CONFIG/config.yaml"
 DATA_PATH = f"{WS_PATH}"
-INFO_FILE_PATH = f"{WS_PATH} holaaaaaaaaaaa"
+INFO_FILE_PATH = f"{WS_PATH}"
 V_LS_CALIB_FILE_PATH = f"{WS_PATH}"
 V_HS_CALIB_FILE_PATH = f"{WS_PATH}"
 I_CALIB_FILE_PATH = f"{WS_PATH}"
