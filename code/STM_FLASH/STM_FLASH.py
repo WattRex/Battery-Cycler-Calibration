@@ -22,6 +22,7 @@ from CONFIG import CONFIG_WS_c
 
 
 #######################              ENUMS               #######################
+_EPC_CONF_PATH= f"/home/pi004/GIT_luroche/Battery-Cycler-Calibration/fw_code/firmware/project_config/EPC_CONF/epc_conf.c"
 
 #######################              CLASSES             #######################
 
@@ -64,7 +65,7 @@ class STM_FLASH_c():
         with open(CONFIG_WS_c.getInfoFilePath(), 'r') as file:
             info_epc = yaml.load(file, Loader=yaml.FullLoader)
         # Open the C file in read mode
-        with open(CONFIG_WS_c.getEpcConfPath(), 'r') as file:
+        with open(_EPC_CONF_PATH, 'r') as file:
             content = file.readlines()
         # Modify the line that contains the value
         for i, line in enumerate(content):
@@ -108,7 +109,7 @@ class STM_FLASH_c():
                     i_offset += 1
 
         # Rerwite the file
-        with open(CONFIG_WS_c.getEpcConfPath(), 'w') as file:
+        with open(_EPC_CONF_PATH, 'w') as file:
             # Escribe el content modificado en el archivo
             file.writelines(content)
 
