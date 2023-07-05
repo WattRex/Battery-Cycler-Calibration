@@ -78,9 +78,6 @@ all: main-build
 	@echo $(SOURCE_PATH)
 
 # Main-build Target
-<<<<<<< Updated upstream
-main-build: STM32.elf secondary-outputs
-=======
 main-build: STM32.elf secondary-outputs STM32.bin
 
 STM32.bin: STM32.elf
@@ -88,7 +85,6 @@ STM32.bin: STM32.elf
 	arm-none-eabi-objcopy -O binary STM32.elf STM32.bin
 	@echo 'Generating binary: $@'
 	@echo ' '
->>>>>>> Stashed changes
 
 # Tool invocations
 STM32.elf STM32.map: $(OBJS) $(USER_OBJS) $(SOURCE_PATH)/STM32/STM32F334R8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
@@ -98,12 +94,6 @@ STM32.elf STM32.map: $(OBJS) $(USER_OBJS) $(SOURCE_PATH)/STM32/STM32F334R8TX_FLA
 	-Wl,-Map="STM32.map" -Wl,--gc-sections -static --specs=nano.specs \
 	-mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
-<<<<<<< Updated upstream
-	arm-none-eabi-objcopy -O binary STM32.elf STM32.bin
-	@echo 'Generating binary'
-	@echo ' '
-=======
->>>>>>> Stashed changes
 
 default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-size  $(EXECUTABLES)

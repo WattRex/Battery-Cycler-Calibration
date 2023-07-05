@@ -7,11 +7,7 @@ make all
 ```
 
 It will generate an STM32.elf binary file, that will be flashed to uC.
-<<<<<<< Updated upstream
-- Flash binary: `st-flash write STM32.bin 0x08000000`
-=======
 - Flash binary: ` st-flash --connect-under-reset write STM32.bin 0x08000000`
->>>>>>> Stashed changes
 - Flash reset uC: `st-flash reset` 
 
 ## 4. Install Pack GNU Arm Embedded GCC
