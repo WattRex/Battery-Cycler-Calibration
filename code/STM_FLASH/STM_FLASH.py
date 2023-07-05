@@ -13,11 +13,13 @@ log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./CONFI
 #######################         GENERIC IMPORTS          #######################
 from subprocess import run, PIPE
 import yaml
+import shutil
 
 #######################       THIRD PARTY IMPORTS        #######################
 
 #######################          MODULE IMPORTS          #######################
 from CONFIG import CONFIG_WS_c
+
 #######################          PROJECT IMPORTS         #######################
 
 
@@ -51,7 +53,12 @@ class STM_FLASH_c():
             - None
         '''
         self.__epc_conf = epc_config
-        self.applyCalib()
+        self._applyDevConfig()
+        last_release = self._getLastRelease()
+        self.buildProject()
+        if last_release or not os.path.exists("../fw_code/build/STM32_orig.bin"):
+            shutil.copy("../fw_code/build/STM32.bin", "../fw_code/build/STM32_orig.bin")
+
 
     def applyCalib(self) -> None:
         '''Apply the calibration data to the C file
@@ -62,30 +69,17 @@ class STM_FLASH_c():
         Raises:
             - None
         '''
+        #Open the EPC yaml.
         with open(CONFIG_WS_c.getInfoFilePath(), 'r') as file:
             info_epc = yaml.load(file, Loader=yaml.FullLoader)
+
         # Open the C file in read mode
         with open(_EPC_CONF_PATH, 'r') as file:
             content = file.readlines()
-        # Modify the line that contains the value
+
         for i, line in enumerate(content):
-
-            # Modify the information of the device
-            if 'EPC_CONF_info' in line:
-                i_info = i
-                while content[i_info] != '};\n':
-                    if '//id' in content[i_info]:
-                        content[i_info] = f"{self.__epc_conf.can_id},\t//id\n"
-                    elif '//fwVer' in content[i_info]:
-                        content[i_info] = f"{self.__epc_conf.sw_ver},\t//fwVer\n"
-                    elif '//hwVer' in content[i_info]:
-                        content[i_info] = f"{self.__epc_conf.hw_ver},\t//hwVer\n"
-                    elif '//sn' in content[i_info]:
-                        content[i_info] = f"{self.__epc_conf.sn},\t//sn\n"
-                    i_info += 1
-
             # Modify the factor of the calibration data
-            elif 'EPC_CONF_MEAS_factors' in line:
+            if 'EPC_CONF_MEAS_factors' in line:
                 i_factor = i
                 while content[i_factor] != '};\n':
                     if '//hsVolt' in content[i_factor]:
@@ -110,7 +104,6 @@ class STM_FLASH_c():
 
         # Rerwite the file
         with open(_EPC_CONF_PATH, 'w') as file:
-            # Escribe el content modificado en el archivo
             file.writelines(content)
 
         # Close the file
@@ -142,7 +135,7 @@ class STM_FLASH_c():
             log.error(f"Error: {console.stderr.decode('utf-8')}")
 
 
-    def flashUC(self) -> None:
+    def flashUC(self, binary_name: str) -> None:
         '''Flash the STM32.
         Args:
             - None
@@ -151,18 +144,59 @@ class STM_FLASH_c():
         Raises:
             - None
         '''
-        cmd = "cd ../fw_code/build &&  st-flash --connect-under-reset write STM32.bin 0x08000000"
-        console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
+        exist = os.path.exists(f"../fw_code/build/{binary_name}")
+        if exist:
+            cmd = f"cd ../fw_code/build &&  st-flash --connect-under-reset write {binary_name} 0x08000000"
+            console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
 
-        if console.returncode == 0:
-            if "jolly good" in console.stderr.decode('utf-8'):
-                log.info(f"STM32.bin file flashed")
+            if console.returncode == 0:
+                if "jolly good" in console.stderr.decode('utf-8'):
+                    log.info(f"{binary_name} file flashed")
+                else:
+                    log.error(f"{binary_name} file not flashed")
             else:
-                log.error(f"STM32.bin file not flashed")
-        else:
-            log.error(f"Error: {console.stderr.decode('utf-8')}")
+                log.error(f"Error: {console.stderr.decode('utf-8')}")
 
-        
-    def _getLastRelease(self):
+
+    def _getLastRelease(self) -> bool:
         #TODO: necesitamos la ultima release para poder descargar el codigo
         pass
+
+
+    def _applyDevConfig(self) -> None:
+        '''Apply the configuration of the device to the C file
+        Args:
+            - None
+        Returns:
+            - None
+        Raises:
+            - None
+        '''
+        with open(CONFIG_WS_c.getInfoFilePath(), 'r') as file:
+            info_epc = yaml.load(file, Loader=yaml.FullLoader)
+        # Open the C file in read mode
+        with open(_EPC_CONF_PATH, 'r') as file:
+            content = file.readlines()
+
+        # Modify the information of the device
+        for i, line in enumerate(content):
+            if 'EPC_CONF_info' in line:
+                i_info = i
+                while content[i_info] != '};\n':
+                    if '//id' in content[i_info]:
+                        content[i_info] = f"{self.__epc_conf.can_id},\t//id\n"
+                    elif '//fwVer' in content[i_info]:
+                        content[i_info] = f"{self.__epc_conf.sw_ver},\t//fwVer\n"
+                    elif '//hwVer' in content[i_info]:
+                        content[i_info] = f"{self.__epc_conf.hw_ver},\t//hwVer\n"
+                    elif '//sn' in content[i_info]:
+                        content[i_info] = f"{self.__epc_conf.sn},\t//sn\n"
+                    i_info += 1
+
+        # Rerwite the file
+        with open(_EPC_CONF_PATH, 'w') as file:
+            # Escribe el content modificado en el archivo
+            file.writelines(content)
+
+        # Close the file
+        file.close()

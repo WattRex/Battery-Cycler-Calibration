@@ -126,7 +126,7 @@ class MANAGER_c():
             #Flash original program
             if self.__status is TERM_Option_e.FLASH_ORIG:
                 log.info(f"Flashing original program")
-                self.__stm.flashUC()
+                self.__stm.flashUC(binary_name = 'STM32_orig.bin')
 
             #Configure device
             elif self.__status is TERM_Option_e.CONF_DEV:
@@ -163,7 +163,7 @@ class MANAGER_c():
                 else:
                     self.__stm.applyCalib()
                     self.__stm.buildProject()
-                    self.__stm.flashUC()
+                    self.__stm.flashUC(binary_name='STM32.bin')
 
             #Guided mode
             elif self.__status is TERM_Option_e.GUIDED_MODE:
