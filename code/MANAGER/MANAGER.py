@@ -12,10 +12,9 @@ log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./CONFI
 
 #######################         GENERIC IMPORTS          #######################
 import yaml
-from pathlib import Path
 
 #######################       THIRD PARTY IMPORTS        #######################
-import time
+
 
 #######################          MODULE IMPORTS          #######################
 from STM_FLASH import STM_FLASH_Epc_Conf_c, STM_FLASH_c
@@ -27,8 +26,6 @@ from TERM import TERM_c, TERM_Option_e
 
 
 #######################          CONSTANTS               #######################
-_DEFAULT_EPC_CONF = STM_FLASH_Epc_Conf_c(software = 1, hardware = 1, can_id = 1, serial_number =  1)
-
 
 #######################              CLASSES             #######################
 
@@ -38,7 +35,7 @@ class MANAGER_c():
         self.__epc_config: STM_FLASH_Epc_Conf_c = None
         self.__status: TERM_Option_e = TERM_Option_e.CONF_DEV
         self.__power = PWR_c()
-        self.__stm: STM_FLASH_c = STM_FLASH_c(epc_conf = _DEFAULT_EPC_CONF)
+        self.__stm: STM_FLASH_c = STM_FLASH_c()
 
 
     def _calibStatus(self, mode: PWR_Mode_e) -> None:

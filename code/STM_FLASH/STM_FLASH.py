@@ -39,9 +39,12 @@ class STM_FLASH_Epc_Conf_c():
 
 
 class STM_FLASH_c():
-    def __init__(self, epc_conf: STM_FLASH_Epc_Conf_c) -> None:
-        self.__epc_conf: STM_FLASH_Epc_Conf_c = epc_conf
-
+    def __init__(self) -> None:
+        self.__epc_conf: STM_FLASH_Epc_Conf_c = None
+        last_release = self._getLastRelease()
+        self.buildProject()
+        if last_release or not os.path.exists("../fw_code/build/STM32_orig.bin"):
+            os.rename("../fw_code/build/STM32.bin", "../fw_code/build/STM32_orig.bin")
 
     def configureDev(self, epc_config: STM_FLASH_Epc_Conf_c) -> None:
         '''Configure the device with the specified configuration
@@ -54,10 +57,6 @@ class STM_FLASH_c():
         '''
         self.__epc_conf = epc_config
         self._applyDevConfig()
-        last_release = self._getLastRelease()
-        self.buildProject()
-        if last_release or not os.path.exists("../fw_code/build/STM32_orig.bin"):
-            shutil.copy("../fw_code/build/STM32.bin", "../fw_code/build/STM32_orig.bin")
 
 
     def applyCalib(self) -> None:
@@ -160,7 +159,7 @@ class STM_FLASH_c():
 
     def _getLastRelease(self) -> bool:
         #TODO: necesitamos la ultima release para poder descargar el codigo
-        pass
+        return False
 
 
     def _applyDevConfig(self) -> None:
