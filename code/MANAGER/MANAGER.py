@@ -73,18 +73,18 @@ class MANAGER_c():
         Args:
             - None
         Returns:
-            - None
+            - result_conf_dev (CONFIG_Result_e): Result of the configuration in the device
         Raises:
             - None
         '''
-
         global CONFIG_DEFAULT_INFO_EPC
         log.info(f"Configuring device")
         self.__epc_config = TERM_c.queryEPCConf()
-
         CONFIG_WS_c.updatePath(sn = self.__epc_config.sn)
-        info_file_path = CONFIG_WS_c.getInfoFilePath()
+        result_write_file_path: CONFIG_Result_e = CONFIG_Result_e.Error
+        result_conf_dev:CONFIG_Result_e = CONFIG_Result_e.Error
 
+        info_file_path = CONFIG_WS_c.getInfoFilePath()
         if os.path.exists(info_file_path):
             with open(info_file_path, 'r') as file:
                 info_epc = yaml.load(file, Loader = yaml.FullLoader)
@@ -95,9 +95,19 @@ class MANAGER_c():
         info_epc['device_version']['hw'] = self.__epc_config.hw_ver
         info_epc['device_version']['can_ID'] = self.__epc_config.can_id
         info_epc['device_version']['s_n'] = self.__epc_config.sn
-        with open(info_file_path, 'w') as file:
-            yaml.dump(info_epc, file)
-        self.__stm.configureDev(epc_config = self.__epc_config)
+
+        if os.path.exists(info_file_path):
+            with open(info_file_path, 'w') as file:
+                log.info(f"Info file yaml with serial number: {self.__epc_config.sn} updated")            
+                yaml.dump(info_epc, file)
+            result_write_file_path = CONFIG_Result_e.NoError
+
+        if result_write_file_path is CONFIG_Result_e.Error:
+            log.error(f"Error updating info file yaml with serial number: {self.__epc_config.sn}")
+        else:
+            result_conf_dev = self.__stm.configureDev(epc_config = self.__epc_config)
+            if result_conf_dev is CONFIG_Result_e.Error:
+                log.error(f"Error configuring device")
 
     def executeMachineStatus(self) -> None:
         '''Execute the state machine
@@ -108,8 +118,12 @@ class MANAGER_c():
         Raises:
             - None
         '''
-        check_calib = {PWR_Mode_e.VOLT_HS: False, PWR_Mode_e.VOLT_LS: False, PWR_Mode_e.CURR: False,
-                       PWR_Mode_e.TEMP_ANOD: False, PWR_Mode_e.TEMP_AMB: False, PWR_Mode_e.TEMP_BODY: False}
+        
+        # check_calib = {PWR_Mode_e.VOLT_HS: False, PWR_Mode_e.VOLT_LS: False, PWR_Mode_e.CURR: False,
+        #                PWR_Mode_e.TEMP_ANOD: False, PWR_Mode_e.TEMP_AMB: False, PWR_Mode_e.TEMP_BODY: False}
+        check_calib = {PWR_Mode_e.VOLT_HS: True, PWR_Mode_e.VOLT_LS: True, PWR_Mode_e.CURR: True,
+                       PWR_Mode_e.TEMP_ANOD: True, PWR_Mode_e.TEMP_AMB: True, PWR_Mode_e.TEMP_BODY: True}
+        
         guided = False
 
         while self.__status is not TERM_Option_e.EXIT:
@@ -158,9 +172,17 @@ class MANAGER_c():
                         if check_calib[calib] is False:
                             self._calibStatus(mode = calib)
                 else:
-                    self.__stm.applyCalib()
-                    self.__stm.buildProject()
-                    self.__stm.flashUC(binary_name='STM32.bin')
+                    result_calib: CONFIG_Result_e = self.__stm.applyCalib()
+                    if result_calib is CONFIG_Result_e.Error:
+                        log.error(f"Error applying calibration data")
+                    else:
+                        result_build: CONFIG_Result_e = self.__stm.buildProject()
+                        if result_build is CONFIG_Result_e.Error:
+                            log.error(f"Error building project")
+                        else:
+                            result_flash: CONFIG_Result_e = self.__stm.flashUC(binary_name='STM32.bin')
+                            if result_flash is CONFIG_Result_e.Error:
+                                log.error(f"Error flashing with calibration data")
 
             #Guided mode
             elif self.__status is TERM_Option_e.GUIDED_MODE:
