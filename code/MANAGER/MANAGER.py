@@ -17,12 +17,12 @@ from pathlib import Path
 #######################       THIRD PARTY IMPORTS        #######################
 import time
 
-
 #######################          MODULE IMPORTS          #######################
-from TERM import TERM_c, TERM_Option_e
 from STM_FLASH import STM_FLASH_Epc_Conf_c, STM_FLASH_c
 from POWER import *
 from CONFIG import *
+from TERM import TERM_c, TERM_Option_e
+
 #######################          PROJECT IMPORTS         #######################
 
 
@@ -53,13 +53,13 @@ class MANAGER_c():
         '''
         if mode is PWR_Mode_e.VOLT_HS:
             log.info(f"Calibrating voltage high side")
-            self.__power.calibVoltHS
+            self.__power.calibVoltHS()
         elif mode is PWR_Mode_e.VOLT_LS:
             log.info(f"Calibrating voltage low side")
-            self.__power.calibVoltLS
+            self.__power.calibVoltLS()
         elif mode is PWR_Mode_e.CURR:
             log.info(f"Calibrating current")
-            self.__power.calibCurr
+            self.__power.calibCurr()
         elif mode is PWR_Mode_e.TEMP_ANOD:
             log.info(f"Calibrating temperature anode")
             pass
@@ -81,20 +81,26 @@ class MANAGER_c():
             - None
         '''
 
-        global DEFAULT_INFO_EPC
+        global CONFIG_DEFAULT_INFO_EPC
         log.info(f"Configuring device")
         self.__epc_config = TERM_c.queryEPCConf()
-        self.__stm = STM_FLASH_c(epc_conf = self.__epc_config)
 
         CONFIG_WS_c.updatePath(sn = self.__epc_config.sn)
         info_file_path = CONFIG_WS_c.getInfoFilePath()
-        info_epc = DEFAULT_INFO_EPC
+
+        if os.path.exists(info_file_path):
+            with open(info_file_path, 'r') as file:
+                info_epc = yaml.load(file, Loader = yaml.FullLoader)
+        else:
+            info_epc = CONFIG_DEFAULT_INFO_EPC
+
         info_epc['device_version']['sw'] = self.__epc_config.sw_ver
         info_epc['device_version']['hw'] = self.__epc_config.hw_ver
         info_epc['device_version']['can_ID'] = self.__epc_config.can_id
         info_epc['device_version']['s_n'] = self.__epc_config.sn
         with open(info_file_path, 'w') as file:
             yaml.dump(info_epc, file)
+        self.__stm.configureDev(epc_config = self.__epc_config)
 
     def executeMachineStatus(self) -> None:
         '''Execute the state machine
@@ -120,7 +126,7 @@ class MANAGER_c():
             #Flash original program
             if self.__status is TERM_Option_e.FLASH_ORIG:
                 log.info(f"Flashing original program")
-                self.__stm.flashUC(binary_name = "STM32_org.bin")
+                self.__stm.flashUC()
 
             #Configure device
             elif self.__status is TERM_Option_e.CONF_DEV:
@@ -132,16 +138,15 @@ class MANAGER_c():
                 if self.__epc_config is None:
                     log.error("EPC configuration not set")
                     self.__confDevice()
-                else:
-                    if guided is True:
-                        options_calib_mode = [PWR_Mode_e.VOLT_HS, PWR_Mode_e.VOLT_LS, PWR_Mode_e.CURR, PWR_Mode_e.TEMP_ANOD, PWR_Mode_e.TEMP_AMB, PWR_Mode_e.TEMP_BODY]
-                        for calib_mode in options_calib_mode:
-                            self._calibStatus(calib_mode)
-                            check_calib[calib_mode] = True
-                    else:
-                        calib_mode = TERM_c.queryCalibMode()
+                if guided is True:
+                    options_calib_mode = [PWR_Mode_e.VOLT_HS, PWR_Mode_e.VOLT_LS, PWR_Mode_e.CURR, PWR_Mode_e.TEMP_ANOD, PWR_Mode_e.TEMP_AMB, PWR_Mode_e.TEMP_BODY]
+                    for calib_mode in options_calib_mode:
                         self._calibStatus(calib_mode)
                         check_calib[calib_mode] = True
+                else:
+                    calib_mode = TERM_c.queryCalibMode()
+                    self._calibStatus(PWR_Mode_e(calib_mode))
+                    check_calib[calib_mode] = True
 
             #Flash with calibration data
             elif self.__status is TERM_Option_e.FLASH_CALIB:
@@ -149,16 +154,16 @@ class MANAGER_c():
                 if self.__epc_config is None:   #TODO: This condition should check if EPC sent info is the same as the __epc_config
                     log.error("EPC configuration not set")
                     self.__confDevice()
+
+                if False in check_calib.values():
+                    log.error("Not all calibration data are set")
+                    for calib in check_calib:
+                        if check_calib[calib] is False:
+                            self._calibStatus(mode = calib)
                 else:
-                    if False in check_calib.values():
-                        log.error("Not all calibration data are set")
-                        for calib in check_calib:
-                            if check_calib[calib] is False:
-                                self._calibStatus(mode = calib)
-                    else:
-                        self.__stm.applyCalib()
-                        self.__stm.buildProject()
-                        self.__stm.flashUC(binary_name = "STM32.bin")
+                    self.__stm.applyCalib()
+                    self.__stm.buildProject()
+                    self.__stm.flashUC()
 
             #Guided mode
             elif self.__status is TERM_Option_e.GUIDED_MODE:
@@ -170,6 +175,7 @@ class MANAGER_c():
 
 
 if __name__ == '__main__':
-    TERM_c.showIntro()
+    print(CONFIG_WS_c.getInfoFilePath())
+    # TERM_c.showIntro()
     man = MANAGER_c()
     man.executeMachineStatus()
