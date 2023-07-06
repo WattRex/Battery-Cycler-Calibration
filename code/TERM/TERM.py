@@ -19,7 +19,6 @@ from consolemenu import SelectionMenu, Screen
 
 
 #######################          MODULE IMPORTS          #######################
-from POWER import PWR_Mode_e
 from STM_FLASH.STM_FLASH import STM_FLASH_Epc_Conf_c
 
 
@@ -57,8 +56,9 @@ class TERM_Option_e(Enum):
 
 class TERM_c():
     ''' Class to manage the terminal interface. '''
-    
-    def showIntro(self) -> None:
+
+    @staticmethod
+    def showIntro() -> None:
         ''' Shows the intro of the program.
         Args:
             - None
@@ -79,9 +79,10 @@ class TERM_c():
         sleep(3)
         Screen.clear()
         print(padding + intro_text)
-    
-    
-    def showProgressBar(self,iteration, total) -> None:
+
+
+    @staticmethod
+    def showProgressBar(iteration, total) -> None:
         ''' Loop to create terminal progress bar
         Args:
             - iteration (Int): current iteration
@@ -105,7 +106,8 @@ class TERM_c():
             print()
 
 
-    def queryOptions(self) -> TERM_Option_e:
+    @staticmethod
+    def queryOptions() -> TERM_Option_e:
         ''' Shows the principal options of the program and returns the chosen one.
         Args:
             - None
@@ -114,14 +116,16 @@ class TERM_c():
         Raises:
             - None
         '''
+        sleep(10)
         a_list = ["Flash original program", "Configure device", "Calibrate device", "Flash with calibration data", "Guided mode"]
         menu = SelectionMenu(a_list,"Select an option:")
         menu.show()
         menu.join()
         return TERM_Option_e(menu.selected_option)
-    
 
-    def queryEPCConf(self) -> STM_FLASH_Epc_Conf_c:
+
+    @staticmethod
+    def queryEPCConf() -> STM_FLASH_Epc_Conf_c:
         ''' Displays the EPC configuration options and returns the EPC configuration
         Args:
             - None
@@ -144,7 +148,8 @@ class TERM_c():
         return result
 
 
-    def queryCalibMode(self) -> PWR_Mode_e:
+    @staticmethod
+    def queryCalibMode() -> int:
         ''' Shows the calibration options of the program and returns the chosen one.
         Args:
             - None
@@ -157,17 +162,18 @@ class TERM_c():
         menu = SelectionMenu(a_list,"Select an option of calibration:")
         menu.show()
         menu.join()
-        return PWR_Mode_e(menu.selected_option)
-
-if __name__ == '__main__':
-    terminal = TERM_c()
-    terminal.showIntro()
-    princ_opt = terminal.queryOptions()
-    sleep(2)
-    terminal.queryEPCConf()
-    sleep(2)
-    calib_mode = terminal.queryCalibMode()
-    sleep(2)
-    for i in range(10):
-        terminal.showProgressBar(i,10)
-        sleep(0.5)
+        return menu.selected_option
+    
+    @staticmethod
+    def showError(status: TERM_Option_e, message: str) -> None:
+        ''' Shows an error message.
+        Args:
+            - status (TERM_Option_e): current status
+            - message (str): error message
+        Returns:
+            - None
+        Raises:
+            - None
+        '''
+        print(f"Error raise on status: {status}. Message: {message}")
+        sleep(3)

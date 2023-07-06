@@ -141,9 +141,9 @@ class STM_FLASH_c():
         console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
 
         if console.returncode == 0: #Check if the command produced an error. 0 is no error
-            if len(console.stderr.decode('utf-8').replace("\n", "")) > 0: #Check if the command produced an error. if len > 0 is error
-                log.error(f"Warning: {console.stderr.decode('utf-8')}")
-            else:
+            # if len(console.stderr.decode('utf-8').replace("\n", "")) > 0: #Check if the command produced an error. if len > 0 is error
+            #     log.error(f"Warning: {console.stderr.decode('utf-8')}")
+            # else:
                 exist = os.path.exists("../fw_code/build/STM32.bin")
                 if exist:
                     log.info(f"STM32.bin file created")
@@ -175,6 +175,7 @@ class STM_FLASH_c():
                 if "jolly good" in console.stderr.decode('utf-8'):
                     log.info(f"{binary_name} file flashed")
                     result = CONFIG_Result_e.NoError
+                    log.error(f"Error: {console.stdout.decode('utf-8')}")
                 else:
                     log.error(f"{binary_name} file not flashed")
             else:

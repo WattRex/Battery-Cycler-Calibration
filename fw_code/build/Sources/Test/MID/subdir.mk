@@ -23,8 +23,6 @@ C_DEPS += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/Test/MID/mid_comm_test.o: $(SOURCE_PATH)/Sources/Test/MID/mid_comm_test.c Sources/Test/MID/subdir.mk
 
-	@echo "Holaa"
-	@echo "---$(SOURCE_PATH)---"
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -DUSE_HAL_DRIVER -DSTM32F334x8 -c \
 	-I"$(SOURCE_PATH)/Sources/HAL/HAL_ADC" \
 	-I"$(SOURCE_PATH)/Sources/HAL/HAL_CAN" \
