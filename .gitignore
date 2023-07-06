@@ -21,6 +21,7 @@ code/SYS/*
 *.metadata
 *.project
 firmware/Sources/EPC_CONF/*
+firmware/
 
 ### Software IDEAS ###
 *.simp.bak

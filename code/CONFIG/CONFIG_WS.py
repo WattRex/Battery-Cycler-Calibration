@@ -7,6 +7,7 @@ sys.path.append(os.getcwd())  #get absolute path
 #######################      LOGGING CONFIGURATION       #######################
 
 #######################         GENERIC IMPORTS          #######################
+from enum import Enum
 import yaml
 from pathlib import Path
 
@@ -25,11 +26,14 @@ _V_LS_CALIB_FILE_PATH = f"{_WS_PATH}"
 _V_HS_CALIB_FILE_PATH = f"{_WS_PATH}"
 _I_CALIB_FILE_PATH = f"{_WS_PATH}"
 
-
 CONFIG_DEFAULT_INFO_EPC = { 'device_version':  {'hw': None, 'sw': None, 'can_ID': None, 's_n': None},
                             'calib_data':      {'VOLT_HS': {'factor': None, 'offset': None, 'date': None},
                                                 'VOLT_LS': {'factor': None, 'offset': None, 'date': None},
                                                 'CURR':    {'factor': None, 'offset': None, 'date': None}}}
+
+class CONFIG_Result_e(Enum):
+    Error = 0
+    NoError = 1
 
 
 #######################              CLASSES             #######################
