@@ -68,12 +68,12 @@ class MANAGER_c():
             pass
 
 
-    def __confDevice(self) -> None:
+    def __confDevice(self) -> CONFIG_Result_e:
         '''Configure the device
         Args:
             - None
         Returns:
-            - result_conf_dev (CONFIG_Result_e): Result of the configuration in the device
+            - result (CONFIG_Result_e): Result of the configuration in the device
         Raises:
             - None
         '''
@@ -81,8 +81,7 @@ class MANAGER_c():
         log.info(f"Configuring device")
         self.__epc_config = TERM_c.queryEPCConf()
         CONFIG_WS_c.updatePath(sn = self.__epc_config.sn)
-        result_write_file_path: CONFIG_Result_e = CONFIG_Result_e.Error
-        result_conf_dev:CONFIG_Result_e = CONFIG_Result_e.Error
+        result: CONFIG_Result_e = CONFIG_Result_e.Error
 
         info_file_path = CONFIG_WS_c.getInfoFilePath()
         if os.path.exists(info_file_path):
@@ -100,14 +99,18 @@ class MANAGER_c():
             with open(info_file_path, 'w') as file:
                 log.info(f"Info file yaml with serial number: {self.__epc_config.sn} updated")            
                 yaml.dump(info_epc, file)
-            result_write_file_path = CONFIG_Result_e.NoError
+            result = CONFIG_Result_e.NoError
 
-        if result_write_file_path is CONFIG_Result_e.Error:
+        if result is CONFIG_Result_e.Error:
             log.error(f"Error updating info file yaml with serial number: {self.__epc_config.sn}")
+            TERM_c.showError(status = TERM_Option_e.CONF_DEV, message = f"Error updating info file yaml with serial number: {self.__epc_config.sn}")
         else:
-            result_conf_dev = self.__stm.configureDev(epc_config = self.__epc_config)
-            if result_conf_dev is CONFIG_Result_e.Error:
+            result = self.__stm.configureDev(epc_config = self.__epc_config)
+            if result is CONFIG_Result_e.Error:
                 log.error(f"Error configuring device")
+                TERM_c.showError(status = TERM_Option_e.CONF_DEV, message = "Error configuring device")
+        return result
+
 
     def executeMachineStatus(self) -> None:
         '''Execute the state machine
@@ -118,11 +121,11 @@ class MANAGER_c():
         Raises:
             - None
         '''
-        
-        # check_calib = {PWR_Mode_e.VOLT_HS: False, PWR_Mode_e.VOLT_LS: False, PWR_Mode_e.CURR: False,
-        #                PWR_Mode_e.TEMP_ANOD: False, PWR_Mode_e.TEMP_AMB: False, PWR_Mode_e.TEMP_BODY: False}
-        check_calib = {PWR_Mode_e.VOLT_HS: True, PWR_Mode_e.VOLT_LS: True, PWR_Mode_e.CURR: True,
-                       PWR_Mode_e.TEMP_ANOD: True, PWR_Mode_e.TEMP_AMB: True, PWR_Mode_e.TEMP_BODY: True}
+
+        check_calib = {PWR_Mode_e.VOLT_HS: False, PWR_Mode_e.VOLT_LS: False, PWR_Mode_e.CURR: False,
+                       PWR_Mode_e.TEMP_ANOD: False, PWR_Mode_e.TEMP_AMB: False, PWR_Mode_e.TEMP_BODY: False}
+        # check_calib = {PWR_Mode_e.VOLT_HS: True, PWR_Mode_e.VOLT_LS: True, PWR_Mode_e.CURR: True,
+        #                PWR_Mode_e.TEMP_ANOD: True, PWR_Mode_e.TEMP_AMB: True, PWR_Mode_e.TEMP_BODY: True} #TODO: Remove this line
         
         guided = False
 
@@ -137,58 +140,87 @@ class MANAGER_c():
             #Flash original program
             if self.__status is TERM_Option_e.FLASH_ORIG:
                 log.info(f"Flashing original program")
-                self.__stm.flashUC(binary_name = 'STM32_orig.bin')
+                result_flash = self.__stm.flashUC(binary_name = 'STM32_orig.bin')
+                if result_flash is CONFIG_Result_e.Error:
+                    log.error(f"Error flashing original program")
+                    TERM_c.showError(status = TERM_Option_e.FLASH_ORIG, message = "Error flashing original program")
+
 
             #Configure device
             elif self.__status is TERM_Option_e.CONF_DEV:
                 self.__confDevice()
 
+
             #Calibrate device
             elif self.__status is TERM_Option_e.CALIB:
                 log.info(f"Calibrating device")
+                #Check if device is configured
                 if self.__epc_config is None:
                     log.error("EPC configuration not set")
-                    self.__confDevice()
-                if guided is True:
-                    options_calib_mode = [PWR_Mode_e.VOLT_HS, PWR_Mode_e.VOLT_LS, PWR_Mode_e.CURR, PWR_Mode_e.TEMP_ANOD, PWR_Mode_e.TEMP_AMB, PWR_Mode_e.TEMP_BODY]
-                    for calib_mode in options_calib_mode:
-                        self._calibStatus(calib_mode)
+                    return_conf_dev = self.__confDevice()
+
+                if return_conf_dev is CONFIG_Result_e.NoError:
+                    #Guided mode
+                    if guided is True:
+                        options_calib_mode = [PWR_Mode_e.VOLT_HS, PWR_Mode_e.VOLT_LS, PWR_Mode_e.CURR, PWR_Mode_e.TEMP_ANOD, PWR_Mode_e.TEMP_AMB, PWR_Mode_e.TEMP_BODY]
+                        for calib_mode in options_calib_mode:
+                            self._calibStatus(calib_mode)
+                            check_calib[calib_mode] = True
+                    #Manual mode
+                    else:
+                        calib_mode = TERM_c.queryCalibMode()
+                        self._calibStatus(PWR_Mode_e(calib_mode))
                         check_calib[calib_mode] = True
                 else:
-                    calib_mode = TERM_c.queryCalibMode()
-                    self._calibStatus(PWR_Mode_e(calib_mode))
-                    check_calib[calib_mode] = True
+                    TERM_c.showError(status = TERM_Option_e.CALIB, message = "Device could not be calibrated")
+
 
             #Flash with calibration data
             elif self.__status is TERM_Option_e.FLASH_CALIB:
                 log.info(f"Flashing with calibration data")
+                #Check if device is configured
                 if self.__epc_config is None:   #TODO: This condition should check if EPC sent info is the same as the __epc_config
                     log.error("EPC configuration not set")
-                    self.__confDevice()
+                    return_conf_dev = self.__confDevice()
 
-                if False in check_calib.values():
-                    log.error("Not all calibration data are set")
-                    for calib in check_calib:
-                        if check_calib[calib] is False:
-                            self._calibStatus(mode = calib)
-                else:
-                    result_calib: CONFIG_Result_e = self.__stm.applyCalib()
-                    if result_calib is CONFIG_Result_e.Error:
-                        log.error(f"Error applying calibration data")
+                if return_conf_dev is CONFIG_Result_e.NoError:
+                    #Check if all calibration data are set
+                    if False in check_calib.values():
+                        log.error("Not all calibration data are set")
+                        TERM_c.showError(status = TERM_Option_e.FLASH_CALIB, message = "Not all calibration data are set")
+                        for calib in check_calib:
+                            if check_calib[calib] is False:
+                                self._calibStatus(mode = calib)
                     else:
-                        result_build: CONFIG_Result_e = self.__stm.buildProject()
-                        if result_build is CONFIG_Result_e.Error:
-                            log.error(f"Error building project")
+                        #Apply calibration data
+                        result_calib: CONFIG_Result_e = self.__stm.applyCalib()
+                        if result_calib is CONFIG_Result_e.Error:
+                            log.error(f"Error applying calibration data")
+                            TERM_c.showError(status = TERM_Option_e.FLASH_CALIB, message = "Error applying calibration data")
                         else:
-                            result_flash: CONFIG_Result_e = self.__stm.flashUC(binary_name='STM32.bin')
-                            if result_flash is CONFIG_Result_e.Error:
-                                log.error(f"Error flashing with calibration data")
+                            #Build project
+                            result_build: CONFIG_Result_e = self.__stm.buildProject()
+                            if result_build is CONFIG_Result_e.Error:
+                                log.error(f"Error building project")
+                                TERM_c.showError(status = TERM_Option_e.FLASH_CALIB, message = "Error building project")
+                            else:
+                                #Flash with calibration data
+                                result_flash: CONFIG_Result_e = self.__stm.flashUC(binary_name='STM32.bin')
+                                if result_flash is CONFIG_Result_e.Error:
+                                    log.error(f"Error flashing with calibration data")
+                                    TERM_c.showError(status = TERM_Option_e.FLASH_CALIB, message = "Error flashing with calibration data")
+                else:
+                    log.error(f"Device could not be calibrated")
+                    TERM_c.showError(status = TERM_Option_e.FLASH_CALIB, message = "Device could not be calibrated")
+
 
             #Guided mode
             elif self.__status is TERM_Option_e.GUIDED_MODE:
                 log.info(f"Guided mode activated")
                 guided = True
                 self.__status = None
+
+
 
 
 

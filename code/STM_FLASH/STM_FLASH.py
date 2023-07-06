@@ -48,6 +48,7 @@ class STM_FLASH_c():
             if last_release or not os.path.exists("../fw_code/build/STM32_orig.bin"):
                 os.rename("../fw_code/build/STM32.bin", "../fw_code/build/STM32_orig.bin")
 
+
     def configureDev(self, epc_config: STM_FLASH_Epc_Conf_c) -> CONFIG_Result_e:
         '''Configure the device with the specified configuration
         Args:
@@ -61,6 +62,7 @@ class STM_FLASH_c():
         self.__epc_conf = epc_config
         result_apply_dev: CONFIG_Result_e = self._applyDevConfig()
         return result_apply_dev
+
 
     def applyCalib(self) -> CONFIG_Result_e:
         '''Apply the calibration data to the C file
