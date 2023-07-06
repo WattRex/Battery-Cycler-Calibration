@@ -38,7 +38,7 @@ class MANAGER_c():
         self.__stm: STM_FLASH_c = STM_FLASH_c()
 
 
-    def _calibStatus(self, mode: PWR_Mode_e) -> None:
+    def _calibStatus(self, mode: PWR_Mode_e) -> CONFIG_Result_e:
         '''Calibrate the EPC in the specified mode
 
         Args:
@@ -48,15 +48,16 @@ class MANAGER_c():
         Raises:
             - None
         '''
+        result: CONFIG_Result_e = CONFIG_Result_e.Error
         if mode is PWR_Mode_e.VOLT_HS:
             log.info(f"Calibrating voltage high side")
-            self.__power.calibVoltHS()
+            result = self.__power.calibVoltHS()
         elif mode is PWR_Mode_e.VOLT_LS:
             log.info(f"Calibrating voltage low side")
-            self.__power.calibVoltLS()
+            result = self.__power.calibVoltLS()
         elif mode is PWR_Mode_e.CURR:
             log.info(f"Calibrating current")
-            self.__power.calibCurr()
+            result = self.__power.calibCurr()
         elif mode is PWR_Mode_e.TEMP_ANOD:
             log.info(f"Calibrating temperature anode")
             pass
@@ -66,6 +67,9 @@ class MANAGER_c():
         elif mode is PWR_Mode_e.TEMP_BODY:
             log.info(f"Calibrating temperature body")
             pass
+
+        return result
+
 
 
     def __confDevice(self) -> CONFIG_Result_e:
@@ -164,13 +168,19 @@ class MANAGER_c():
                     if guided is True:
                         options_calib_mode = [PWR_Mode_e.VOLT_HS, PWR_Mode_e.VOLT_LS, PWR_Mode_e.CURR, PWR_Mode_e.TEMP_ANOD, PWR_Mode_e.TEMP_AMB, PWR_Mode_e.TEMP_BODY]
                         for calib_mode in options_calib_mode:
-                            self._calibStatus(calib_mode)
-                            check_calib[calib_mode] = True
+                            result_calib = self._calibStatus(calib_mode)
+                            if result_calib is CONFIG_Result_e.Error:
+                                TERM_c.showError(status = TERM_Option_e.CALIB, message = f"Error calibrating device in mode {calib_mode}")
+                            else:
+                                check_calib[calib_mode] = True
                     #Manual mode
                     else:
                         calib_mode = TERM_c.queryCalibMode()
-                        self._calibStatus(PWR_Mode_e(calib_mode))
-                        check_calib[calib_mode] = True
+                        result_calib = self._calibStatus(PWR_Mode_e(calib_mode))
+                        if result_calib is CONFIG_Result_e.Error:
+                            TERM_c.showError(status = TERM_Option_e.CALIB, message = f"Error calibrating device in mode {calib_mode}")
+                        else:
+                            check_calib[calib_mode] = True
                 else:
                     TERM_c.showError(status = TERM_Option_e.CALIB, message = "Device could not be calibrated")
 
@@ -188,9 +198,11 @@ class MANAGER_c():
                     if False in check_calib.values():
                         log.error("Not all calibration data are set")
                         TERM_c.showError(status = TERM_Option_e.FLASH_CALIB, message = "Not all calibration data are set")
-                        for calib in check_calib:
+                        for calib in check_calib: #TODO: Check if this is correct
                             if check_calib[calib] is False:
-                                self._calibStatus(mode = calib)
+                                result_calib = self._calibStatus(mode = calib)
+                                if result_calib is CONFIG_Result_e.Error:
+                                    TERM_c.showError(status = TERM_Option_e.CALIB, message = f"Error calibrating device in mode {calib}")
                     else:
                         #Apply calibration data
                         result_calib: CONFIG_Result_e = self.__stm.applyCalib()
@@ -219,8 +231,6 @@ class MANAGER_c():
                 log.info(f"Guided mode activated")
                 guided = True
                 self.__status = None
-
-
 
 
 
