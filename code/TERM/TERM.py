@@ -138,14 +138,78 @@ class TERM_c():
         while True:
             try:
                 sn     = int(input(f"- Serial number of EPC: ")) #TODO: validar numero de serie
-                hw_ver = int(input(f"- Hardware version: "))
                 sw_ver = int(input(f"- Software version: "))
                 can_id = int(input(f"- CAN ID: "))
+                hw_ver = TERM_c.hardware_version()
                 break
             except:
                 log.error(f"Invalid data.")
         result = STM_FLASH_Epc_Conf_c(software = sw_ver, hardware = hw_ver, can_id = can_id, serial_number = sn)
         return result
+
+
+    @staticmethod
+    def hardware_version() -> int:
+        hw_version = 0
+        fan         = TERM_c.fan_option()
+        connector   = TERM_c.connector_option()
+        temp_anode  = TERM_c.temp_anode_option()
+        temp_body   = TERM_c.temp_body_option()
+        temp_amb    = TERM_c.temp_amb_option()
+
+        temp_amb = format(temp_amb, '01b')
+        temp_body = format(temp_body, '01b')
+        temp_anode = format(temp_anode, '02b')
+        connector = format(connector, '03b')
+        fan = format(fan, '01b')
+        hw_version = format(hw_version, '03b')
+
+        number = temp_amb + temp_body + temp_anode + connector + fan + hw_version
+        return int(number, 2)
+
+    @staticmethod
+    def fan_option() -> int:
+        options = ["No", "Yes"]
+        menu = SelectionMenu(options,"¿Does the EPC have a fan?\nSelect an option:", show_exit_option = False)
+        menu.show()
+        menu.join()
+        return menu.selected_option
+
+    @staticmethod
+    def connector_option() -> int:
+        options = ["18650", "Banana"]
+        menu = SelectionMenu(options,"What type of connector does the EPC have?\n\
+    Select an option:", show_exit_option = False)
+        menu.show()
+        menu.join()
+        return menu.selected_option
+
+    @staticmethod
+    def temp_anode_option() -> int:
+        options = ["No anode", "Ring NTC", "Plastic NTC"]
+        menu = SelectionMenu(options,"What type of temperature sensor in anode does the EPC have?\n\
+    Select an option:", show_exit_option = False)
+        menu.show()
+        menu.join()
+        return menu.selected_option
+
+    @staticmethod
+    def temp_body_option() -> int:
+        options = ["No STS", "STS Sens"]
+        menu = SelectionMenu(options,"What type of temperature sensor in body does the EPC have?\n\
+    Select an option:", show_exit_option = False)
+        menu.show()
+        menu.join()
+        return menu.selected_option
+
+    @staticmethod
+    def temp_amb_option() -> int:
+        options = ["No sensor", "Plastic NTC"]
+        menu = SelectionMenu(options,"What type of temperature sensor in ambient does the EPC have?\n\
+    Select an option:", show_exit_option = False)
+        menu.show()
+        menu.join()
+        return menu.selected_option
 
 
     @staticmethod
@@ -177,3 +241,4 @@ class TERM_c():
         '''
         print(f"Error raise on status: {status}. Message: {message}")
         sleep(3)
+    
