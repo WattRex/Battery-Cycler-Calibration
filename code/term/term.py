@@ -1,14 +1,10 @@
 #!/usr/bin/python3
-
+'''
+Driver of power.
+'''
 #######################        MANDATORY IMPORTS         #######################
-import sys, os
-sys.path.append(os.getcwd())  #get absolute path
-
-#######################      LOGGING CONFIGURATION       #######################
-from SYS.SYS_LOG import SYS_LOG_Logger_c, SYS_LOG_LoggerGetModuleLogger
-if __name__ == '__main__':
-    root_logger = SYS_LOG_Logger_c('./SYS/SYS_LOG/logginConfig.conf')
-log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./CONFIG/log_config.yaml")
+import sys
+import os
 
 #######################         GENERIC IMPORTS          #######################
 from time import sleep
@@ -17,15 +13,20 @@ from consolemenu import SelectionMenu, Screen
 
 #######################       THIRD PARTY IMPORTS        #######################
 
-
-#######################          MODULE IMPORTS          #######################
-from STM_FLASH.STM_FLASH import STM_FLASH_Epc_Conf_c
-
+#######################      SYSTEM ABSTRACTION IMPORTS  #######################
+sys.path.append(os.getcwd())
+from sys_abs.sys_log import sys_log_logger_get_module_logger
+if __name__ == '__main__':
+    from sys_abs.sys_log import SysLogLoggerC
+    cycler_logger = SysLogLoggerC('./sys_abs/sys_log/logginConfig.conf')
+log = sys_log_logger_get_module_logger(__name__)
 
 #######################          PROJECT IMPORTS         #######################
 
+#######################          MODULE IMPORTS          #######################
+from stm_flash import StmFlash_EpcConfC
 
-#######################              CONSTANTS           #######################
+#######################              ENUMS               #######################
 _LOGO_INTRO = """
 
       ____        _   _                      _____           _               _____      _ _ _               _   _             
@@ -41,9 +42,7 @@ _LOGO_INTRO = """
                                              Calibration for Battery Cycler                               
         """
 
-
-#######################              ENUMS               #######################
-class TERM_Option_e(Enum):
+class TermOptionE(Enum):
     FLASH_ORIG  = 0
     CONF_DEV    = 1
     CALIB       = 2
@@ -54,11 +53,11 @@ class TERM_Option_e(Enum):
 #######################             CLASSES              #######################
 
 
-class TERM_c():
+class TermC:
     ''' Class to manage the terminal interface. '''
 
     @staticmethod
-    def showIntro() -> None:
+    def show_intro() -> None:
         ''' Shows the intro of the program.
         Args:
             - None
@@ -82,7 +81,7 @@ class TERM_c():
 
 
     @staticmethod
-    def showProgressBar(iteration, total) -> None:
+    def show_progress_bar(iteration, total) -> None:
         ''' Loop to create terminal progress bar
         Args:
             - iteration (Int): current iteration
@@ -107,55 +106,83 @@ class TERM_c():
 
 
     @staticmethod
-    def queryOptions() -> TERM_Option_e:
+    def query_options() -> TermOptionE:
         ''' Shows the principal options of the program and returns the chosen one.
         Args:
             - None
         Returns:
-            - result (TERM_Option_e): chosen option
+            - result (TermOptionE): chosen option
         Raises:
             - None
         '''
         sleep(10)
-        a_list = ["Flash original program", "Configure device", "Calibrate device", "Flash with calibration data", "Guided mode"]
+        a_list = ["Flash original program", "Configure device", \
+                  "Calibrate device", "Flash with calibration data", "Guided mode"]
         menu = SelectionMenu(a_list,"Select an option:")
         menu.show()
         menu.join()
-        return TERM_Option_e(menu.selected_option)
+        return TermOptionE(menu.selected_option)
 
 
     @staticmethod
-    def queryEPCConf() -> STM_FLASH_Epc_Conf_c:
+    def query_epc_conf() -> StmFlash_EpcConfC:
         ''' Displays the EPC configuration options and returns the EPC configuration
         Args:
             - None
         Returns:
-            - result (STM_FLASH_Epc_Conf_c): chosen option
+            - result (StmFlash_EpcConfC): chosen option
         Raises:
             - None
         '''
-        
         while True:
             try:
-                sn     = int(input(f"- Serial number of EPC: ")) #TODO: validar numero de serie
-                sw_ver = int(input(f"- Software version: "))
-                can_id = int(input(f"- CAN ID: "))
-                hw_ver = TERM_c.hardware_version()
+                serial_number = int(input("- Serial number of EPC: ")) #TODO: validar numero de serie
+                sw_ver = int(input("- Software version: "))
+                can_id = int(input("- CAN ID: "))
+                hw_ver = TermC.hardware_version()
                 break
-            except:
-                log.error(f"Invalid data.")
-        result = STM_FLASH_Epc_Conf_c(software = sw_ver, hardware = hw_ver, can_id = can_id, serial_number = sn)
+            except ValueError:
+                log.error("Invalid data.")
+        result = StmFlash_EpcConfC(software = sw_ver, hardware = hw_ver, can_id = can_id, \
+                                      serial_number = serial_number)
         return result
 
 
     @staticmethod
     def hardware_version() -> int:
+        ''' Shows the hardware options of the program and returns the chosen one.
+        Args:
+            - None
+        Returns:
+            - result (int): chosen option
+        Raises:
+            - None
+        '''
+        query = {  "fan"        : (["No", "Yes"],
+                                   "¿Does the EPC have a fan?\nSelect an option:"),
+                    "connector" : (["18650", "Banana"],
+                                   "What type of connector does the EPC have?\nSelect an option:"),
+                    "temp_anode": (["No anode", "Ring NTC", "Plastic NTC"],
+                                   "What type of temperature sensor in anode does the EPC have?\n\
+                                    Select an option:"),
+                    "temp_body" : (["No STS", "STS Sens"],
+                                   "What type of temperature sensor in body does the EPC have?\n\
+                                    Select an option:"),
+                    "temp_amb"  : (["No sensor", "Plastic NTC"],
+                                   "What type of temperature sensor in ambient does the EPC have?\n\
+                                    Select an option:")
+        }
         hw_version = 0
-        fan         = TERM_c.fan_option()
-        connector   = TERM_c.connector_option()
-        temp_anode  = TERM_c.temp_anode_option()
-        temp_body   = TERM_c.temp_body_option()
-        temp_amb    = TERM_c.temp_amb_option()
+        fan         = TermC.query_hardware(options = query["fan"][0], \
+                                            message = query["fan"][1])
+        connector   = TermC.query_hardware(options = query["connector"][0], \
+                                            message = query["connector"][1])
+        temp_anode  = TermC.query_hardware(options = query["temp_anode"][0], \
+                                            message = query["temp_anode"][1])
+        temp_body   = TermC.query_hardware(options = query["temp_body"][0], \
+                                            message = query["temp_body"][1])
+        temp_amb    = TermC.query_hardware(options = query["temp_amb"][0], \
+                                            message = query["temp_amb"][1])
 
         temp_amb = format(temp_amb, '01b')
         temp_body = format(temp_body, '01b')
@@ -168,71 +195,43 @@ class TERM_c():
         return int(number, 2)
 
     @staticmethod
-    def fan_option() -> int:
-        options = ["No", "Yes"]
-        menu = SelectionMenu(options,"¿Does the EPC have a fan?\nSelect an option:", show_exit_option = False)
-        menu.show()
-        menu.join()
-        return menu.selected_option
-
-    @staticmethod
-    def connector_option() -> int:
-        options = ["18650", "Banana"]
-        menu = SelectionMenu(options,"What type of connector does the EPC have?\n\
-    Select an option:", show_exit_option = False)
-        menu.show()
-        menu.join()
-        return menu.selected_option
-
-    @staticmethod
-    def temp_anode_option() -> int:
-        options = ["No anode", "Ring NTC", "Plastic NTC"]
-        menu = SelectionMenu(options,"What type of temperature sensor in anode does the EPC have?\n\
-    Select an option:", show_exit_option = False)
-        menu.show()
-        menu.join()
-        return menu.selected_option
-
-    @staticmethod
-    def temp_body_option() -> int:
-        options = ["No STS", "STS Sens"]
-        menu = SelectionMenu(options,"What type of temperature sensor in body does the EPC have?\n\
-    Select an option:", show_exit_option = False)
-        menu.show()
-        menu.join()
-        return menu.selected_option
-
-    @staticmethod
-    def temp_amb_option() -> int:
-        options = ["No sensor", "Plastic NTC"]
-        menu = SelectionMenu(options,"What type of temperature sensor in ambient does the EPC have?\n\
-    Select an option:", show_exit_option = False)
+    def query_hardware(options: list, message: str) -> int:
+        '''Show the query of the hardware.
+        Args:
+            - options (list): Options to choose
+            - message (str): Message to show
+        Returns:
+            - (int): chosen option
+        Raises:
+            - None
+        '''
+        menu = SelectionMenu(options, message, show_exit_option = False)
         menu.show()
         menu.join()
         return menu.selected_option
 
 
     @staticmethod
-    def queryCalibMode() -> int:
+    def query_calib_mode() -> int:
         ''' Shows the calibration options of the program and returns the chosen one.
         Args:
             - None
         Returns:
-            - result (PWR_Mode_e): chosen option
+            - result (int): chosen option
         Raises:
             - None
         '''
-        a_list = ["Voltage high side", "Voltage low side", "Current", "Anode temperature", "Ambient temperature", "Body temperature"]
+        a_list = ["Voltage high side", "Voltage low side", "Current"]
         menu = SelectionMenu(a_list,"Select an option of calibration:")
         menu.show()
         menu.join()
         return menu.selected_option
     
     @staticmethod
-    def showError(status: TERM_Option_e, message: str) -> None:
+    def show_error(status: TermOptionE, message: str) -> None:
         ''' Shows an error message.
         Args:
-            - status (TERM_Option_e): current status
+            - status (TermOptionE): current status
             - message (str): error message
         Returns:
             - None
@@ -241,4 +240,3 @@ class TERM_c():
         '''
         print(f"Error raise on status: {status}. Message: {message}")
         sleep(3)
-    

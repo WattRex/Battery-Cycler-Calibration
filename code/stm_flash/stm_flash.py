@@ -1,14 +1,10 @@
 #!/usr/bin/python3
-
+'''
+Driver of stm flash.
+'''
 #######################        MANDATORY IMPORTS         #######################
-import sys, os
-sys.path.append(os.getcwd())  #get absolute path
-
-#######################      LOGGING CONFIGURATION       #######################
-from SYS.SYS_LOG import SYS_LOG_Logger_c, SYS_LOG_LoggerGetModuleLogger
-if __name__ == '__main__':
-    root_logger = SYS_LOG_Logger_c('./SYS/SYS_LOG/logginConfig.conf')
-log = SYS_LOG_LoggerGetModuleLogger(__name__, config_by_module_filename="./CONFIG/log_config.yaml")
+import sys
+import os
 
 #######################         GENERIC IMPORTS          #######################
 from subprocess import run, PIPE
@@ -16,82 +12,92 @@ import yaml
 
 #######################       THIRD PARTY IMPORTS        #######################
 
-#######################          MODULE IMPORTS          #######################
-from CONFIG import CONFIG_WS_c, CONFIG_Result_e
+#######################      SYSTEM ABSTRACTION IMPORTS  #######################
+sys.path.append(os.getcwd())
+from sys_abs.sys_log import sys_log_logger_get_module_logger
+if __name__ == '__main__':
+    from sys_abs.sys_log import SysLogLoggerC
+    cycler_logger = SysLogLoggerC('./sys_abs/sys_log/logginConfig.conf')
+log = sys_log_logger_get_module_logger(__name__)
 
 #######################          PROJECT IMPORTS         #######################
 
+#######################          MODULE IMPORTS          #######################
+from config import ConfigWsC, ConfigResultE
 
 #######################              ENUMS               #######################
 _EPC_CONF_PATH= f"/home/pi004/GIT_luroche/Battery-Cycler-Calibration/fw_code/firmware/project_config/EPC_CONF/epc_conf.c"
 
 #######################              CLASSES             #######################
 
-class STM_FLASH_Epc_Conf_c():
+class StmFlash_EpcConfC:
     '''Class to store the configuration of the EPC
     '''
     def __init__(self, software: int, hardware: int, can_id: int, serial_number: int) -> None:
+        log.info("Creating a new EPC configuration")
         self.sw_ver: int = software
         self.hw_ver: int = hardware
         self.can_id: int = can_id
         self.sn: int = serial_number
 
 
-class STM_FLASH_c():
+class StmFlashC:
     def __init__(self) -> None:
-        self.__epc_conf: STM_FLASH_Epc_Conf_c = None
-        last_release = self._getLastRelease()
-        check_build = self.buildProject()
-        if check_build is CONFIG_Result_e.Error:
-            log.error(f"Error building STM32.bin file")
+        log.info("Creating a new STM flash")
+        self.__epc_conf: StmFlash_EpcConfC = None
+        last_release = self._get_last_release()
+        check_build = self.build_project()
+        if check_build is ConfigResultE.ERROR:
+            log.error("Error building STM32.bin file")
         else:
             if last_release or not os.path.exists("../fw_code/build/STM32_orig.bin"):
                 os.rename("../fw_code/build/STM32.bin", "../fw_code/build/STM32_orig.bin")
 
 
-    def configureDev(self, epc_config: STM_FLASH_Epc_Conf_c) -> CONFIG_Result_e:
+    def configure_dev(self, epc_config: StmFlash_EpcConfC) -> ConfigResultE:
         '''Configure the device with the specified configuration
         Args:
-            - epc_config (STM_FLASH_Epc_Conf_c): Configuration to apply
+            - epc_config (StmFlash_EpcConfC): Configuration to apply
         Returns:
-            - result_apply_dev (CONFIG_Result_e): Result of the configuration
+            - result_apply_dev (ConfigResultE): Result of the configuration
         Raises:
             - None
         '''
-        log.info(f"Configuring the device")
+        log.info("Configuring the device")
+        print("Configuring the device")
         self.__epc_conf = epc_config
-        result_apply_dev: CONFIG_Result_e = self._applyDevConfig()
+        result_apply_dev: ConfigResultE = self._apply_dev_config()
         return result_apply_dev
 
 
-    def applyCalib(self) -> CONFIG_Result_e:
+    def apply_calib(self) -> ConfigResultE:
         '''Apply the calibration data to the C file
         Args:
             - None
         Returns:
-            - result (CONFIG_Result_e): Result of the configuration
+            - result (ConfigResultE): Result of the configuration
         Raises:
             - None
         '''
-        log.info(f"Applying calibration data to the C file")
-        result: CONFIG_Result_e = CONFIG_Result_e.Error
+        log.info("Applying calibration data to the C file")
+        result: ConfigResultE = ConfigResultE.ERROR
         
-        info_file_path = CONFIG_WS_c.getInfoFilePath()
+        info_file_path = ConfigWsC.get_info_file_path()
         if os.path.exists(info_file_path):
             #Open the EPC yaml.
-            with open(CONFIG_WS_c.getInfoFilePath(), 'r') as file:
+            with open(ConfigWsC.get_info_file_path(), 'r', encoding="utf-8") as file:
                 info_epc = yaml.load(file, Loader=yaml.FullLoader)
             if os.path.exists(_EPC_CONF_PATH):
                 # Open the C file in read mode
-                with open(_EPC_CONF_PATH, 'r') as file:
+                with open(_EPC_CONF_PATH, 'r', encoding="utf-8") as file:
                     content = file.readlines()
-                result = CONFIG_Result_e.NoError
+                result = ConfigResultE.NO_ERROR
             else:
                 log.error(f"File {_EPC_CONF_PATH} not found")
         else:
             log.error(f"File {info_file_path} not found")
 
-        if result is CONFIG_Result_e.NoError:
+        if result is ConfigResultE.NO_ERROR:
             for i, line in enumerate(content):
                 # Modify the factor of the calibration data
                 if 'EPC_CONF_MEAS_factors' in line:
@@ -118,7 +124,7 @@ class STM_FLASH_c():
                         i_offset += 1
 
             # Rerwite the file
-            with open(_EPC_CONF_PATH, 'w') as file:
+            with open(_EPC_CONF_PATH, 'w', encoding="utf-8") as file:
                 file.writelines(content)
 
             # Close the file
@@ -126,46 +132,46 @@ class STM_FLASH_c():
         return result
 
 
-    def buildProject(self) -> CONFIG_Result_e:
+    def build_project(self) -> ConfigResultE:
         ''' Build STM32.bin
         Args:
             - None
         Returns:
-            - result (CONFIG_Result_e): Result of the building
+            - result (ConfigResultE): Result of the building
         Raises:
             - None
         '''
-        log.info(f"Building STM32.bin file")
-        result: CONFIG_Result_e = CONFIG_Result_e.Error
+        log.info("Building STM32.bin file")
+        result: ConfigResultE = ConfigResultE.ERROR
         cmd = "cd ../fw_code/build && make all"
         console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
 
         if console.returncode == 0: #Check if the command produced an error. 0 is no error
-            # if len(console.stderr.decode('utf-8').replace("\n", "")) > 0: #Check if the command produced an error. if len > 0 is error
-            #     log.error(f"Warning: {console.stderr.decode('utf-8')}")
-            # else:
-                exist = os.path.exists("../fw_code/build/STM32.bin")
-                if exist:
-                    log.info(f"STM32.bin file created")
-                    result = CONFIG_Result_e.NoError
-                else:
-                    log.error(f"STM32.bin file not created")
+            exist = os.path.exists("../fw_code/build/STM32.bin")
+            if exist:
+                log.info("STM32.bin file created")
+                print("STM32.bin file created")
+                result = ConfigResultE.NO_ERROR
+            else:
+                log.error("STM32.bin file not created")
+                print("STM32.bin file not created")
         else:
             log.error(f"Error: {console.stderr.decode('utf-8')}")
         return result
 
 
-    def flashUC(self, binary_name: str) -> CONFIG_Result_e:
+    def flash_uc(self, binary_name: str) -> ConfigResultE:
         '''Flash the STM32.
         Args:
             - None
         Returns:
-            - result (CONFIG_Result_e): Result of the flashing
+            - result (ConfigResultE): Result of the flashing
         Raises:
             - None
         '''
         log.info(f"Flashing {binary_name} file")
-        result = CONFIG_Result_e.Error
+        print(f"Flashing {binary_name} file")
+        result = ConfigResultE.ERROR
         exist = os.path.exists(f"../fw_code/build/{binary_name}")
         if exist:
             cmd = f"cd ../fw_code/build &&  st-flash --connect-under-reset write {binary_name} 0x08000000"
@@ -174,7 +180,7 @@ class STM_FLASH_c():
             if console.returncode == 0:
                 if "jolly good" in console.stderr.decode('utf-8'):
                     log.info(f"{binary_name} file flashed")
-                    result = CONFIG_Result_e.NoError
+                    result = ConfigResultE.NO_ERROR
                     log.error(f"Error: {console.stdout.decode('utf-8')}")
                 else:
                     log.error(f"{binary_name} file not flashed")
@@ -185,13 +191,14 @@ class STM_FLASH_c():
         return result
 
 
-    def _getLastRelease(self) -> bool:
+    def _get_last_release(self) -> bool:
         #TODO: necesitamos la ultima release para poder descargar el codigo
-        log.info(f"Getting last release")
+        log.info("Getting last release")
+        print("Getting last release")
         return False
 
 
-    def _applyDevConfig(self) -> CONFIG_Result_e:
+    def _apply_dev_config(self) -> ConfigResultE:
         '''Apply the configuration of the device to the C file
         Args:
             - None
@@ -200,23 +207,23 @@ class STM_FLASH_c():
         Raises:
             - None
         '''
-        result: CONFIG_Result_e = CONFIG_Result_e.Error
+        result: ConfigResultE = ConfigResultE.ERROR
 
-        info_file_path = CONFIG_WS_c.getInfoFilePath()
+        info_file_path = ConfigWsC.get_info_file_path()
         if os.path.exists(info_file_path):
-            with open(info_file_path, 'r') as file:
+            with open(info_file_path, 'r', encoding="utf-8") as file:
                 info_epc = yaml.load(file, Loader=yaml.FullLoader)
             # Open the C file in read mode
             if os.path.exists(_EPC_CONF_PATH):
-                with open(_EPC_CONF_PATH, 'r') as file:
+                with open(_EPC_CONF_PATH, 'r', encoding="utf-8") as file:
                     content = file.readlines()
-                result = CONFIG_Result_e.NoError
+                result = ConfigResultE.NO_ERROR
             else:
                 log.error(f"File {_EPC_CONF_PATH} not found")
         else:
             log.error(f"File {info_file_path} not found")
 
-        if result is CONFIG_Result_e.NoError:
+        if result is ConfigResultE.NO_ERROR:
             # Modify the information of the device
             for i, line in enumerate(content):
                 if 'EPC_CONF_info' in line:
@@ -233,7 +240,7 @@ class STM_FLASH_c():
                         i_info += 1
 
             # Rerwite the file
-            with open(_EPC_CONF_PATH, 'w') as file:
+            with open(_EPC_CONF_PATH, 'w', encoding="utf-8") as file:
                 # Escribe el content modificado en el archivo
                 file.writelines(content)
             # Close the file
