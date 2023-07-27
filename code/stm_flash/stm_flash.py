@@ -31,17 +31,17 @@ _EPC_CONF_PATH= f"/home/pi004/GIT_luroche/Battery-Cycler-Calibration/fw_code/fir
 #######################              CLASSES             #######################
 
 class StmFlash_EpcConfC:
-    '''Class to store the configuration of the EPC
-    '''
+    "Class to store the configuration of the EPC"
     def __init__(self, software: int, hardware: int, can_id: int, serial_number: int) -> None:
         log.info("Creating a new EPC configuration")
         self.sw_ver: int = software
         self.hw_ver: int = hardware
         self.can_id: int = can_id
-        self.sn: int = serial_number
+        self.sn: int     = serial_number
 
 
 class StmFlashC:
+    "Class method for flash the epc"
     def __init__(self) -> None:
         log.info("Creating a new STM flash")
         self.__epc_conf: StmFlash_EpcConfC = None
@@ -81,7 +81,7 @@ class StmFlashC:
         '''
         log.info("Applying calibration data to the C file")
         result: ConfigResultE = ConfigResultE.ERROR
-        
+
         info_file_path = ConfigWsC.get_info_file_path()
         if os.path.exists(info_file_path):
             #Open the EPC yaml.
@@ -211,8 +211,6 @@ class StmFlashC:
 
         info_file_path = ConfigWsC.get_info_file_path()
         if os.path.exists(info_file_path):
-            with open(info_file_path, 'r', encoding="utf-8") as file:
-                info_epc = yaml.load(file, Loader=yaml.FullLoader)
             # Open the C file in read mode
             if os.path.exists(_EPC_CONF_PATH):
                 with open(_EPC_CONF_PATH, 'r', encoding="utf-8") as file:

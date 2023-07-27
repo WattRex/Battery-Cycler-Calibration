@@ -1,4 +1,6 @@
-from .manager import MANAGER_c
+"Imports of the manager module."
+
+from .manager import ManagerC
 
 __all__ = [
-    'MANAGER_c']
+    'ManagerC']

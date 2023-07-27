@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 '''
-Driver of configuration.
+Driver of configuration the setup.
 '''
 #######################        MANDATORY IMPORTS         #######################
 import os
 
 #######################         GENERIC IMPORTS          #######################
 from enum import Enum
-import yaml
 from pathlib import Path
+import yaml
 
 #######################       THIRD PARTY IMPORTS        #######################
 
@@ -19,29 +19,29 @@ from pathlib import Path
 #######################          MODULE IMPORTS          #######################
 
 #######################              ENUMS               #######################
-_WS_PATH= f"/home/pi004/GIT_luroche/Battery-Cycler-Calibration"
-_CONF_PORTS_FILE_PATH = f"{_WS_PATH}/code/config/config_ports.yaml"
-_DATA_PATH = f"{_WS_PATH}"
-_INFO_FILE_PATH = f"{_WS_PATH}"
-_V_LS_CALIB_FILE_PATH = f"{_WS_PATH}"
-_V_HS_CALIB_FILE_PATH = f"{_WS_PATH}"
-_I_CALIB_FILE_PATH = f"{_WS_PATH}"
+_WS_PATH                = "/home/pi004/GIT_luroche/Battery-Cycler-Calibration"
+_CONF_PORTS_FILE_PATH   = f"{_WS_PATH}/code/config/config_ports.yaml"
+_DATA_PATH              = f"{_WS_PATH}"
+_INFO_FILE_PATH         = f"{_WS_PATH}"
+_V_LS_CALIB_FILE_PATH   = f"{_WS_PATH}"
+_V_HS_CALIB_FILE_PATH   = f"{_WS_PATH}"
+_I_CALIB_FILE_PATH      = f"{_WS_PATH}"
 
-CONFIG_DEFAULT_INFO_EPC = { 'device_version':  {'hw': None, 'sw': None, 'can_ID': None, 's_n': None},
-                        'calib_data': {'VOLT_HS': {'factor': None, 'offset': None, 'date': None},
-                                       'VOLT_LS': {'factor': None, 'offset': None, 'date': None},
-                                       'CURR':    {'factor': None, 'offset': None, 'date': None}}}
+CONFIG_DEFAULT_INFO_EPC = {'device_version':  {'hw': None, 'sw': None, 'can_ID': None, 's_n': None},
+                           'calib_data': {'VOLT_HS': {'factor': None, 'offset': None, 'date': None},
+                                          'VOLT_LS': {'factor': None, 'offset': None, 'date': None},
+                                          'CURR':    {'factor': None, 'offset': None, 'date': None}}
+                            }
 
 class ConfigResultE(Enum):
     "Enum for the result of the configuration"
-    ERROR = 0
-    NO_ERROR = 1
+    ERROR       = 0
+    NO_ERROR    = 1
 
 
 #######################              CLASSES             #######################
 class ConfigWsC:
-    '''Configure the files path for the workspace
-    '''
+    "Configure the files path for the workspace"
     @staticmethod
     def update_path(serial_number: int) -> None:
         '''Update the path for the workspace
@@ -53,12 +53,12 @@ class ConfigWsC:
             - None
         '''
         global _DATA_PATH, _INFO_FILE_PATH, _V_LS_CALIB_FILE_PATH, \
-            _V_HS_CALIB_FILE_PATH, _I_CALIB_FILE_PATH
-        _DATA_PATH = f"{_WS_PATH}/data/epc_{serial_number}"
-        _INFO_FILE_PATH = f"{_DATA_PATH}/epc_{serial_number}_info.yaml"
-        _V_LS_CALIB_FILE_PATH = f"{_DATA_PATH}/epc_{serial_number}_ls_volt.csv"
-        _V_HS_CALIB_FILE_PATH = f"{_DATA_PATH}/epc_{serial_number}_hs_volt.csv"
-        _I_CALIB_FILE_PATH = f"{_DATA_PATH}/epc_{serial_number}_curr.csv"
+            _V_HS_CALIB_FILE_PATH, _I_CALIB_FILE_PATH # pylint: disable=global-statement
+        _DATA_PATH              = f"{_WS_PATH}/data/epc_{serial_number}"
+        _INFO_FILE_PATH         = f"{_DATA_PATH}/epc_{serial_number}_info.yaml"
+        _V_LS_CALIB_FILE_PATH   = f"{_DATA_PATH}/epc_{serial_number}_ls_volt.csv"
+        _V_HS_CALIB_FILE_PATH   = f"{_DATA_PATH}/epc_{serial_number}_hs_volt.csv"
+        _I_CALIB_FILE_PATH      = f"{_DATA_PATH}/epc_{serial_number}_curr.csv"
 
         if not os.path.exists(_DATA_PATH):
             Path(_DATA_PATH).mkdir(parents=True, exist_ok=True)

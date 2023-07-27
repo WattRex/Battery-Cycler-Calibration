@@ -8,11 +8,11 @@ import sys
 import os
 
 #######################         GENERIC IMPORTS          #######################
+from subprocess import run, PIPE
 import threading
 from enum import Enum
 from statistics import mean
 from time import sleep, strftime
-from typing import Any
 import numpy as np
 import yaml
 import pandas as pd
@@ -22,8 +22,8 @@ import serial
 
 #######################      SYSTEM ABSTRACTION IMPORTS  #######################
 sys.path.append(os.getcwd())
-from sys_abs.sys_shd import SysShdChanC
-from sys_abs.sys_log import sys_log_logger_get_module_logger
+from sys_abs.sys_shd import SysShdChanC # pylint: disable=wrong-import-position
+from sys_abs.sys_log import sys_log_logger_get_module_logger # pylint: disable=wrong-import-position
 if __name__ == '__main__':
     from sys_abs.sys_log import SysLogLoggerC
     cycler_logger = SysLogLoggerC('./sys_abs/sys_log/logginConfig.conf')
@@ -32,14 +32,14 @@ log = sys_log_logger_get_module_logger(__name__)
 #######################          PROJECT IMPORTS         #######################
 
 #######################          MODULE IMPORTS          #######################
-from config import *
-from term import TermC
-from drv.drv_bk import *
-from drv.drv_ea import *
-from drv.drv_epc import *
-from drv.drv_scpi import *
-from drv.drv_can import DrvCanNodeC
-from drv.drv_epc import DrvEpcDeviceC, DrvEpcLimitE, DrvEpcModeE
+from config import ConfigWsC, ConfigResultE             # pylint: disable=wrong-import-position
+from term import TermC                                  # pylint: disable=wrong-import-position
+from drv.drv_bk import DrvBkDeviceC, DrvBkModeE         # pylint: disable=wrong-import-position
+from drv.drv_ea import DrvEaDeviceC                     # pylint: disable=wrong-import-position
+from drv.drv_epc import DrvEpcDeviceC, DrvEpcLimitE     # pylint: disable=wrong-import-position
+from drv.drv_scpi import DrvScpiHandlerC                # pylint: disable=wrong-import-position
+from drv.drv_can import DrvCanNodeC                     # pylint: disable=wrong-import-position
+
 #######################              ENUMS               #######################
 _ERROR_RANGE = 50 #mUnits
 
@@ -52,40 +52,24 @@ class PwrModeE(Enum):
 
 class _PwrParamsE(Enum):
     "Values of calibration."
-    VOLT_HS_MIN = 10000 #mV         TODO: check values
-    VOLT_HS_MAX = 12000 #mV         TODO: check values #15000
-    VOLT_HS_STEP = 1000 #no units   TODO: check values
-    VOLT_LS_MIN = 30000 #mV         TODO: check values
-    VOLT_LS_MAX = 35000 #mV         TODO: check values
-    VOLT_LS_STEP = 1000 #no units   TODO: check values
-    CURR_MIN = 300      #mA         TODO: check values
-    CURR_MAX = 350      #mA         TODO: check values
-    CURR_STEP = 10      #no units   TODO: check values
+    VOLT_HS_MIN     = 5400      #mV
+    VOLT_HS_MAX     = 14000     #mV
+    VOLT_HS_STEP    = 100       #no units
+    VOLT_LS_MIN     = 500       #mV
+    VOLT_LS_MAX     = 5000      #mV
+    VOLT_LS_STEP    = 100       #no units
+    CURR_MIN        = -15000    #mA
+    CURR_MAX        = 15000     #mA
+    CURR_STEP       = 100       #no units
 
 #######################              CLASSES             #######################
 class PwrC:
     "Class to manage the power devices."
     def __init__(self) -> None:
-        self.__meter: DrvBkDeviceC = None
+        self.__meter: DrvBkDeviceC  = None
         self.__source: DrvEaDeviceC = None
-        self.__epc: DrvEpcDeviceC = None
+        self.__epc: DrvEpcDeviceC   = None
         self._config_power_devices()
-
-
-    def check_devices(self) -> ConfigResultE:
-        '''Check if the power devices are connected.
-        Args:
-            - None
-        Returns:
-            - result (ConfigResultE): Result of the check.
-        Raises:
-            - None
-        '''
-        if self.__source is None or self.__meter is None or self.__epc is None:
-            result = ConfigResultE.ERROR
-        else:
-            result = ConfigResultE.NO_ERROR
-        return result
 
 
     def calib_volt_hs(self) -> ConfigResultE:
@@ -93,7 +77,7 @@ class PwrC:
         Args:
             - None
         Returns:
-            - result_calib (ConfigResultE): Result of the calibration.
+            - result (ConfigResultE): Result of the calibration.
         Raises:
             - None
         '''
@@ -145,20 +129,26 @@ class PwrC:
                 ports = yaml.load(file, Loader=yaml.FullLoader)
             try:
                 #Multimeter configuration
-                scpi_bk = DrvScpiHandlerC(port = ports['multimeter_port'], separator='\n', \
+                scpi_bk = DrvScpiHandlerC(port = ports['multimeter'], separator='\n', \
                                           baudrate=38400, timeout=1, write_timeout=1)
                 self.__meter = DrvBkDeviceC(handler = scpi_bk)
 
                 #Source configuration
-                scpi_ea = DrvScpiHandlerC(port = ports['source_port'], separator = '\n', \
-                                          timeout = 0.8, write_timeout = 2, \
+                scpi_ea = DrvScpiHandlerC(port = ports['source'], separator = '\n', \
+                                          timeout = 0.8, write_timeout = 0.8, \
                                           parity = serial.PARITY_ODD, baudrate = 9600)
                 self.__source: DrvEaDeviceC = DrvEaDeviceC(handler = scpi_ea)
 
+                self.__source.set_cv_mode(volt_ref = 6000, current_limit = 500)
+                print("CAAAAAMAMAMAMAMAMAMMAMAMAMA.")
+
+                cmd = "sudo ip link set up txqueuelen 1000000 can0 type can bitrate 125000"
+                console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
                 #EPC configuration
                 can_queue = SysShdChanC(100000000)
                 can_queue.delete_until_last()
                 # Flag to know if the can is working
+                print("EEEEPPPPPPCCCCCCCCCCCCCCCCCCCC.")
                 _working_can = threading.Event()
                 _working_can.set()
                 #Create the thread for CAN
@@ -168,9 +158,10 @@ class PwrC:
                                            device_handler=SysShdChanC(500),
                                            tx_can_queue=can_queue)
                 self.__epc.open(addr= 0x030, mask= 0x7F0)
-
+                # self.__source.disable()
             except Exception as err:
                 log.error(f"Error opening ports. {err}")
+                print("Error opening ports.")
 
         else:
             log.error("File {ports_path} does not exist.")
@@ -186,62 +177,41 @@ class PwrC:
             - None
         '''
         result_calib: ConfigResultE = ConfigResultE.ERROR
-        if self._rewrite_calib(mode = mode):
-            calib: pd.DataFrame = self._obtain_values(mode = mode)
-            line: tuple = self._parameters_line(calib)
-            result_calib = self._save_calib_data(mode = mode, data = calib, \
-                                               factor = line[0], offset = line[1])
-            if result_calib == ConfigResultE.NO_ERROR:
-                log.info(f"Calibration of {mode.name} finished.")
-            else:
-                log.error(f"Calibration of {mode.name} failed.")
-        else:
-            log.info(f"Calibration of {mode.name} canceled.")
-
-        return result_calib
-
-
-    def _rewrite_calib(self, mode: PwrModeE) -> bool:
-        ''' Check if the calibration data already exists.
-        Args:
-            - mode (PwrModeE): Type of calibration to be done.
-        Returns:
-            - result (bool): True if the calibration data already exists, False if not.
-        Raises:
-            - None
-        '''
+        #Check if the calibration has already been done
         info_path = ConfigWsC.get_info_file_path()
-
         if os.path.exists(info_path):
             with open(info_path, 'r', encoding="utf-8") as file:
                 conf_dev = yaml.load(file, Loader=yaml.FullLoader)
-                if conf_dev['calib_data'][mode.name]['factor'] is None and \
-                   conf_dev['calib_data'][mode.name]['offset'] is None and \
-                   conf_dev['calib_data'][mode.name]['date'] is None:
-                    exist_dates = False
-                else:
-                    exist_dates = True
-
-            if exist_dates:
-                while True:
-                    try:
-                        check = str(input(f"Calibration data for {mode.name} already exists. \
-                                          ¿Do you want to replace it? (y/n): ")).lower()
-                        if check == 'y':
-                            result = True
-                            break
-                        elif check == 'n':
-                            result = False
-                            break
-                        else:
-                            print("Invalid option.")
-                    except ValueError:
-                        print("Invalid option.")
-            else:
-                result = True
+                rewrite = True
+                if conf_dev['calib_data'][mode.name]['factor'] is not None or \
+                   conf_dev['calib_data'][mode.name]['offset'] is not None or \
+                   conf_dev['calib_data'][mode.name]['date']   is not None:
+                    rewrite = TermC.query_rewrite_calib()
         else:
             log.error(f"File {info_path} does not exist.")
-        return result
+            rewrite = False
+        #Calibration
+        if rewrite:
+            calib: pd.DataFrame = self._obtain_values(mode = mode)
+            #Obtain the parameters of the line
+            axis_x = np.array(calib.iloc[:,1]).tolist() #Column of multimeter
+            axis_y = np.array(calib.iloc[:,2]).tolist() #Column of EPC
+            factor, intersection = np.polyfit(axis_x, axis_y, 1)
+            offset = intersection - (factor * axis_x[0])
+            #Save the calibration data
+            result_calib = self._save_calib_data(mode = mode, data = calib, \
+                                                factor = float(round(factor, 3)), \
+                                                offset = float(round(offset, 3)))
+            if result_calib == ConfigResultE.NO_ERROR:
+                log.info(f"Calibration of {mode.name} finished.")
+                print("Calibration finished.")
+            else:
+                log.error(f"Calibration of {mode.name} failed.")
+                print("Calibration failed.")
+        else:
+            log.info(f"Calibration of {mode.name} canceled.")
+            print("Calibration canceled.")
+        return result_calib
 
 
     def _obtain_values(self, mode: PwrModeE) -> pd.DataFrame:
@@ -257,7 +227,7 @@ class PwrC:
             - None
         '''
         val_min = _PwrParamsE.__getitem__(f"{mode.name}_MIN").value
-        step = _PwrParamsE.__getitem__(f"{mode.name}_STEP").value
+        step    = _PwrParamsE.__getitem__(f"{mode.name}_STEP").value
         val_max = _PwrParamsE.__getitem__(f"{mode.name}_MAX").value
 
         if mode is PwrModeE.VOLT_HS or mode is PwrModeE.VOLT_LS:
@@ -268,77 +238,54 @@ class PwrC:
         elif mode is PwrModeE.CURR:
             type_columns = ['current source', 'current multimeter', 'current EPC']
             self.__meter.set_mode(DrvBkModeE.CURR_R2_A)
+
         result = pd.DataFrame(columns = type_columns)
-
-        val_source = val_min
-
-
+        val_to_send = val_min
         #Iteration to obtain the voltage or current of the multimeter and the EPC
-        while val_source <= val_max:
-            sleep(2)
+        while val_to_send <= val_max:
+            sleep(1)
             if mode is PwrModeE.VOLT_HS or mode is PwrModeE.VOLT_LS:
-                self.__source.set_cv_mode(volt_ref = val_source, current_limit = 500) #TODO: check limit
-                while abs(val_source - self.__source.get_data().voltage) > _ERROR_RANGE:
-                    sleep(0.5)
+                self.__source.set_cv_mode(volt_ref = val_to_send, current_limit = 500)
+                while abs(val_to_send - self.__source.get_data().voltage) > _ERROR_RANGE:
+                    sleep(0.1)
 
             elif mode is PwrModeE.CURR:
-                self.__source.set_cc_mode(curr_ref = val_source, voltage_limit = 12000) #TODO: check limit
-                self.__epc.set_cc_mode(ref = val_min, limit_type= DrvEpcLimitE.TIME, limit_ref=3000) #TODO: check
-                while abs(val_source - self.__source.get_data().Current) > _ERROR_RANGE:
-                    sleep(0.5)
+                #PRINT DE PONER DOS BATERÍAS
+                self.__epc.set_cc_mode(ref = val_to_send, limit_type = DrvEpcLimitE.TIME, \
+                                       limit_ref = 8000)
+                while abs(val_to_send - self.__meter.get_data().current) > _ERROR_RANGE:
+                    sleep(0.1)
 
             av_meter: list= []
             av_epc: list= []
             for _ in range(0,9, 1):
                 #Data voltage high side calibration
                 if mode is PwrModeE.VOLT_HS:
-                    val_meter = self.__meter.get_data().voltage
-                    val_epc = self.__epc.get_data().hs_voltage
+                    val_meter   = self.__meter.get_data().voltage
+                    val_epc     = self.__epc.get_data().hs_voltage
 
                 #Data voltage low side calibration
                 elif mode is PwrModeE.VOLT_HS or mode is PwrModeE.VOLT_LS:
-                    val_meter = self.__meter.get_data().voltage
-                    val_epc = self.__epc.get_data().ls_voltage
+                    val_meter   = self.__meter.get_data().voltage
+                    val_epc     = self.__epc.get_data().ls_voltage
 
                 #Data current calibration
                 elif mode is PwrModeE.CURR:
-                    val_meter = self.__meter.get_data().current
-                    val_epc = self.__epc.get_data().ls_current
+                    val_meter   = self.__meter.get_data().current
+                    val_epc     = self.__epc.get_data().ls_current
 
                 av_meter.append(val_meter)
                 av_epc.append(val_epc)
 
-            new_row = pd.DataFrame([[val_source, int(mean(av_meter)), int(mean(av_epc))]], \
+            new_row = pd.DataFrame([[val_to_send, int(mean(av_meter)), int(mean(av_epc))]], \
                                    columns = type_columns)
             result = pd.concat([result,new_row], ignore_index=True)
 
-            TermC.show_progress_bar(iteration = val_source - val_min, total = val_max - val_min)
-            val_source += step
+            TermC.show_progress_bar(iteration = val_to_send - val_min, total = val_max - val_min)
+            val_to_send += step
 
         self.__source.disable()
         return result
-
-
-    def _parameters_line(self, data: pd.DataFrame) -> tuple:
-        ''' Obtain the parameters of the line that best fits the data.
-        Args:
-            - data (pd.DataFrame): Dataframe with the voltage of the source,
-                                   voltage measured with the multimeter and
-                                   the one measured with the EPC.
-        Retuns (tuple):
-            - factor (int): Factor of the line obtain.
-            - offset (int): Offset of the line obtain.
-        Raises:
-            - None
-        '''
-        axis_x = np.array(data.iloc[:,1]).tolist() #Column of multimeter
-        axis_y = np.array(data.iloc[:,2]).tolist() #Column of EPC
-
-        factor, intersection = np.polyfit(axis_x, axis_y, 1)
-        offset = intersection - (factor * axis_x[0])
-        factor = float(round(factor, 3))
-        offset = float(round(offset, 3))
-        return factor, offset
 
 
     def _save_calib_data(self, mode: PwrModeE, data: pd.DataFrame, factor: int, offset: int) \
@@ -376,6 +323,9 @@ class PwrC:
 
             data.to_csv(calib_file, index=False)
             result = ConfigResultE.NO_ERROR
+            log.info(f"Saved data. Mode:{mode.name}")
+            print("Saved data.")
         else:
             log.error(f"File {info_path} does not exist.")
+            print("Data could not be saved.")
         return result

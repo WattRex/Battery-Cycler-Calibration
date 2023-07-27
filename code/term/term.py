@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Driver of power.
+Driver of commands for terminal.
 '''
 #######################        MANDATORY IMPORTS         #######################
 import sys
@@ -15,19 +15,14 @@ from consolemenu import SelectionMenu, Screen
 
 #######################      SYSTEM ABSTRACTION IMPORTS  #######################
 sys.path.append(os.getcwd())
-from sys_abs.sys_log import sys_log_logger_get_module_logger
-if __name__ == '__main__':
-    from sys_abs.sys_log import SysLogLoggerC
-    cycler_logger = SysLogLoggerC('./sys_abs/sys_log/logginConfig.conf')
-log = sys_log_logger_get_module_logger(__name__)
 
 #######################          PROJECT IMPORTS         #######################
 
 #######################          MODULE IMPORTS          #######################
-from stm_flash import StmFlash_EpcConfC
+from stm_flash import StmFlash_EpcConfC # pylint: disable=wrong-import-position
 
 #######################              ENUMS               #######################
-_LOGO_INTRO = """
+_LOGO_INTRO = r"""
 
       ____        _   _                      _____           _               _____      _ _ _               _   _             
      |  _ \      | | | |                    / ____|         | |             / ____|    | (_) |             | | (_)            
@@ -43,6 +38,7 @@ _LOGO_INTRO = """
         """
 
 class TermOptionE(Enum):
+    "Enum for the principal options"
     FLASH_ORIG  = 0
     CONF_DEV    = 1
     CALIB       = 2
@@ -54,7 +50,7 @@ class TermOptionE(Enum):
 
 
 class TermC:
-    ''' Class to manage the terminal interface. '''
+    "Class to manage the terminal interface"
 
     @staticmethod
     def show_intro() -> None:
@@ -97,12 +93,29 @@ class TermC:
         suffix = 'Complete'
         length = 50
         percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
-        filledLength = int(length * iteration // total)
-        bar = fill * filledLength + '-' * (length - filledLength)
-        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = "\r")
+        filled_length = int(length * iteration // total)
+        show_bar = fill * filled_length + '-' * (length - filled_length)
+        print(f'\r{prefix} |{show_bar}| {percent}% {suffix}', end = "\r")
         # Print New Line on Complete
-        if iteration == total: 
+        if iteration == total:
             print()
+
+
+    @staticmethod
+    def query_rewrite_calib() -> bool:
+        ''' Shows the rewrite options of the program and returns the chosen one.
+        Args:
+            - None
+        Returns:
+            - result (bool): chosen option
+        Raises:
+            - None
+        '''
+        a_list = ["No", "Yes"]
+        menu = SelectionMenu(a_list,"Do you want to rewrite the calibration data?")
+        menu.show()
+        menu.join()
+        return bool(menu.selected_option)
 
 
     @staticmethod
@@ -136,13 +149,13 @@ class TermC:
         '''
         while True:
             try:
-                serial_number = int(input("- Serial number of EPC: ")) #TODO: validar numero de serie
+                serial_number = int(input("- Serial number of EPC: "))
                 sw_ver = int(input("- Software version: "))
                 can_id = int(input("- CAN ID: "))
                 hw_ver = TermC.hardware_version()
                 break
             except ValueError:
-                log.error("Invalid data.")
+                print("Invalid data.")
         result = StmFlash_EpcConfC(software = sw_ver, hardware = hw_ver, can_id = can_id, \
                                       serial_number = serial_number)
         return result
@@ -226,7 +239,7 @@ class TermC:
         menu.show()
         menu.join()
         return menu.selected_option
-    
+
     @staticmethod
     def show_error(status: TermOptionE, message: str) -> None:
         ''' Shows an error message.

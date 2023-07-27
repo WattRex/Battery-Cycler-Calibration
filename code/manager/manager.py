@@ -32,19 +32,12 @@ from term import *
 #######################              CLASSES             #######################
 
 class ManagerC:
-    '''Class to manage the state machine'''
+    "Class to manage the state machine"
     def __init__(self) -> None:
         self.__epc_config: StmFlash_EpcConfC = None
-        self.__status: TermOptionE = TermOptionE.CONF_DEV
-        self.__power = PwrC()
-        self.__stm: StmFlashC = StmFlashC()
-        # if self.__power.check_devices() is ConfigResultE.ERROR:
-        #     log.error("Error checking devices")
-        #     TermC.show_error(status = TermOptionE.CONF_DEV, \
-        #                      message = "Error checking devices")
-        #     self.__status = TermOptionE.EXIT
-        # else:
-        #     self.__stm: StmFlashC = StmFlashC()
+        self.__status: TermOptionE           = TermOptionE.CONF_DEV
+        self.__power                         = PwrC()
+        self.__stm: StmFlashC                = StmFlashC()
 
 
     def _calib_status(self, mode: PwrModeE) -> ConfigResultE:
@@ -83,7 +76,7 @@ class ManagerC:
 
         info_file_path = ConfigWsC.get_info_file_path()
         if os.path.exists(info_file_path):
-            with open(info_file_path, 'r', encoding="utf-8") as file:
+            with open(info_file_path, 'r', encoding = "utf-8") as file:
                 info_epc = yaml.load(file, Loader = yaml.FullLoader)
         else:
             info_epc = CONFIG_DEFAULT_INFO_EPC
@@ -94,7 +87,7 @@ class ManagerC:
         info_epc['device_version']['s_n'] = self.__epc_config.sn
 
         if os.path.exists(info_file_path):
-            with open(info_file_path, 'w', encoding="utf-8") as file:
+            with open(info_file_path, 'w', encoding = "utf-8") as file:
                 log.info(f"Info file yaml with serial number: {self.__epc_config.sn} updated")
                 yaml.dump(info_epc, file)
             result = ConfigResultE.NO_ERROR
@@ -139,7 +132,7 @@ class ManagerC:
             #Flash original program
             if self.__status is TermOptionE.FLASH_ORIG:
                 log.info("Flashing original program")
-                result_flash = self.__stm.flash_uc(binary_name = 'STM32_orig.bin')
+                result_flash = self.__stm.flash_uc('STM32_orig.bin')
                 if result_flash is ConfigResultE.ERROR:
                     log.error("Error flashing original program")
                     TermC.show_error(status = TermOptionE.FLASH_ORIG, \
@@ -225,7 +218,7 @@ class ManagerC:
                                                 message = "Error building project")
                             else:
                                 #Flash with calibration data
-                                result_flash = self.__stm.flash_uc(binary_name='STM32.bin')
+                                result_flash = self.__stm.flash_uc('STM32.bin')
                                 if result_flash is ConfigResultE.ERROR:
                                     log.error("Error flashing with calibration data")
                                     TermC.show_error(status = TermOptionE.FLASH_CALIB, \
@@ -244,7 +237,10 @@ class ManagerC:
 
 
 if __name__ == '__main__':
-    print(ConfigWsC.get_info_file_path())
     # TermC.show_intro()
+    inn = input ('Connect source to high voltage side on EPC. Press enter to continue')
+    while inn != '':
+        inn = input ('Press enter to continue')
+
     man = ManagerC()
     man.execute_machine_status()

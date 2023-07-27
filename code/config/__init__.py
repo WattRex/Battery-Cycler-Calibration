@@ -1,3 +1,5 @@
+"Imports of the config module."
+
 from .config_ws import ConfigWsC, CONFIG_DEFAULT_INFO_EPC, ConfigResultE
 
 __all__ = [
