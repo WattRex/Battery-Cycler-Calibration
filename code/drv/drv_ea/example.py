@@ -41,15 +41,20 @@ def main():
     drv = DrvEaDeviceC(handler = scpi)
 
     #Set properties
-    drv.set_cv_mode(volt_ref = 12000, current_limit = 500)
+    if '2384' in drv.__properties.model :
+        drv.set_cv_mode(volt_ref = 12000, current_limit = 500, channel = 2)
+    drv.set_cv_mode(volt_ref = 1000, current_limit = 500, channel = 1)
     time.sleep(4)
 
     #Obtain data
     log.info(f"Actual voltage: {drv.get_data().voltage}")
+    if '2384' in drv.__properties.model :
+        log.info(f"Actual voltage out2: {drv.get_data(2).voltage}")
 
     #Disable output
     drv.disable()
-
+    if '2384' in drv.__properties.model :
+        drv.disable(2)
     #Obtain properties
     properties = drv.get_properties()
     log.info(f"Max curr: {properties.max_current_limit}\tMax volt: {properties.max_volt_limit}\t\

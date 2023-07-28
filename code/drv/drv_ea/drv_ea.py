@@ -61,15 +61,21 @@ class DrvEaDeviceC(DrvPwrDeviceC):
     def __init__(self, handler: DrvScpiHandlerC) -> None:
         self.device_handler: DrvScpiHandlerC
         super().__init__(handler)
-        self.__actual_data: DrvEaDataC = DrvEaDataC(mode = DrvEaModeE.STANDBY, \
-                                                     status=DrvPwrStatusC(DrvPwrStatusE.OK), \
+        self.__actual_data: DrvEaDataC = DrvEaDataC(mode = DrvEaModeE.STANDBY,
+                                                     status=DrvPwrStatusC(DrvPwrStatusE.OK),
                                                      current=0, voltage=0, power=0)
-        self.__properties: DrvEaPropertiesC = DrvEaPropertiesC(model = None, serial_number = None, \
+        self.__properties: DrvEaPropertiesC = DrvEaPropertiesC(model = None, serial_number = None,
                                                                 max_volt_limit = 0, \
                                                                 max_current_limit = 0, \
                                                                 max_power_limit = 0)
         self.__initialize_control()
         self.__read_device_properties()
+        if '2384' in self.__properties.model:
+            self.__actual_data2 : DrvEaDataC = DrvEaDataC(mode = DrvEaModeE.STANDBY,
+                                                     status=DrvPwrStatusC(DrvPwrStatusE.OK),
+                                                     current=0, voltage=0, power=0)
+            self.device_handler.send_msg('SYSTem:LOCK: ON (@2)')
+            self.disable(channel= 2)
 
 
     def __read_device_properties(self) -> DrvEaPropertiesC:
@@ -128,7 +134,7 @@ class DrvEaDeviceC(DrvPwrDeviceC):
         self.device_handler.send_msg('OUTPut: OFF')
 
 
-    def disable(self) -> None:
+    def disable(self, channel: int = 1) -> None:
         ''' Set the device in standby mode.
         Args:
             - None
@@ -137,11 +143,15 @@ class DrvEaDeviceC(DrvPwrDeviceC):
         Raises:
             - None 
         '''
-        self.device_handler.send_msg('OUTPut OFF')
+        if (channel<1 or channel>2) or ('2384' not in self.__properties.model and channel != 1):
+            log.error("Try to apply command to a channel doesn´t exist, "+
+                    "will apply to the only available")
+            raise ValueError
+        self.device_handler.send_msg(f'OUTPut OFF (@{channel})')
         self.__actual_data.mode = DrvEaModeE.STANDBY
 
 
-    def set_cc_mode(self, curr_ref: int, voltage_limit: int) -> None:
+    def set_cc_mode(self, curr_ref: int, voltage_limit: int, channel: int = 1) -> None:
         '''
         Use source in constant current mode.
         Sink mode will be set with negative current values.
@@ -149,6 +159,8 @@ class DrvEaDeviceC(DrvPwrDeviceC):
         Args:
             - curr_ref (int): current consign (milli Amps)
             - voltage_limit (int): voltage limit (millivolts)
+            - channel (int): channel to apply the mode
+                    if the device has more than one, if not will always apply to the channel 1
         Returns:
             - None
         Raises:
@@ -164,14 +176,19 @@ class DrvEaDeviceC(DrvPwrDeviceC):
         else:
             current = 0
             voltage = 0
+        if (channel<1 or channel>2) or ('2384' not in self.__properties.model and channel != 1):
+            log.error("Try to apply command to a channel doesn´t exist, "+
+                    "will apply to the only available")
+            raise ValueError
+        self.device_handler.send_msg(f"CURRent {current} (@{channel})")
+        self.device_handler.send_msg(f"VOLTage {voltage} (@{channel})")
+        self.device_handler.send_msg(f'OUTPut ON (@{channel})')
+        if channel == 1:
+            self.__actual_data.mode = DrvEaModeE.CC_MODE
+        else:
+            self.__actual_data2.mode = DrvEaModeE.CC_MODE
 
-        self.device_handler.send_msg(f"CURRent {current}")
-        self.device_handler.send_msg(f"VOLTage {voltage}")
-        self.device_handler.send_msg('OUTPut ON')
-        self.__actual_data.mode = DrvEaModeE.CC_MODE
-
-
-    def set_cv_mode(self, volt_ref: int, current_limit: int) -> None:
+    def set_cv_mode(self, volt_ref: int, current_limit: int, channel: int = 1) -> None:
         '''
         Use source in constant voltage mode .
         Security current limit can be also set for both sink and source modes. 
@@ -195,13 +212,19 @@ class DrvEaDeviceC(DrvPwrDeviceC):
             current = 0
             voltage = 0
 
-        self.device_handler.send_msg(f"VOLTage {voltage}")
-        self.device_handler.send_msg(f"CURRent {current}")
-        self.device_handler.send_msg('OUTPut ON')
-        self.__actual_data.mode = DrvEaModeE.CV_MODE
+        if (channel<1 or channel>2) or ('2384' not in self.__properties.model and channel != 1):
+            log.error("Try to apply command to a channel doesn´t exist, "+
+                    "will apply to the only available")
+            raise ValueError
+        self.device_handler.send_msg(f"CURRent {current} (@{channel})")
+        self.device_handler.send_msg(f"VOLTage {voltage} (@{channel})")
+        self.device_handler.send_msg(f'OUTPut ON (@{channel})')
+        if channel == 1:
+            self.__actual_data.mode = DrvEaModeE.CV_MODE
+        else:
+            self.__actual_data2.mode = DrvEaModeE.CV_MODE
 
-
-    def get_data(self) -> DrvEaDataC:
+    def get_data(self, channel: int = 1) -> DrvEaDataC:
         '''Read the device data.
         Args:
             - None.
@@ -210,12 +233,16 @@ class DrvEaDeviceC(DrvPwrDeviceC):
         Raises:
             - None.
         '''
+        if (channel<1 or channel>2) or ('2384' not in self.__properties.model and channel != 1):
+            log.error("Try to apply command to a channel doesn´t exist, "+
+                    "will apply to the only available")
+            raise ValueError
         current = 0
         voltage = 0
         power = 0
         status = DrvPwrStatusC(DrvPwrStatusE.COMM_ERROR)
 
-        read_all = self.device_handler.send_and_read('MEASure:ARRay?')
+        read_all = self.device_handler.send_and_read(f'MEASure:ARRay? (@{channel})')
         read_all = read_all[0].split(',')
         if len(read_all) == 0 and read_all[0] is None:
             status = DrvPwrStatusC(DrvPwrStatusE.COMM_ERROR)
@@ -223,13 +250,22 @@ class DrvEaDeviceC(DrvPwrDeviceC):
             voltage = int(self.device_handler.decode_numbers(read_all[0]) * _CONSTANTS.MILI_UNITS)
             current = int(self.device_handler.decode_numbers(read_all[1]) * _CONSTANTS.MILI_UNITS)
             power = int(self.device_handler.decode_numbers(read_all[2]) * _CONSTANTS.MILI_UNITS)
-
-        self.__actual_data = DrvEaDataC(mode = self.__actual_data.mode, \
-                                         status = status, \
-                                         voltage = voltage, \
-                                         current = current, \
-                                         power = power)
-        return self.__actual_data
+        res : DrvEaDataC
+        if channel == 1:
+            self.__actual_data = DrvEaDataC(mode = self.__actual_data.mode, \
+                                            status = status, \
+                                            voltage = voltage, \
+                                            current = current, \
+                                            power = power)
+            res = self.__actual_data
+        else:
+            self.__actual_data2 = DrvEaDataC(mode = self.__actual_data.mode, \
+                                            status = status, \
+                                            voltage = voltage, \
+                                            current = current, \
+                                            power = power)
+            res = self.__actual_data2
+        return res
 
 
     def get_properties(self) -> DrvEaPropertiesC:
@@ -254,4 +290,6 @@ class DrvEaDeviceC(DrvPwrDeviceC):
             - None
         '''
         self.disable()
+        if '2384' in self.__properties.model:
+            self.disable(channel= 2)
         self.device_handler.close()
