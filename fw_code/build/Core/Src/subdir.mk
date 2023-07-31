@@ -69,6 +69,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: $(SOURCE_PATH)/STM32/Core/Src/%.c C
 	-I"$(SOURCE_PATH)/Sources/MID/MID_COMM" \
 	-I"$(SOURCE_PATH)/Sources/MID/MID_REG" \
 	-I"$(SOURCE_PATH)/Sources/APP/APP_SALG" \
+	-I"$(SOURCE_PATH)/Sources/APP/APP_CTRL" \
 	-I"$(SOURCE_PATH)/Sources/APP/APP_IFACE" \
 	-I"$(SOURCE_PATH)/Sources/EPC_CONF" \
 	-I"$(SOURCE_PATH)/Sources/EPC_ST" \
