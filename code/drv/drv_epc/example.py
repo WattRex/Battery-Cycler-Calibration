@@ -151,7 +151,7 @@ if __name__ == '__main__':
             
             if data.mode is DrvEpcModeE.IDLE and epc_dev.last_mode is not DrvEpcModeE.IDLE:
                 if j == 0:
-                    epc_dev.epc.set_cc_mode(10000, DrvEpcLimitE.TIME, 5000)
+                    epc_dev.epc.set_cc_mode(500, DrvEpcLimitE.TIME, 5000)
                     j = 1
                 else:
                     epc_dev.epc.set_wait_mode(limit_type= DrvEpcLimitE.TIME, limit_ref=3000)

@@ -262,7 +262,7 @@ class PwrC:
             factor, offset = np.polyfit(axis_x, axis_y, 1)
             factor = factor * 4095
             result_calib = self._save_calib_data(mode = mode, data = calib, \
-                                                 factor = int(factor), offset = int(offset))
+                                                 factor = round(factor), offset = round(offset))
             if result_calib == ConfigResultE.NO_ERROR:
                 log.info(f"Calibration of {mode.name} finished.")
                 print("Calibration finished.")
@@ -311,6 +311,7 @@ class PwrC:
             elif mode is PwrModeE.CURR:
                 self.__epc.set_cc_mode(ref = val_to_send, limit_type = DrvEpcLimitE.TIME, \
                                        limit_ref = 8000)
+                sleep(0.020)
 
             av_meter: list= []
             av_epc: list= []
@@ -344,7 +345,7 @@ class PwrC:
                 av_meter.append(val_meter)
                 av_epc.append(bits_epc)
 
-            new_row = pd.DataFrame([[val_to_send, int(median(av_meter)), int(median(av_epc))]], \
+            new_row = pd.DataFrame([[val_to_send, round(median(av_meter)), round(median(av_epc))]], \
                                    columns = name_columns)
             result = pd.concat([result,new_row], ignore_index=True)
 
