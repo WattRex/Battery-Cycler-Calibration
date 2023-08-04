@@ -37,12 +37,12 @@ def main():
     init = time.time()
 
     #Create driver
-    scpi = DrvScpiHandlerC(port = 'COM4', separator='\n', baudrate=38400, \
+    scpi = DrvScpiHandlerC(port = '/dev/ttyUSB1', separator='\n', baudrate=38400, \
                                                timeout=1, write_timeout=1)
     drv = DrvBkDeviceC(handler = scpi)
-    
+
     #Set properties
-    drv.set_mode(DrvBkModeE.VOLT_AUTO)
+    drv.set_mode(DrvBkModeE.CURR_AUTO)
 
     #Obtain data
     data = drv.get_data()

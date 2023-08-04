@@ -7,19 +7,22 @@ import sys
 import os
 
 #######################         GENERIC IMPORTS          #######################
+from colorama import init as colorama_init
+from colorama import Fore, Back, Style
 from time import sleep
 from enum import Enum
 from consolemenu import SelectionMenu, Screen
+from random import randint
 
 #######################       THIRD PARTY IMPORTS        #######################
 
 #######################      SYSTEM ABSTRACTION IMPORTS  #######################
 sys.path.append(os.getcwd())
-
+colorama_init()
 #######################          PROJECT IMPORTS         #######################
 
 #######################          MODULE IMPORTS          #######################
-from stm_flash import StmFlash_EpcConfC # pylint: disable=wrong-import-position
+from stm_flash import StmFlashEpcConfC # pylint: disable=wrong-import-position
 
 #######################              ENUMS               #######################
 _LOGO_INTRO = r"""
@@ -36,6 +39,141 @@ _LOGO_INTRO = r"""
                                                       Version 1.0
                                              Calibration for Battery Cycler                               
         """
+_SHREK = r"""
+              c,_.--.,y
+                7 a.a(
+               (   ,_Y)
+               :  '---;
+           ___.'\.  - (
+         .''''S,._'--'_2..,_
+         |    ':::::=:::::  \
+         .     f== ;-,---.' T
+          Y.   r,-,_/_      |
+          |:\___.---' '---./
+          |'`             )
+           \             ,
+           ':;,.________.;L
+           /  '---------' |
+           |              \
+           L---'-,--.-'--,-'
+            T    /   \   Y
+            |   Y    ,   |
+            |   \    (   |
+            (   )     \,_L
+            7-./      )  `,
+           /  _(      '._  \
+         '---'           '--'
+    """
+
+_PIOLIN = r"""
+                       .   `:
+                        :   :  .
+                     __.'_ .'   :
+                _.--'     `-._.'
+             .-'..     ..    `.
+            : .-.    .--.`.    :
+           : :  :   :   :       :
+           : :`;;   :`; ;       :
+           `.`O;'   `O;.'       :
+          .' .---.  .--.        ;
+  .      :  '._   :'           ;
+  ::     :   .-`-.;       .  .'
+ .':     `.   ``` `.      :-'
+:  :       `-.__   ._   _.'
+ : ;           :    ;```
+  : `.    _.-.' .  ``-._
+   :  `.-'   : :        `-.
+    :      _.: `  `-._     `,
+     `._.-'   ;     `.`-.   ;_,  _.,
+              :       `.:  ;' ;-'  ;
+             :         ``.___.'   :
+             :             ;_..--'
+             `.            ;
+               `-.__   ...'
+                   : :  :
+              jgs  :-:__;
+                   : :  :
+        .-~~~--..__: :  :___..---..
+      .'.'           :             `,
+     :,'             :            `; ;
+     `:           _.'`._           :,'
+       `~~~'----''     `'-.____....'
+    """
+
+_SIMPSON = r"""
+            _
+          /X \ 
+        _------_
+       /        \
+      |          |
+      |          |
+      |     __  __)
+      |    /  \/  \
+     /\/\ (o   )o  )
+     /c    \__/ --.
+     \_   _-------'
+      |  /         \
+      | | '\________)
+      |  \_____)
+      |_____ |
+     |_____/\/\
+     /        \
+    """
+
+_SPONJE_BOB = r"""
+      .--..--..--..--..--..--.
+    .' \  (`._   (_)     _   \
+  .'    |  '._)         (_)  |
+  \ _.')\      .----..---.   /
+  |(_.'  |    /    .-\-.  \  |
+  \     0|    |   ( O| O) | o|
+   |  _  |  .--.____.'._.-.  |
+   \ (_) | o         -` .-`  |
+    |    \   |`-._ _ _ _ _\ /
+    \    |   |  `. |_||_|   |
+    | o  |    \_      \     |     -.   .-.
+    |.-.  \     `--..-'   O |     `.`-' .'
+  _.'  .' |     `-.-'      /-.__   ' .-'
+.' `-.` '.|='=.='=.='=.='=|._/_ `-'.'
+`-._  `.  |________/\_____|    `-.'
+   .'   ).| '=' '='\/ '=' |
+   `._.`  '---------------'
+           //___\   //___\
+             ||       ||
+             ||_.-.   ||_.-.
+            (_.--__) (_.--__)
+    """
+
+_SMURF = r"""
+       .-''''--.
+      /         )
+     /      --"`
+    /       _`:---.
+   |     .-'       `\
+    \   /    .----'./
+     \  : ,-' ~(.).)\
+      \_| \      ._) |
+       /   |  \.__, /
+  _.--'    )`///-,-'
+ /        / _| (_\\
+|        (____/____)
+ \     ___/       | _
+  `---(            ` )
+       `-,          .'
+        (__.'._/'._/
+             |`| |
+          __/ / /
+         //   | `--.
+        ||    /_____)
+        `=---`
+    """
+
+INTRO = {   "PIOLIN"    : (_PIOLIN,     Fore.YELLOW),
+            "SPONJE"    : (_SPONJE_BOB, Fore.YELLOW),
+            "SMURF"     : (_SMURF,      Fore.BLUE),
+            "SHREK"     : (_SHREK,      Fore.GREEN),
+            "SIMPSON"   : (_SIMPSON,    Fore.YELLOW)}
+
 
 class TermOptionE(Enum):
     "Enum for the principal options"
@@ -44,11 +182,10 @@ class TermOptionE(Enum):
     CALIB       = 2
     FLASH_CALIB = 3
     GUIDED_MODE = 4
-    EXIT        = 5
+    FLASH_OTHER = 5
+    EXIT        = 6
 
 #######################             CLASSES              #######################
-
-
 class TermC:
     "Class to manage the terminal interface"
 
@@ -112,7 +249,7 @@ class TermC:
             - None
         '''
         a_list = ["No", "Yes"]
-        menu = SelectionMenu(a_list,"Do you want to rewrite the calibration data?")
+        menu = SelectionMenu(a_list,"Do you want to rewrite the calibration data?", clear_screen=False)
         menu.show()
         menu.join()
         return bool(menu.selected_option)
@@ -128,22 +265,22 @@ class TermC:
         Raises:
             - None
         '''
-        sleep(10)
         a_list = ["Flash original program", "Configure device", \
-                  "Calibrate device", "Flash with calibration data", "Guided mode"]
-        menu = SelectionMenu(a_list,"Select an option:")
+                  "Calibrate device", "Flash with calibration data", \
+                  "Guided mode", "Flash other EPC"]
+        menu = SelectionMenu(a_list,"Select an option:", clear_screen=False)
         menu.show()
         menu.join()
         return TermOptionE(menu.selected_option)
 
 
     @staticmethod
-    def query_epc_conf() -> StmFlash_EpcConfC:
+    def query_epc_conf() -> StmFlashEpcConfC:
         ''' Displays the EPC configuration options and returns the EPC configuration
         Args:
             - None
         Returns:
-            - result (StmFlash_EpcConfC): chosen option
+            - result (StmFlashEpcConfC): chosen option
         Raises:
             - None
         '''
@@ -156,9 +293,49 @@ class TermC:
                 break
             except ValueError:
                 print("Invalid data.")
-        result = StmFlash_EpcConfC(software = sw_ver, hardware = hw_ver, can_id = can_id, \
+        result = StmFlashEpcConfC(software = sw_ver, hardware = hw_ver, can_id = can_id, \
                                       serial_number = serial_number)
         return result
+
+
+    @staticmethod
+    def add_power_supply() -> bool:
+        '''Check if power supply is neccesary.
+        Args:
+            - None
+        Returns:
+            - (bool): True if power supply is neccesary
+        Raises:
+            - None
+        '''
+        query = ["No", "Yes"]
+        menu = SelectionMenu(query,"The EPC will be flashed, do you want to add a power supply?", clear_screen=False, show_exit_option=False)
+        menu.show()
+        menu.join()
+        return bool(menu.selected_option)
+
+
+    @staticmethod
+    def check_wires() -> bool:
+        '''Check if the wires change .
+        Args:
+            - None
+        Returns:
+            - bool: True or false.
+        Raises:
+            - None
+        '''
+        keys = list(INTRO.keys())
+        logo = keys[randint(0, 4)]
+        print(f"{INTRO[logo][1]}{INTRO[logo][0]}{Style.RESET_ALL}")
+        query = ["No", "Yes"]
+        response = False
+        while response is False:
+            menu = SelectionMenu(query, "Have you change the wires?", clear_screen = False, show_exit_option=False)
+            menu.show()
+            menu.join()
+            response = menu.selected_option
+        return bool(response)
 
 
     @staticmethod
@@ -204,7 +381,8 @@ class TermC:
         fan = format(fan, '01b')
         hw_version = format(hw_version, '03b')
 
-        number = temp_amb + temp_body + temp_anode + connector + fan + hw_version
+        number = '0b'+ temp_amb + temp_body + temp_anode + connector + fan + hw_version
+
         return int(number, 2)
 
     @staticmethod
@@ -218,7 +396,7 @@ class TermC:
         Raises:
             - None
         '''
-        menu = SelectionMenu(options, message, show_exit_option = False)
+        menu = SelectionMenu(options, message, show_exit_option = False, clear_screen=False)
         menu.show()
         menu.join()
         return menu.selected_option
@@ -235,7 +413,7 @@ class TermC:
             - None
         '''
         a_list = ["Voltage high side", "Voltage low side", "Current"]
-        menu = SelectionMenu(a_list,"Select an option of calibration:")
+        menu = SelectionMenu(a_list,"Select an option of calibration:", clear_screen=False)
         menu.show()
         menu.join()
         return menu.selected_option

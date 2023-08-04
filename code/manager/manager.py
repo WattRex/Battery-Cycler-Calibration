@@ -8,7 +8,7 @@ import os
 
 #######################         GENERIC IMPORTS          #######################
 import yaml
-
+from signal import signal, SIGINT
 #######################       THIRD PARTY IMPORTS        #######################
 
 #######################      SYSTEM ABSTRACTION IMPORTS  #######################
@@ -30,14 +30,36 @@ from term import *
 #######################              ENUMS               #######################
 
 #######################              CLASSES             #######################
+def signal_handler() -> None:
+    '''This is called when Ctrl + C is pressed.
+    Args:
+        - None
+    Returns:
+        - None
+    Raises:
+        - None
+    '''
+    print("You pressed Ctrl+C!, it's option is not available.")
 
 class ManagerC:
     "Class to manage the state machine"
     def __init__(self) -> None:
-        self.__epc_config: StmFlash_EpcConfC = None
+        self.__epc_config: StmFlashEpcConfC = None
         self.__status: TermOptionE           = TermOptionE.CONF_DEV
         self.__power                         = PwrC()
         self.__stm: StmFlashC                = StmFlashC()
+
+    @property
+    def status(self) -> TermOptionE:
+        '''Show the status of the state machine
+        Args:
+            - None
+        Returns:
+            - status (TermOptionE): Status of the state machine
+        Raises:
+            - None
+        '''
+        return self.__status
 
 
     def _calib_status(self, mode: PwrModeE) -> ConfigResultE:
@@ -75,16 +97,17 @@ class ManagerC:
         result: ConfigResultE = ConfigResultE.ERROR
 
         info_file_path = ConfigWsC.get_info_file_path()
+        print(info_file_path)
         if os.path.exists(info_file_path):
             with open(info_file_path, 'r', encoding = "utf-8") as file:
                 info_epc = yaml.load(file, Loader = yaml.FullLoader)
         else:
             info_epc = CONFIG_DEFAULT_INFO_EPC
 
+        info_epc['device_version']['s_n'] = self.__epc_config.sn
         info_epc['device_version']['sw'] = self.__epc_config.sw_ver
         info_epc['device_version']['hw'] = self.__epc_config.hw_ver
         info_epc['device_version']['can_ID'] = self.__epc_config.can_id
-        info_epc['device_version']['s_n'] = self.__epc_config.sn
 
         if os.path.exists(info_file_path):
             with open(info_file_path, 'w', encoding = "utf-8") as file:
@@ -115,17 +138,19 @@ class ManagerC:
         Raises:
             - None
         '''
-        check_calib = {PwrModeE.VOLT_HS: False,
-                       PwrModeE.VOLT_LS: False,
-                       PwrModeE.CURR: False}
+        check_calib = {PwrModeE.VOLT_HS: True,
+                       PwrModeE.VOLT_LS: True,
+                       PwrModeE.CURR: True}
         guided = False
 
-        while self.__status is not TermOptionE.EXIT:
+        while self.__status is not TermOptionE.EXIT and \
+              self.__status is not TermOptionE.FLASH_OTHER:
             #Guided mode option
             if guided is True:
                 option_guided = [None, TermOptionE.FLASH_ORIG, TermOptionE.CONF_DEV, \
                                  TermOptionE.CALIB, TermOptionE.FLASH_CALIB, TermOptionE.EXIT]
                 self.__status = option_guided[option_guided.index(self.__status) + 1]
+
             else:
                 self.__status = TermC.query_options()
 
@@ -137,6 +162,9 @@ class ManagerC:
                     log.error("Error flashing original program")
                     TermC.show_error(status = TermOptionE.FLASH_ORIG, \
                                      message = "Error flashing original program")
+                else:
+                    log.info("Original program flashed")
+                    self.__power.reset_can()
 
             #Configure device
             elif self.__status is TermOptionE.CONF_DEV:
@@ -148,7 +176,7 @@ class ManagerC:
                 #Check if device is configured
                 if self.__epc_config is None:
                     log.error("EPC configuration not set")
-                    print("EPC configuration not set, please configure device first")
+                    print("EPC configuration not set, please configure device first.")
                     return_conf_dev = self.__conf_device()
                 else:
                     return_conf_dev = ConfigResultE.NO_ERROR
@@ -182,11 +210,12 @@ class ManagerC:
 
             #Flash with calibration data
             elif self.__status is TermOptionE.FLASH_CALIB:
-                log.info("Flashing with calibration data")
                 #Check if device is configured
                 if self.__epc_config is None:   #TODO: This condition should check if EPC sent info is the same as the __epc_config
                     log.error("EPC configuration not set")
                     return_conf_dev = self.__conf_device()
+                else:
+                    return_conf_dev = ConfigResultE.NO_ERROR
 
                 if return_conf_dev is ConfigResultE.NO_ERROR:
                     #Check if all calibration data are set
@@ -204,6 +233,8 @@ class ManagerC:
                                                      {key}")
                     else:
                         #Apply calibration data
+                        if TermC.add_power_supply():
+                            self.__power.on_power()
                         result_calib: ConfigResultE = self.__stm.apply_calib()
                         if result_calib is ConfigResultE.ERROR:
                             log.error("Error applying calibration data")
@@ -223,24 +254,45 @@ class ManagerC:
                                     log.error("Error flashing with calibration data")
                                     TermC.show_error(status = TermOptionE.FLASH_CALIB, \
                                                 message = "Error flashing with calibration data")
+                                else:
+                                    log.info("Device calibrated and flashed")
+                                    self.__power.reset_can()
+                        self.__power.add_epc(new_id_can = self.__epc_config.can_id)
                 else:
                     log.error("Device could not be calibrated")
                     TermC.show_error(status = TermOptionE.FLASH_CALIB, \
                                       message = "Device could not be calibrated")
-
 
             #Guided mode
             elif self.__status is TermOptionE.GUIDED_MODE:
                 log.info("Guided mode activated")
                 guided = True
                 self.__status = None
+        self.__power.off_power()
+
+        if guided is True:
+            inn = ''
+            while inn != 'y' and inn != 'n':
+                inn = input ('Do you want to calibrate other EPC? (y/n)')
+                if inn == 'y':
+                    self.__status = TermOptionE.FLASH_OTHER
+                    guided = False
+                elif inn == 'n':
+                    self.__status = TermOptionE.EXIT
+                else:
+                    print('Invalid option.')
 
 
 if __name__ == '__main__':
-    # TermC.show_intro()
-    inn = input ('Connect source to high voltage side on EPC. Press enter to continue')
-    while inn != '':
-        inn = input ('Press enter to continue')
+    # signal(SIGINT, signal_handler)
+    TermC.show_intro()
+    status = TermOptionE.CONF_DEV
+    while status is not TermOptionE.EXIT:
+        os.system('clear')
+        inn = input ('Connect source to high voltage side on EPC. Press enter to continue')
+        while inn != '':
+            inn = input ('Press enter to continue')
 
-    man = ManagerC()
-    man.execute_machine_status()
+        man = ManagerC()
+        man.execute_machine_status()
+        status = man.status

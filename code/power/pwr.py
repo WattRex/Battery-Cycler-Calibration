@@ -11,7 +11,7 @@ import os
 from subprocess import run, PIPE
 import threading
 from enum import Enum
-from statistics import mean
+from statistics import median
 from time import sleep, strftime
 import numpy as np
 import yaml
@@ -41,7 +41,7 @@ from drv.drv_scpi import DrvScpiHandlerC                # pylint: disable=wrong-
 from drv.drv_can import DrvCanNodeC                     # pylint: disable=wrong-import-position
 
 #######################              ENUMS               #######################
-_ERROR_RANGE = 50 #mUnits
+_ERROR_RANGE = 150 #mUnits
 
 class PwrModeE(Enum):
     "Enum to select the type of calibration to be done."
@@ -52,21 +52,22 @@ class PwrModeE(Enum):
 
 class _PwrParamsE(Enum):
     "Values of calibration."
-    VOLT_HS_MIN     = 5400      #mV
-    VOLT_HS_MAX     = 14000     #mV
-    VOLT_HS_STEP    = 100       #no units
+    VOLT_HS_MIN     = 5000      #mV
+    VOLT_HS_MAX     = 14000     #mV 14000
+    VOLT_HS_STEP    = 500       #no units
     VOLT_LS_MIN     = 500       #mV
     VOLT_LS_MAX     = 5000      #mV
-    VOLT_LS_STEP    = 100       #no units
-    CURR_MIN        = -15000    #mA
-    CURR_MAX        = 15000     #mA
-    CURR_STEP       = 100       #no units
+    VOLT_LS_STEP    = 500       #no units
+    CURR_MIN        = -10000    #mA
+    CURR_MAX        = 10000     #mA
+    CURR_STEP       = 500       #no units
 
 #######################              CLASSES             #######################
 class PwrC:
     "Class to manage the power devices."
     def __init__(self) -> None:
-        self.__meter: DrvBkDeviceC  = None
+        self.__volt_meter: DrvBkDeviceC  = None
+        self.__curr_meter: DrvBkDeviceC  = None
         self.__source: DrvEaDeviceC = None
         self.__epc: DrvEpcDeviceC   = None
         self._config_power_devices()
@@ -82,6 +83,8 @@ class PwrC:
             - None
         '''
         log.info("Calibrating voltage high side")
+        print("Calibrating voltage high side.")
+        self.__epc.set_wait_mode(limit_type = DrvEpcLimitE.TIME, limit_ref = 3000)
         result = self._steps_of_calibration(mode = PwrModeE.VOLT_HS)
         return result
 
@@ -96,6 +99,8 @@ class PwrC:
             - None
         '''
         log.info("Calibrating voltage low side")
+        print("Calibrating voltage low side.")
+        self.__epc.set_wait_mode(limit_type = DrvEpcLimitE.TIME, limit_ref = 3000)
         result = self._steps_of_calibration(mode = PwrModeE.VOLT_LS)
         return result
 
@@ -110,9 +115,58 @@ class PwrC:
             - None
         '''
         log.info("Calibrating current")
+        print("Calibrating current.")
+        self.off_power()
         result = self._steps_of_calibration(mode = PwrModeE.CURR)
         return result
 
+
+    def on_power(self) -> None:
+        '''Enable the power source.
+        Args:
+            - None
+        Returns:
+            - None
+        Raises:
+            - None
+        '''
+        self.__source.set_cv_mode(volt_ref = 6000, current_limit = 500, channel = 1)
+        self.__source.set_cv_mode(volt_ref = 3000, current_limit = 500, channel = 2)
+
+
+    def off_power(self) -> None:
+        '''Disable the power source.
+        Args:
+            - None
+        Returns:
+            - None
+        Raises:
+            - None
+        '''
+        self.__source.disable(channel = 1)
+        self.__source.disable(channel = 2)
+
+
+    def add_epc(self, new_id_can: int) -> None:
+        '''Add new epc.
+        Args:
+            - new_id_can (int): New can ID.
+        Return:
+            - None
+        Raises:
+            - None
+        '''
+        self.__epc = DrvEpcDeviceC(dev_id = new_id_can,
+                                   device_handler = SysShdChanC(500),
+                                   tx_can_queue = self.__can_queue)
+        self.__epc.open()
+
+    def reset_can(self) -> None:
+        log.info("Reset CAN")
+        cmd = "sudo ip link set down can0"
+        run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
+        cmd = "sudo ip link set up txqueuelen 1000000 can0 type can bitrate 125000"
+        run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
 
     def _config_power_devices(self) -> None:
         '''Configure the DRV devices.
@@ -129,9 +183,16 @@ class PwrC:
                 ports = yaml.load(file, Loader=yaml.FullLoader)
             try:
                 #Multimeter configuration
-                scpi_bk = DrvScpiHandlerC(port = ports['multimeter'], separator='\n', \
-                                          baudrate=38400, timeout=1, write_timeout=1)
-                self.__meter = DrvBkDeviceC(handler = scpi_bk)
+                scpi_volt_meter = DrvScpiHandlerC(port = ports['voltage_multimeter'], \
+                                                  separator='\n', baudrate=38400, \
+                                                  timeout=1, write_timeout=1)
+                self.__volt_meter = DrvBkDeviceC(handler = scpi_volt_meter)
+                self.__volt_meter.set_mode(DrvBkModeE.VOLT_AUTO)
+                scpi_curr_meter = DrvScpiHandlerC(port = ports['current_multimeter'], \
+                                                  separator='\n', baudrate=38400, \
+                                                  timeout=1, write_timeout=1)
+                self.__curr_meter = DrvBkDeviceC(handler = scpi_curr_meter)
+                self.__curr_meter.set_mode(DrvBkModeE.CURR_R20_A)
 
                 #Source configuration
                 scpi_ea = DrvScpiHandlerC(port = ports['source'], separator = '\n', \
@@ -139,25 +200,25 @@ class PwrC:
                                           parity = serial.PARITY_ODD, baudrate = 9600)
                 self.__source: DrvEaDeviceC = DrvEaDeviceC(handler = scpi_ea)
 
-                self.__source.set_cv_mode(volt_ref = 6000, current_limit = 500)
-                print("CAAAAAMAMAMAMAMAMAMMAMAMAMA.")
-
+                self.on_power()
+                cmd = "sudo ip link set down can0"
+                run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
                 cmd = "sudo ip link set up txqueuelen 1000000 can0 type can bitrate 125000"
-                console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
+                run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
+
                 #EPC configuration
-                can_queue = SysShdChanC(100000000)
-                can_queue.delete_until_last()
+                self.__can_queue = SysShdChanC(100000000)
+                self.__can_queue.delete_until_last()
                 # Flag to know if the can is working
-                print("EEEEPPPPPPCCCCCCCCCCCCCCCCCCCC.")
                 _working_can = threading.Event()
                 _working_can.set()
                 #Create the thread for CAN
-                can = DrvCanNodeC(can_queue, _working_can)
+                can = DrvCanNodeC(self.__can_queue, _working_can)
                 can.start()
-                self.__epc = DrvEpcDeviceC(dev_id=0x3, \
+                self.__epc = DrvEpcDeviceC(dev_id=0x00,
                                            device_handler=SysShdChanC(500),
-                                           tx_can_queue=can_queue)
-                self.__epc.open(addr= 0x030, mask= 0x7F0)
+                                           tx_can_queue=self.__can_queue)
+                self.__epc.open()
                 # self.__source.disable()
             except Exception as err:
                 log.error(f"Error opening ports. {err}")
@@ -176,6 +237,7 @@ class PwrC:
         Raises:
             - None
         '''
+        TermC.check_wires()
         result_calib: ConfigResultE = ConfigResultE.ERROR
         #Check if the calibration has already been done
         info_path = ConfigWsC.get_info_file_path()
@@ -194,14 +256,13 @@ class PwrC:
         if rewrite:
             calib: pd.DataFrame = self._obtain_values(mode = mode)
             #Obtain the parameters of the line
-            axis_x = np.array(calib.iloc[:,1]).tolist() #Column of multimeter
-            axis_y = np.array(calib.iloc[:,2]).tolist() #Column of EPC
-            factor, intersection = np.polyfit(axis_x, axis_y, 1)
-            offset = intersection - (factor * axis_x[0])
-            #Save the calibration data
+            axis_y = np.array(calib.iloc[:,1]).tolist() #Column of multimeter
+            axis_x = np.array(calib.iloc[:,2]).tolist() #Column of EPC
+            print(f"-------------\naxis_x\n{axis_x}\n-------------\naxis_y\n{axis_y}")
+            factor, offset = np.polyfit(axis_x, axis_y, 1)
+            factor = factor * 4095
             result_calib = self._save_calib_data(mode = mode, data = calib, \
-                                                factor = float(round(factor, 3)), \
-                                                offset = float(round(offset, 3)))
+                                                 factor = int(factor), offset = int(offset))
             if result_calib == ConfigResultE.NO_ERROR:
                 log.info(f"Calibration of {mode.name} finished.")
                 print("Calibration finished.")
@@ -229,62 +290,68 @@ class PwrC:
         val_min = _PwrParamsE.__getitem__(f"{mode.name}_MIN").value
         step    = _PwrParamsE.__getitem__(f"{mode.name}_STEP").value
         val_max = _PwrParamsE.__getitem__(f"{mode.name}_MAX").value
+        name_columns = ['meas source', 'meas multimeter', 'meas EPC']
 
-        if mode is PwrModeE.VOLT_HS or mode is PwrModeE.VOLT_LS:
-            type_columns = ['voltage source', 'voltage multimeter', 'voltage EPC']
-            self.__meter.set_mode(DrvBkModeE.VOLT_AUTO)
-            self.__epc.set_wait_mode(limit_type = DrvEpcLimitE.TIME, limit_ref = 3000)
-
-        elif mode is PwrModeE.CURR:
-            type_columns = ['current source', 'current multimeter', 'current EPC']
-            self.__meter.set_mode(DrvBkModeE.CURR_R2_A)
-
-        result = pd.DataFrame(columns = type_columns)
+        result = pd.DataFrame(columns = name_columns)
         val_to_send = val_min
+
         #Iteration to obtain the voltage or current of the multimeter and the EPC
         while val_to_send <= val_max:
-            sleep(1)
-            if mode is PwrModeE.VOLT_HS or mode is PwrModeE.VOLT_LS:
-                self.__source.set_cv_mode(volt_ref = val_to_send, current_limit = 500)
-                while abs(val_to_send - self.__source.get_data().voltage) > _ERROR_RANGE:
+
+            if mode is PwrModeE.VOLT_HS:
+                self.__source.set_cv_mode(volt_ref = val_to_send, current_limit = 500, channel = 1)
+                while abs(val_to_send - self.__source.get_data(channel = 1).voltage) > _ERROR_RANGE:
+                    sleep(0.1)
+
+            if mode is PwrModeE.VOLT_LS:
+                self.__source.set_cv_mode(volt_ref = val_to_send, current_limit = 500, channel = 2)
+                while abs(val_to_send - self.__source.get_data(channel = 2).voltage) > _ERROR_RANGE:
                     sleep(0.1)
 
             elif mode is PwrModeE.CURR:
-                #PRINT DE PONER DOS BATERÍAS
                 self.__epc.set_cc_mode(ref = val_to_send, limit_type = DrvEpcLimitE.TIME, \
                                        limit_ref = 8000)
-                while abs(val_to_send - self.__meter.get_data().current) > _ERROR_RANGE:
-                    sleep(0.1)
 
             av_meter: list= []
             av_epc: list= []
             for _ in range(0,9, 1):
                 #Data voltage high side calibration
                 if mode is PwrModeE.VOLT_HS:
-                    val_meter   = self.__meter.get_data().voltage
-                    val_epc     = self.__epc.get_data().hs_voltage
+                    val_meter   = self.__volt_meter.get_data().voltage
+                    val_epc     = self.__epc.get_elec_meas().hs_voltage
 
                 #Data voltage low side calibration
-                elif mode is PwrModeE.VOLT_HS or mode is PwrModeE.VOLT_LS:
-                    val_meter   = self.__meter.get_data().voltage
-                    val_epc     = self.__epc.get_data().ls_voltage
+                elif mode is PwrModeE.VOLT_LS:
+                    val_meter   = self.__volt_meter.get_data().voltage
+                    val_epc     = self.__epc.get_elec_meas().ls_voltage
 
                 #Data current calibration
                 elif mode is PwrModeE.CURR:
-                    val_meter   = self.__meter.get_data().current
-                    val_epc     = self.__epc.get_data().ls_current
+                    val_meter   = self.__curr_meter.get_data().current
+                    val_epc     = self.__epc.get_elec_meas().ls_current
 
+                if mode is PwrModeE.VOLT_HS:
+                    max_meas_range = 15000
+                    offset = 0
+                elif mode is PwrModeE.VOLT_LS:
+                    max_meas_range = 6000
+                    offset = 0
+                elif mode is PwrModeE.CURR:
+                    max_meas_range = 33000
+                    offset = -16000
+
+                bits_epc = (val_epc - offset) * 4095 / max_meas_range
                 av_meter.append(val_meter)
-                av_epc.append(val_epc)
+                av_epc.append(bits_epc)
 
-            new_row = pd.DataFrame([[val_to_send, int(mean(av_meter)), int(mean(av_epc))]], \
-                                   columns = type_columns)
+            new_row = pd.DataFrame([[val_to_send, int(median(av_meter)), int(median(av_epc))]], \
+                                   columns = name_columns)
             result = pd.concat([result,new_row], ignore_index=True)
 
             TermC.show_progress_bar(iteration = val_to_send - val_min, total = val_max - val_min)
             val_to_send += step
 
-        self.__source.disable()
+        # self.__source.disable()
         return result
 
 

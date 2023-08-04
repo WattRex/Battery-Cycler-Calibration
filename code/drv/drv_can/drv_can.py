@@ -245,7 +245,7 @@ class DrvCanNodeC(threading.Thread):
         Main method executed by the CAN thread. It receive data from EPCs and PLAKs
         and store it on the corresponding chan.
         '''
-        log.critical("Start running process")
+        log.info("Start running process")
         while self.working_flag.isSet():
             try:
                 if not self.tx_buffer.is_empty():
@@ -256,12 +256,12 @@ class DrvCanNodeC(threading.Thread):
                     self.__apply_command(command)
                 msg : Message = self.__can_bus.recv(timeout=_TIMEOUT_RX_MSG)
                 if isinstance(msg,Message):
-                    if (msg.arbitration_id > 0x000 and msg.arbitration_id <= 0x7FF
+                    if (msg.arbitration_id >= 0x000 and msg.arbitration_id <= 0x7FF
                         and not msg.is_error_frame):
                         self.__parse_msg(DrvCanMessageC(msg.arbitration_id,msg.dlc,msg.data))
                     else:
-                        log.error(f"Message receive but can`t be parsed, \
-                                due to id: {msg.arbitration_id}")
+                        log.error(f"Message receive can`t be parsed, id: {hex(msg.arbitration_id)}"+
+                                  f" and frame: {msg.is_error_frame}")
             except Exception as err:
                 log.error(f"Error while sending CAN message\n{err}")
         log.critical("Stop can working")

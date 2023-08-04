@@ -1,7 +1,7 @@
 "Imports of the stm flash module."
 
-from .stm_flash import StmFlash_EpcConfC, StmFlashC
+from .stm_flash import StmFlashEpcConfC, StmFlashC
 
 __all__ = [
-    'StmFlash_EpcConfC',
+    'StmFlashEpcConfC',
     'StmFlashC']

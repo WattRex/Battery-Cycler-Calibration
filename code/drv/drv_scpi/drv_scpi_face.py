@@ -131,7 +131,7 @@ class DrvScpiHandlerC:
         '''
         msg = msg + self.__separator
         self.__serial.write(bytes(msg.encode('utf-8')))
-        sleep(0.2) #TODO: remove this sleep
+        sleep(0.4) #TODO: remove this sleep
 
 
     def receive_msg(self) -> List[str]:
