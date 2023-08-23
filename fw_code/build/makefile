@@ -27,6 +27,7 @@ RM := rm -rf
 -include Sources/EPC_ST/subdir.mk
 -include Sources/EPC_CONF/subdir.mk
 -include Sources/APP/APP_SALG/subdir.mk
+-include Sources/APP/APP_CTRL/subdir.mk
 -include Sources/APP/APP_IFACE/subdir.mk
 -include Drivers/STM32F3xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk

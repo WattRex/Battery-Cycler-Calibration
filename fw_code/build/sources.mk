@@ -27,6 +27,7 @@ Core/Startup \
 Drivers/STM32F3xx_HAL_Driver/Src \
 Sources/APP/APP_IFACE \
 Sources/APP/APP_SALG \
+Sources/APP/APP_CTRL \
 Sources/EPC_CONF \
 Sources/EPC_ST \
 Sources/HAL/HAL_ADC \
