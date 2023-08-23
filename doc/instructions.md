@@ -7,11 +7,12 @@ We need the following elements:
 - A power supply to establish the voltage and current. Minimun ranges:
     -   0.5V - 14V.
     -   -1.5A - 1.5A.
-- A multimeter to measure the voltage and current. Minimun ranges:
+- Two multimeters to measure the voltage and current. Minimun ranges:
     -   0.5V - 14V.
     -   -1.5A - 1.5A.
 - A raspberry pi to run the program and communicate with the devices.
 - The EPC to calibrate.
+- External battery.
 
 All these elements must be connected via USB to the raspberry pi.
 
@@ -89,7 +90,7 @@ Calibrate the low side current.
 
 Before starting the calibration, the station must be wired as follows:
 ¿¿¿¿????
-
+(Connect external battery)
 
 ### 4. Flash with calibration data.
 Flash the EPC with new calibration.
@@ -111,6 +112,6 @@ Close the program.
 ## Used technologies
 * [Source] (https://elektroautomatik.com/shop/en/products/programmable-dc-laboratory-power-supplies/dc-laboratory-power-supplies/series-ps-2000b-br-100-up-to-332-w/724/power-supply-2x0..84v/0..5a)
 
-* [Multimeter] (https://www.bkprecision.com/products/vids/2831E?)
+* [Multimeters] (https://www.bkprecision.com/products/vids/2831E?)
 
 * [Raspberry Pi] (https://www.raspberrypi.com/products/raspberry-pi-zero/)
