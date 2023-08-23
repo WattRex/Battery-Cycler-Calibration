@@ -58,9 +58,9 @@ class _PwrParamsE(Enum):
     VOLT_LS_MIN     = 500       #mV
     VOLT_LS_MAX     = 5000      #mV
     VOLT_LS_STEP    = 500       #no units
-    CURR_MIN        = -10000    #mA
-    CURR_MAX        = 10000     #mA
-    CURR_STEP       = 500       #no units
+    CURR_MIN        = -1500     #mA
+    CURR_MAX        = 1500      #mA
+    CURR_STEP       = 100       #no units
 
 #######################              CLASSES             #######################
 class PwrC:
