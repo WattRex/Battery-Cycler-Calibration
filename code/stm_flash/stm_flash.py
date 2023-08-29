@@ -8,22 +8,19 @@ import os
 
 #######################         GENERIC IMPORTS          #######################
 from subprocess import run, PIPE
-import yaml
+from yaml import load, FullLoader
 
 #######################       THIRD PARTY IMPORTS        #######################
 
 #######################      SYSTEM ABSTRACTION IMPORTS  #######################
 sys.path.append(os.getcwd())
-from sys_abs.sys_log import sys_log_logger_get_module_logger
-if __name__ == '__main__':
-    from sys_abs.sys_log import SysLogLoggerC
-    cycler_logger = SysLogLoggerC('./sys_abs/sys_log/logginConfig.conf')
+from system_logger_tool import sys_log_logger_get_module_logger # pylint: disable=wrong-import-position
 log = sys_log_logger_get_module_logger(__name__)
 
 #######################          PROJECT IMPORTS         #######################
 
 #######################          MODULE IMPORTS          #######################
-from config import ConfigWsC, ConfigResultE
+from config import ConfigWsC, ConfigResultE # pylint: disable=wrong-import-position
 
 #######################              ENUMS               #######################
 _EPC_CONF_PATH= "/home/pi004/GIT_luroche/Battery-Cycler-Calibration/fw_code"+\
@@ -38,7 +35,7 @@ class StmFlashEpcConfC:
         self.sw_ver: int = software
         self.hw_ver: int = hardware
         self.can_id: int = can_id
-        self.sn: int     = serial_number
+        self.sn: int     = serial_number # pylint: disable=invalid-name
 
 
 class StmFlashC:
@@ -87,7 +84,7 @@ class StmFlashC:
         if os.path.exists(info_file_path):
             #Open the EPC yaml.
             with open(ConfigWsC.get_info_file_path(), 'r', encoding="utf-8") as file:
-                info_epc = yaml.load(file, Loader=yaml.FullLoader)
+                info_epc = load(file, Loader = FullLoader)
             if os.path.exists(_EPC_CONF_PATH):
                 # Open the C file in read mode
                 with open(_EPC_CONF_PATH, 'r', encoding="utf-8") as file:
@@ -171,7 +168,7 @@ class StmFlashC:
         cmd = "cd ../fw_code/build && make all"
         archive_bin = os.path.exists("../fw_code/build/STM32.bin")
 
-        console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)
+        console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE, check=False)
         if console.returncode == 0: #Check if the command produced an error. 0 is no error
             archive_bin = os.path.exists("../fw_code/build/STM32.bin")
             if archive_bin:
@@ -201,8 +198,8 @@ class StmFlashC:
         result = ConfigResultE.ERROR
         exist = os.path.exists(f"../fw_code/build/{binary_name}")
         if exist:
-            cmd = f"cd ../fw_code/build &&  st-flash --connect-under-reset write {binary_name} 0x08000000"
-            console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE)          
+            cmd = f"cd ../fw_code/build &&  st-flash --connect-under-reset write {binary_name} 0x08000000" # pylint: disable=line-too-long
+            console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE, check=False)
             if console.returncode == 0:
                 if "jolly good" in console.stderr.decode('utf-8'):
                     log.info(f"{binary_name} file flashed: {console.stdout.decode('utf-8')}")
@@ -250,6 +247,7 @@ class StmFlashC:
         if result is ConfigResultE.NO_ERROR:
             # Modify the information of the device
             hw_ver = bin(self.__epc_conf.hw_ver)
+            print(hw_ver)
             for i, line in enumerate(content):
                 if '/*		ID CONF		*/' in line:
                     i_info = i
@@ -261,20 +259,24 @@ class StmFlashC:
                         elif '#define _S_N' in content[i_info]:
                             content[i_info] = f"#define _S_N\t{self.__epc_conf.sn}\n"
                         elif '#define _HW_REVIEW' in content[i_info]:
-                            content[i_info] = f"#define _HW_REVIEW\t{int(hw_ver[-3:],2)}\t // Review\n"
+                            content[i_info] = f"#define _HW_REVIEW\t{int(hw_ver[-3:],2)}\t // Review\n" # pylint: disable=line-too-long
                         elif '#define _HW_VENT' in content[i_info]:
                             content[i_info] = f"#define _HW_VENT\t{int(hw_ver[-4],2)}\t // Vent\n"
                         elif '#define _HW_CONNECTOR' in content[i_info]:
-                            content[i_info] = f"#define _HW_CONNECTOR\t{int(hw_ver[-7:-4],2)}\t // Connector\n"
+                            content[i_info] = f"#define _HW_CONNECTOR\t{int(hw_ver[-7:-4],2)}\t // Connector\n" # pylint: disable=line-too-long
                         elif '#define _HW_ANODE' in content[i_info]:
-                            content[i_info] = f"#define _HW_ANODE\t{int(hw_ver[-9:-7],2)}\t // T anode type\n"
+                            content[i_info] = f"#define _HW_ANODE\t{int(hw_ver[-9:-7],2)}\t // T anode type\n" # pylint: disable=line-too-long
                         elif '#define _HW_STS' in content[i_info]:
                             content[i_info] = f"#define _HW_STS\t{int(hw_ver[-10],2)}\t // T body\n"
                         elif '#define _HW_AMB' in content[i_info]:
-                            content[i_info] = f"#define _HW_AMB\t{int(hw_ver[-11],2)}\t // T amb\n"
+                            try:
+                                amb= int(hw_ver[-11],2)
+                            except:
+                                amb= 0
+                            content[i_info] = f"#define _HW_AMB\t{amb}\t // T amb\n"
                         i_info += 1
 
-            # Rerwite the file
+            # Rewrite the file
             with open(_EPC_CONF_PATH, 'w', encoding="utf-8") as file:
                 # Escribe el content modificado en el archivo
                 file.writelines(content)

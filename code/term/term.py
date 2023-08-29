@@ -7,12 +7,12 @@ import sys
 import os
 
 #######################         GENERIC IMPORTS          #######################
-from colorama import init as colorama_init
-from colorama import Fore, Back, Style
 from time import sleep
 from enum import Enum
-from consolemenu import SelectionMenu, Screen
 from random import randint
+from consolemenu import SelectionMenu, Screen
+from colorama import init as colorama_init
+from colorama import Fore, Style
 
 #######################       THIRD PARTY IMPORTS        #######################
 
@@ -23,7 +23,6 @@ colorama_init()
 
 #######################          MODULE IMPORTS          #######################
 from stm_flash import StmFlashEpcConfC # pylint: disable=wrong-import-position
-
 #######################              ENUMS               #######################
 _LOGO_INTRO = r"""
 
@@ -170,7 +169,7 @@ _SMURF = r"""
 
 INTRO = {   "PIOLIN"    : (_PIOLIN,     Fore.YELLOW),
             "SPONJE"    : (_SPONJE_BOB, Fore.YELLOW),
-            "SMURF"     : (_SMURF,      Fore.BLUE),
+            "SMURF"     : (_SMURF,      Fore.CYAN),
             "SHREK"     : (_SHREK,      Fore.GREEN),
             "SIMPSON"   : (_SIMPSON,    Fore.YELLOW)}
 
@@ -249,7 +248,8 @@ class TermC:
             - None
         '''
         a_list = ["No", "Yes"]
-        menu = SelectionMenu(a_list,"Do you want to rewrite the calibration data?", clear_screen=False)
+        menu = SelectionMenu(a_list,"Do you want to rewrite the calibration data?",
+                             clear_screen=False)
         menu.show()
         menu.join()
         return bool(menu.selected_option)
@@ -309,7 +309,8 @@ class TermC:
             - None
         '''
         query = ["No", "Yes"]
-        menu = SelectionMenu(query,"The EPC will be flashed, do you want to add a power supply?", clear_screen=False, show_exit_option=False)
+        menu = SelectionMenu(query,"The EPC will be flashed, do you want to add a power supply?",
+                             clear_screen=False, show_exit_option=False)
         menu.show()
         menu.join()
         return bool(menu.selected_option)
@@ -331,7 +332,8 @@ class TermC:
         query = ["No", "Yes"]
         response = False
         while response is False:
-            menu = SelectionMenu(query, "Have you change the wires?", clear_screen = False, show_exit_option=False)
+            menu = SelectionMenu(query, "Have you change the wires?", \
+                                 clear_screen = False, show_exit_option=False)
             menu.show()
             menu.join()
             response = menu.selected_option

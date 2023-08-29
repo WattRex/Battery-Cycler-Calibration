@@ -8,8 +8,7 @@ import os
 #######################         GENERIC IMPORTS          #######################
 from enum import Enum
 from pathlib import Path
-import yaml
-
+from yaml import dump
 #######################       THIRD PARTY IMPORTS        #######################
 
 #######################      SYSTEM ABSTRACTION IMPORTS  #######################
@@ -67,7 +66,7 @@ class ConfigWsC:
             with open(_INFO_FILE_PATH, 'w', encoding="utf-8") as file:
                 info_epc = CONFIG_DEFAULT_INFO_EPC
                 info_epc['device_version']['s_n'] = serial_number
-                yaml.dump(info_epc, file)
+                dump(info_epc, file)
 
 
     @staticmethod

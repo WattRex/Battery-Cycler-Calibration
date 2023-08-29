@@ -2,30 +2,31 @@
 '''
 Principal program.
 '''
+
 #######################        MANDATORY IMPORTS         #######################
-import sys
+from sys import path
 import os
 
 #######################         GENERIC IMPORTS          #######################
 import yaml
 from signal import signal, SIGINT
+
 #######################       THIRD PARTY IMPORTS        #######################
 
 #######################      SYSTEM ABSTRACTION IMPORTS  #######################
-sys.path.append(os.getcwd())
-from sys_abs.sys_log import sys_log_logger_get_module_logger
+path.append(os.getcwd())
+from system_logger_tool import SysLogLoggerC, sys_log_logger_get_module_logger # pylint: disable=wrong-import-position
 if __name__ == '__main__':
-    from sys_abs.sys_log import SysLogLoggerC
-    cycler_logger = SysLogLoggerC('./sys_abs/sys_log/logginConfig.conf')
+    cycler_logger = SysLogLoggerC(file_log_levels='./config/log_config.yaml')
 log = sys_log_logger_get_module_logger(__name__)
 
 #######################          PROJECT IMPORTS         #######################
 
 #######################          MODULE IMPORTS          #######################
-from stm_flash import *
-from power import *
-from config import *
-from term import *
+from stm_flash import StmFlashEpcConfC, StmFlashC # pylint: disable=wrong-import-position
+from power import PwrC, PwrModeE # pylint: disable=wrong-import-position
+from config import ConfigWsC, CONFIG_DEFAULT_INFO_EPC, ConfigResultE # pylint: disable=wrong-import-position
+from term import TermC, TermOptionE # pylint: disable=wrong-import-position
 
 #######################              ENUMS               #######################
 
@@ -97,7 +98,6 @@ class ManagerC:
         result: ConfigResultE = ConfigResultE.ERROR
 
         info_file_path = ConfigWsC.get_info_file_path()
-        print(info_file_path)
         if os.path.exists(info_file_path):
             with open(info_file_path, 'r', encoding = "utf-8") as file:
                 info_epc = yaml.load(file, Loader = yaml.FullLoader)
@@ -166,6 +166,7 @@ class ManagerC:
                     log.info("Original program flashed")
                     self.__power.reset_can()
 
+
             #Configure device
             elif self.__status is TermOptionE.CONF_DEV:
                 self.__conf_device()
@@ -211,7 +212,7 @@ class ManagerC:
             #Flash with calibration data
             elif self.__status is TermOptionE.FLASH_CALIB:
                 #Check if device is configured
-                if self.__epc_config is None:   #TODO: This condition should check if EPC sent info is the same as the __epc_config
+                if self.__epc_config is None:
                     log.error("EPC configuration not set")
                     return_conf_dev = self.__conf_device()
                 else:
@@ -257,6 +258,7 @@ class ManagerC:
                                 else:
                                     log.info("Device calibrated and flashed")
                                     self.__power.reset_can()
+
                         self.__power.add_epc(new_id_can = self.__epc_config.can_id)
                 else:
                     log.error("Device could not be calibrated")
@@ -271,13 +273,16 @@ class ManagerC:
         self.__power.off_power()
 
         if guided is True:
-            inn = ''
-            while inn != 'y' and inn != 'n':
-                inn = input ('Do you want to calibrate other EPC? (y/n)')
-                if inn == 'y':
+            insert = ''
+            while insert != 'y' and insert != 'n':
+                insert = input('Do you want to calibrate other EPC? (y/n)')
+                if insert == 'y':
                     self.__status = TermOptionE.FLASH_OTHER
+                    self.__power.reset_can()
+
+
                     guided = False
-                elif inn == 'n':
+                elif insert == 'n':
                     self.__status = TermOptionE.EXIT
                 else:
                     print('Invalid option.')
@@ -285,13 +290,13 @@ class ManagerC:
 
 if __name__ == '__main__':
     # signal(SIGINT, signal_handler)
-    TermC.show_intro()
+    # TermC.show_intro()
     status = TermOptionE.CONF_DEV
     while status is not TermOptionE.EXIT:
         os.system('clear')
-        inn = input ('Connect source to high voltage side on EPC. Press enter to continue')
-        while inn != '':
-            inn = input ('Press enter to continue')
+        insert = input('Connect source to high voltage side on EPC. Press enter to continue')
+        while insert != '':
+            insert = input('Press enter to continue')
 
         man = ManagerC()
         man.execute_machine_status()
