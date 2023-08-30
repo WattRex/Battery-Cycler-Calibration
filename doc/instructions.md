@@ -24,6 +24,7 @@ Below is the scheme of the calibration station:
 ## About the app
 The state machine of the program is as follows:
 <img src="figures/man_status_machine.svg" alt="Cloud Image" width="700" height="600" title="calib_status_machine">
+
 In the principal menu there are seven options:
     
     1. Flash original program.
