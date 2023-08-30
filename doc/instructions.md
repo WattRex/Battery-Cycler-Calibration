@@ -19,11 +19,11 @@ All these elements must be connected via USB to the raspberry pi.
 To get started, download the entire project folder to the raspberry and run ```pip3 install -r requirements.txt``` command to install all the necessary python packages.
 
 Below is the scheme of the calibration station:
-<img src="Block_diagram_voltage.svg" alt="Cloud Image" width="800" height="400" title="calib_status_machine">
+<img src="figures/Block_diagram_voltage.svg" alt="Cloud Image" width="800" height="400" title="calib_status_machine">
 
 ## About the app
 The state machine of the program is as follows:
-<img src="man_status_machine.svg" alt="Cloud Image" width="700" height="600" title="calib_status_machine">
+<img src="figures/man_status_machine.svg" alt="Cloud Image" width="700" height="600" title="calib_status_machine">
 In the principal menu there are seven options:
     
     1. Flash original program.
@@ -71,7 +71,7 @@ Each time it is calibrated, a .csv file will be created with the data obtained f
 If a device configuration does not exist, it will be executed before starting the calibration.
 
 This is the machine status:
-<img src="calib_status_machine.svg" alt="Cloud Image" width="420" height="550" title="calib_status_machine">
+<img src="figures/calib_status_machine.svg" alt="Cloud Image" width="420" height="550" title="calib_status_machine">
 
 
 #### 3.1 Voltage high side.
@@ -80,7 +80,7 @@ Calibrate the high side voltage.
 - Maximun high side voltage: 14V.
 
 Before starting the calibration, the station must be wired as follows:
-<img src="Block_diagram_voltage.svg" alt="Cloud Image" width="800" height="400" title="calib_status_machine">
+<img src="figures/Block_diagram_voltage.svg" alt="Cloud Image" width="800" height="400" title="calib_status_machine">
 
 #### 3.2. Voltage low side.
 Calibrate the low side voltage.
@@ -88,7 +88,7 @@ Calibrate the low side voltage.
 - Maximun low side voltage: 5V.
 
 Before starting the calibration, the station must be wired as follows:
-<img src="Block_diagram_voltage.svg" alt="Cloud Image" width="800" height="400" title="calib_status_machine">
+<img src="figures/Block_diagram_voltage.svg" alt="Cloud Image" width="800" height="400" title="calib_status_machine">
 
 #### 3.3. Current.
 Calibrate the low side current.
@@ -96,7 +96,7 @@ Calibrate the low side current.
 - Maximun low side current: 1.5A.
 
 Before starting the calibration, the station must be wired as follows:
-<img src="Block_diagram_current.svg" alt="Cloud Image" width="800" height="400" title="calib_status_machine">
+<img src="figures/Block_diagram_current.svg" alt="Cloud Image" width="800" height="400" title="calib_status_machine">
 
 
 ### 4. Flash with calibration data.
