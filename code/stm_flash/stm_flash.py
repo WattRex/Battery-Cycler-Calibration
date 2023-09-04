@@ -5,7 +5,7 @@ Driver of stm flash.
 #######################        MANDATORY IMPORTS         #######################
 import sys
 import os
-
+import re
 #######################         GENERIC IMPORTS          #######################
 from subprocess import run, PIPE
 from yaml import load, FullLoader
@@ -215,10 +215,32 @@ class StmFlashC:
 
 
     def _get_last_release(self) -> bool:
-        #TODO: necesitamos la ultima release para poder descargar el codigo
-        log.info("Getting last release")
-        print("Getting last release.")
-        return False
+        #Download the latest release
+        console = run(args = "./stm_flash/get_release.sh", shell =True, stdout=PIPE, \
+                        stderr=PIPE, check=True)
+        stdout = console.stdout.decode('utf-8')
+
+        name_targz = re.search(r'\S+\.tar\.gz', stdout)
+        name_targz = name_targz.group()
+        name_targz = name_targz.replace("'", "")
+        file = name_targz.replace('.tar.gz', '')
+
+        #Decompress the file and delete the .tar.gz
+        cmd = f"tar -xvf {name_targz } && rm {name_targz}"
+        console = run(args = cmd, shell =True, stdout=PIPE, stderr=PIPE, check=True)
+
+        #Move the firmware folder
+        cmd = f"rm -r ../fw_code/firmware/ && mv {file}/firmware/ ../fw_code/ && rm -r {file}"
+        console = run(args = cmd, shell =True, stdout=PIPE, stderr=PIPE, check=True)
+
+        #Move the EPC_CONF from project_config to Sources folder
+        cmd = "cp -r ../fw_code/firmware/project_config/EPC_CONF/ ../fw_code/firmware/Sources/"
+        console = run(args = cmd, shell =True, stdout=PIPE, stderr=PIPE, check=True)
+        if console.returncode == 0:
+            result = True
+        else:
+            result = False
+        return result
 
 
     def _apply_dev_config(self) -> ConfigResultE:
