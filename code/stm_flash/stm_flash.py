@@ -166,7 +166,6 @@ class StmFlashC:
         log.info("Building STM32.bin file")
         result: ConfigResultE = ConfigResultE.ERROR
         cmd = "cd ../fw_code/build && make all"
-        archive_bin = os.path.exists("../fw_code/build/STM32.bin")
 
         console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE, check=False)
         if console.returncode == 0: #Check if the command produced an error. 0 is no error

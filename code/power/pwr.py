@@ -156,6 +156,7 @@ class PwrC:
                                    tx_can_queue = self.__can_queue)
         self.__epc.open()
 
+
     def reset_can(self) -> None:
         '''Reset CAN.
         Args:
@@ -170,6 +171,7 @@ class PwrC:
         run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE, check=False)
         cmd = "sudo ip link set up txqueuelen 1000000 can0 type can bitrate 125000"
         run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE, check=False)
+
 
     def _config_power_devices(self) -> None:
         '''Configure the DRV devices.
@@ -194,22 +196,34 @@ class PwrC:
                                               timeout=1, write_timeout=1)
             self.__curr_meter = DrvBkDeviceC(handler = scpi_curr_meter)
             self.__curr_meter.set_mode(DrvBkModeE.CURR_R2_A)
+            
             #Source configuration
             scpi_ea = DrvScpiHandlerC(port = ports['source'], separator = '\n', \
                                       timeout = 0.8, write_timeout = 0.8, \
                                       parity = serial.PARITY_ODD, baudrate = 9600)
             self.__source = DrvEaDeviceC(scpi_ea)
             self.on_power()
-            cmd = "sudo ip link set down can0"
-            run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE, check=False)
-            cmd = "sudo ip link set up txqueuelen 1000000 can0 type can bitrate 125000"
-            run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE, check=False)
+
             #EPC configuration
+            cmd = "sudo ip link set down can0"
+            console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE, check=False)
+            print(console.returncode)
+            print('-------------------')
+            cmd = "sudo ip link set up txqueuelen 1000000 can0 type can bitrate 125000"
+            console = run(args=cmd, shell =True, stdout=PIPE, stderr=PIPE, check=False)
+            print(console.returncode)
+            print('-------------------')
+            console = run(args="ifconfig", shell =True, stderr=PIPE, check=False)
+            print(console.stdout)
+            print('-------------------')
+            print(console.returncode)
             self.__can_queue = SysShdChanC(100000000)
             self.__can_queue.delete_until_last()
+
             # Flag to know if the can is working
             _working_can = Event()
             _working_can.set()
+
             #Create the thread for CAN
             can = DrvCanNodeC(self.__can_queue, _working_can)
             can.start()
@@ -221,7 +235,7 @@ class PwrC:
             print("Power devices configured. EPC open.")
 
         else:
-            log.error("File {ports_path} does not exist.")
+            log.error(f"File {ports_path} does not exist.")
 
 
     def _steps_of_calibration(self, mode: PwrModeE) -> ConfigResultE:

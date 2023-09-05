@@ -164,7 +164,7 @@ class ManagerC:
                                      message = "Error flashing original program")
                 else:
                     log.info("Original program flashed")
-                    self.__power.reset_can()
+                    # self.__power.reset_can()
 
 
             #Configure device
